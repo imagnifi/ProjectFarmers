@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="ru.imagnifi.model.District">
+		<field name="uuid" type="String" />
+		<field name="districtId" type="long" />
+		<field name="name" type="String" />
+		<field name="number" type="int" />
+		<field name="status" type="boolean" />
+	</model>
+</model-hints>

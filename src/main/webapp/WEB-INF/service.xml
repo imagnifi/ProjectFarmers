@@ -2,26 +2,45 @@
 
 <service-builder package-path="ru.imagnifi">
     <author>imagnifi</author>
-    <namespace>district</namespace>
+    <namespace>farmer</namespace>
     <entity
             name="District"
             local-service="true"
             remote-service="false"
-            table="district_details"
-            uuid="true">
+            table="imagnifi_district">
+<!--            uuid="true">-->
 <!--            data-source="extDataSource">-->
-        <column name="districtId" type="long" primary="true"></column>
-        <column name="name" type="String"></column>
-        <column name="number" type="int"></column>
-        <column name="status" type="boolean"></column>
+        <column name="districtId" type="long" primary="true" id-type="increment" />
+        <column name="name" type="String"/>
+        <column name="number" type="int" />
+        <column name="status" type="boolean"/>
 
         <order>
-            <order-column name="name" order-by="desc" />
+            <order-column name="districtId" order-by="asc" />
         </order>
 
-        <finder name="Name" return-type="Collection">
-            <finder-column name="name" />
+        <finder name="status" return-type="Collection">
+            <finder-column name="status"/>
         </finder>
+    </entity>
+    <entity name="Farmer"
+            local-service="true"
+            remote-service="false"
+            table="imagnifi_farmer">
+         <column name="farmerId" type="long" primary="true" id-type="increment"/>
+        <column name="organization" type="String"/>
+        <column name="orgForm" type="String"/>
+        <column name="inn" type="long"/>
+        <column name="kpp" type="long"/>
+        <column name="ogrn" type="long"/>
+        <column name="districtId" type="long" />
+<!--        <column name="areas of acreage" type="Collections" entity="Disrict" mapping-table="mapping_district"></column>-->
+<!--        <column name="registrationDate" type="Date"></column>-->
+        <order by="asc">
+            <order-column name="farmerId"/>
+        </order>
+<!--        <reference package-path="ru.imagnifi" entity="District"/>-->
 
     </entity>
+
 </service-builder>

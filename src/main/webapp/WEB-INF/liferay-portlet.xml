@@ -3,10 +3,19 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>ProjectFarmers</portlet-name>
-		<icon>/icon.png</icon>
+		<portlet-name>Farmer</portlet-name>
+		<icon>/jsp/Farmers/icon.png</icon>
+<!--		<use-default-template>false</use-default-template>-->
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
+<!--		<system>true</system>-->
+	</portlet>
+	<portlet>
+		<portlet-name>District</portlet-name>
+		<icon>/jsp/District/icon.png</icon>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
+<!--		<system>true</system>-->
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

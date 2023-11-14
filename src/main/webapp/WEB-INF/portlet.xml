@@ -2,21 +2,22 @@
 
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
 	<portlet>
-		<portlet-name>ProjectFarmers</portlet-name>
-		<display-name>ProjectFarmers</display-name>
-		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
+		<portlet-name>Farmer</portlet-name>
+		<display-name>Farmer</display-name>
+		<portlet-class>ru.imagnifi.controllers.Farmer</portlet-class>
+<!--		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>-->
 		<init-param>
 			<name>view-template</name>
-			<value>/view.jsp</value>
+			<value>/jsp/Farmer/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>ProjectFarmers</title>
-			<short-title>ProjectFarmers</short-title>
-			<keywords>ProjectFarmers</keywords>
+			<title>Farmer</title>
+			<short-title>Farmer</short-title>
+			<keywords>Farmer</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
@@ -31,4 +32,24 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
+	<portlet>
+		<portlet-name>District</portlet-name>
+		<display-name>District</display-name>
+		<portlet-class>ru.imagnifi.controllers.District</portlet-class>
+<!--		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>-->
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/District/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>District</title>
+			<short-title>District</short-title>
+			<keywords>District</keywords>
+		</portlet-info>
+	</portlet>
+
 </portlet-app>

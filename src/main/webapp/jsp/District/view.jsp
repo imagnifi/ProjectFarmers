@@ -1,27 +1,4 @@
-<%@ page import="ru.imagnifi.service.DistrictLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.ListUtil" %>
-<%@ page import="com.liferay.portal.kernel.exception.SystemException" %>
-<%@ page import="ru.imagnifi.model.District" %>
-<%@ page import="java.util.List" %><%--
-/**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- */
---%>
-
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-<%@ taglib prefix="liferay-ui" uri="http://liferay.com/tld/ui" %>
-
-<portlet:defineObjects />
+<%@include file="/jsp/init.jsp"%>
 
 This is the <b>ProjectFarmers1</b>.
 <%="\nHello World1"%>
@@ -30,11 +7,19 @@ This is the <b>ProjectFarmers1</b>.
     List<District> districtList;
     try {
         districtList = DistrictLocalServiceUtil.getDistricts(0, DistrictLocalServiceUtil.getDistrictsCount());
-        System.out.println("kkk");
+        System.out.println("jsp/District/view.jsp:row 34 print here");
     } catch (SystemException e) {
         throw new RuntimeException(e);
     }
 %>
+
+<%--<portlet:renderURL var="addDistrictURL">--%>
+<%--    <portlet:param name="mvcPath" value="/guestbook/edit_entry.jsp"/>--%>
+<%--</portlet:renderURL>--%>
+
+<aui:button-row>
+    <aui:button value="Add new District" name="addDistrict"/>
+</aui:button-row>
 
 <liferay-ui:search-container
         delta="2"

@@ -1,17 +1,13 @@
 <%@include file="/jsp/init.jsp" %>
 <%
-    System.out.println("addFarmer.jsp is visited");
+    System.out.println("Farmer/addFarmer.jsp");
 %>
 
-<portlet:renderURL var="viewURL">
-    <portlet:param name="mvcPath" value="/jsp/Farmer/addFarmer.jsp"/>
-</portlet:renderURL>
+<portlet:actionURL name="addFarmer" var="addFarmerURL"/>
+<%--        <portlet:param name="path" value="addFarmerPage"/>--%>
+<%--</portlet:actionURL>--%>
 
-<portlet:actionURL name="addFarmer" var="addFarmerURL">
-    <%--    <portlet:param name="winId" value="<%= <portlet:namespace/>dialog%>"/>--%>
-</portlet:actionURL>
-
-<aui:form action="<%= addFarmerURL %>" name="<portlet:namespace />fm">
+<aui:form action="<%= addFarmerURL %>" name="<portlet:namespace />fm" >
     <aui:fieldset>
         <aui:input label="Organization Name" name="organization" type="text">
             <aui:validator name="required"/>
@@ -39,20 +35,22 @@
     </aui:fieldset>
 
     <aui:button-row>
-        <aui:button type="submit" onClick="Submit()"/>
-        <%--        <aui:button type="cancel" onClick="<%= viewURL.toString() %>"/>--%>
-        <aui:button type="cancel" onClick="window.close();"/>
-<%--        <aui:script>window.close()</aui:script>--%>
+        <aui:button type="submit"/>
+        <aui:button type="cancel" name="cancel" />
     </aui:button-row>
 </aui:form>
 
-<script>
-    var jj=0
-    function Submit() {
-        <%--        <%=addFarmerURL%>--%>
-        <%--        <%=viewURL%>--%>
-        window.Submit()
+<%--<script>--%>
+<%--    function Close() {--%>
+<%--        window.close();--%>
+<%--    }--%>
+<%--</script>--%>
 
-        // window.close()
-    }
-</script>
+<!-- For Closing -->
+<aui:script use="aui-base">
+    A.one('#<portlet:namespace/>cancel').on('click', function(event) {
+    <!-- alert("first"); -->
+    var data = '';
+    Liferay.Util.getOpener().<portlet:namespace/>closeYourPopUp(data, '<portlet:namespace/>dialog');
+    });
+</aui:script>

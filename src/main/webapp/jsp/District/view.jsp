@@ -2,12 +2,12 @@
 
 This is the <b>ProjectFarmers1</b>.
 <%="\nHello World1"%>
-<%=DistrictLocalServiceUtil.printStr()%>
+<%--<%=DistrictLocalServiceUtil.printStr()%>--%>
 <%
     List<District> districtList;
     try {
         districtList = DistrictLocalServiceUtil.getDistricts(0, DistrictLocalServiceUtil.getDistrictsCount());
-        System.out.println("jsp/District/view.jsp:row 34 print here");
+//        System.out.println("jsp/District/view.jsp:row 10 print here");
     } catch (SystemException e) {
         throw new RuntimeException(e);
     }

@@ -8,5 +8,7 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 <%@ taglib prefix="liferay-ui" uri="http://liferay.com/tld/ui" %>
 <%@ taglib prefix="aui" uri="http://liferay.com/tld/aui" %>
+<%@ taglib prefix="liferay-util" uri="http://liferay.com/tld/util" %>
+<%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
 
 <portlet:defineObjects />

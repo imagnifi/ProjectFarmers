@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="ru.imagnifi.model.impl.DistrictModelImpl">
+		<attributes>
+			<id name="districtId" />
+			<basic name="name" />
+			<basic name="number">
+				<column name="NUMBER_" />
+			</basic>
+			<basic name="status" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="ru.imagnifi.model.impl.FarmerModelImpl">
+		<attributes>
+			<id name="farmerId" />
+			<basic name="organization" />
+			<basic name="orgForm" />
+			<basic name="inn" />
+			<basic name="kpp" />
+			<basic name="ogrn" />
+			<basic name="districtId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="ru.imagnifi.model.impl.DistrictImpl" name="District">
+		<table name="imagnifi_district" />
+		<attributes />
+	</entity>
+	<entity class="ru.imagnifi.model.impl.FarmerImpl" name="Farmer">
+		<table name="imagnifi_farmer" />
+		<attributes />
+	</entity>
+</entity-mappings>

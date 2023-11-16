@@ -8,7 +8,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.util.bridges.mvc.MVCPortlet;
-import ru.imagnifi.NoSuchFarmerException;
 import ru.imagnifi.service.FarmerLocalServiceUtil;
 import ru.imagnifi.service.persistence.FarmerUtil;
 
@@ -18,10 +17,9 @@ import java.io.IOException;
 public class Farmer extends MVCPortlet {
 
     public void addFarmer(ActionRequest request, ActionResponse response) throws SystemException, PortalException {
-        System.out.println(" Farmer controller: addFarmer 18");
+        System.out.println(" Farmer controller: addFarmer 21");
 
         ServiceContext serviceContext = ServiceContextFactory.getInstance(Farmer.class.getName(), request);
-        System.out.println("19 Farmer.addFarmer controller");
         String org = ParamUtil.getString(request, "organization");
         String orgForm = ParamUtil.getString(request, "orgForm");
         long inn = ParamUtil.getLong(request, "inn");
@@ -34,19 +32,29 @@ public class Farmer extends MVCPortlet {
         response.setRenderParameter("path", "addFarmerPage");
     }
 
+    public void findFarmer(ActionRequest request, ActionResponse response) {
+        System.out.println(" Farmer controller: findFarmer 38");
+        String org = ParamUtil.getString(request, "organization");
+        long inn = ParamUtil.getLong(request, "inn");
+        response.setRenderParameter("org", org);
+        response.setRenderParameter("inn", String.valueOf(inn));
+        response.setRenderParameter("path", "findFormPage");
+        update();
+    }
+
     public void updateFarmerBase(ActionRequest request, ActionResponse response) {
         System.out.println("Farmer controller: updateFarmerBase 34");
         FarmerUtil.clearCache();
     }
 
-    private void update(){
+    private void update() {
         FarmerUtil.clearCache();
     }
 
     public void editFarmer(ActionRequest request, ActionResponse response) {
         System.out.println("Farmer controller: editFarmer 42");
         ru.imagnifi.model.Farmer farmer = getLFarmer(request);
-        if (farmer != null){
+        if (farmer != null) {
             response.setRenderParameter("path", "addFarmerPage");
         }
     }
@@ -67,6 +75,12 @@ public class Farmer extends MVCPortlet {
             }
         } else {
             SessionErrors.add(request, "Farmer null");
+        }
+        String loc = ParamUtil.getString(request, "loc");
+        if (loc.equals("")) {
+            response.setRenderParameter("path", "");
+        } else {
+            response.setRenderParameter("path", "findFarmerPage");
         }
     }
 
@@ -99,6 +113,14 @@ public class Farmer extends MVCPortlet {
         System.out.println("path = " + path);
         if (path != null && path.equalsIgnoreCase("addFarmerPage")) {
             include("/jsp/Farmer/addFarmer.jsp", renderRequest, renderResponse);
+        } else if (path != null && path.equalsIgnoreCase("findFarmerPage")) {
+            include("/jsp/Farmer/addFarmer.jsp", renderRequest, renderResponse);
+        } else if (path != null && path.equalsIgnoreCase("findFormPage")) {
+            String org = renderRequest.getParameter("org");
+            renderRequest.setAttribute("org", org);
+            String inn = renderRequest.getParameter("inn");
+            renderRequest.setAttribute("inn", inn);
+            include("/jsp/Farmer/findFarmer.jsp", renderRequest, renderResponse);
         } else {
             super.doView(renderRequest, renderResponse);
         }

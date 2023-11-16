@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="ru.imagnifi.model.District">
+		<field name="districtId" type="long" />
+		<field name="name" type="String" />
+		<field name="number" type="int" />
+		<field name="status" type="boolean" />
+	</model>
+	<model name="ru.imagnifi.model.Farmer">
+		<field name="farmerId" type="long" />
+		<field name="organization" type="String" />
+		<field name="orgForm" type="String" />
+		<field name="inn" type="long" />
+		<field name="kpp" type="long" />
+		<field name="ogrn" type="long" />
+		<field name="districtId" type="long" />
+	</model>
+</model-hints>

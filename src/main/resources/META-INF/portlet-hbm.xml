@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="ru.imagnifi.model.District" />
+	<import class="ru.imagnifi.model.Farmer" />
+	<class name="ru.imagnifi.model.impl.DistrictImpl" table="imagnifi_district">
+		<cache usage="read-write" />
+		<id name="districtId" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="number" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="number_" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="ru.imagnifi.model.impl.FarmerImpl" table="imagnifi_farmer">
+		<cache usage="read-write" />
+		<id name="farmerId" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="organization" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="orgForm" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="inn" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="kpp" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="ogrn" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="districtId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+</hibernate-mapping>

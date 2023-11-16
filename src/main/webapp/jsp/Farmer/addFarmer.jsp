@@ -1,13 +1,20 @@
 <%@include file="/jsp/init.jsp" %>
-<%
-    System.out.println("Farmer/addFarmer.jsp");
-%>
 
 <portlet:actionURL name="addFarmer" var="addFarmerURL"/>
-<%--        <portlet:param name="path" value="addFarmerPage"/>--%>
-<%--</portlet:actionURL>--%>
+<portlet:actionURL name="findFarmer" var="findFarmerURL"/>
 
-<aui:form action="<%= addFarmerURL %>" name="<portlet:namespace />fm" >
+<%
+    System.out.println("Farmer/addFarmer.jsp");
+    String path = request.getParameter("path");
+    String result = "";
+    if (path.equalsIgnoreCase("addFarmerPage")){
+        result = addFarmerURL;
+    } else if (path.equalsIgnoreCase("findFarmerPage")) {
+        result = findFarmerURL;
+    }
+%>
+
+<aui:form action="<%= result %>" name="<portlet:namespace />fm" >
     <aui:fieldset>
         <aui:input label="Organization Name" name="organization" type="text">
             <aui:validator name="required"/>
@@ -33,11 +40,16 @@
         </aui:input>
         <aui:input label="Registration District" name="districtId" type="number"/>
     </aui:fieldset>
-
+    <%
+        System.out.println("request.getParameter(\"path\") = " + request.getParameter("path"));
+    %>
     <aui:button-row>
-        <aui:button type="submit"/>
+        <aui:button type="submit" value="confirm"/>
         <aui:button type="cancel" name="cancel" />
     </aui:button-row>
+
+
+
 </aui:form>
 
 <%--<script>--%>

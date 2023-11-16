@@ -1,3 +1,7 @@
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="javax.portlet.PortletSession" %>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
+<%@ page import="java.util.Enumeration" %>
 <%@include file="/jsp/init.jsp" %>
 <%--<liferay-util:include page="/addFarmer.jsp"/>--%>
 
@@ -22,31 +26,18 @@ This is the <b>Farmer Portlet</b>.
     <portlet:param name="path" value="addFarmerPage"/>
 </portlet:renderURL>
 
+<portlet:renderURL var="findURL" windowState="<%=LiferayWindowState.POP_UP.toString()%>">
+    <portlet:param name="path" value="findFarmerPage"/>
+</portlet:renderURL>
+
 <portlet:actionURL var="updateURL" name="updateFarmerBase">
-<%--     <portlet:param name="listFarmer" value="<%=farmerList%>"/>--%>
 </portlet:actionURL>
 
 <aui:button-row>
+    <aui:button type="button" name="findFarmer" value="Find"/>
     <aui:button type="button" name="addFarmer"  id="addFarmer" value="Add new Farmer"/>
     <aui:button type="button" onClick="<%=updateURL%>" value="Update Farmer Base"/>
 </aui:button-row>
-
-<aui:script use="liferay-util-window">
-    A.one('#<portlet:namespace/>addFarmer').on('click', function(event) {
-    <!-- alert("open"); -->
-    Liferay.Util.openWindow({
-    dialog: {
-    centered: true,
-    height: 500,
-    modal: true,
-    width: 500
-    },
-    id: '<portlet:namespace/>dialog',
-    title: 'Add new Farmer or Edit existing Farmer',
-    uri: '<%=addURL %>'
-    });
-    });
-</aui:script>
 
 <liferay-ui:search-container
         delta="5"
@@ -68,6 +59,51 @@ This is the <b>Farmer Portlet</b>.
     </liferay-ui:search-container-row>
     <liferay-ui:search-iterator searchContainer="<%=searchContainer %>" paginate="<%=true %>"/>
 </liferay-ui:search-container>
+
+
+
+<aui:script use="liferay-util-window">
+    A.one('#<portlet:namespace/>addFarmer').on('click', function(event) {
+    <!-- alert("open"); -->
+    Liferay.Util.openWindow({
+    dialog: {
+    centered: true,
+    height: 500,
+    modal: true,
+    width: 500
+    },
+    id: '<portlet:namespace/>dialog',
+    uri: '<%=addURL %>',
+    title: 'Add Farmer'
+
+    });
+    });
+</aui:script>
+
+<aui:script use="liferay-util-window">
+    A.one('#<portlet:namespace/>findFarmer').on('click', function(event) {
+    <!-- alert("open"); -->
+    Liferay.Util.openWindow({
+    dialog: {
+    centered: true,
+    height: 500,
+    modal: true,
+    width: 700
+    },
+    id: '<portlet:namespace/>dialog',
+    uri: '<%=findURL %>',
+    title: 'Find Farmer'
+    });
+    });
+</aui:script>
+
+
+<%
+    portletSession.setAttribute("atr", "add", PortletSession.PORTLET_SCOPE);
+%>
+
+
+
 
 
 <!-- For Closing -->

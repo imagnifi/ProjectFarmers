@@ -39,7 +39,10 @@
         <order by="asc">
             <order-column name="farmerId"/>
         </order>
-<!--        <reference package-path="ru.imagnifi" entity="District"/>-->
+        <finder name="name_inn" return-type="Collection">
+            <finder-column name="organization"/>
+            <finder-column name="inn"/>
+        </finder>
 
     </entity>
 

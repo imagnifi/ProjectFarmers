@@ -10,5 +10,6 @@
 <%@ taglib prefix="aui" uri="http://liferay.com/tld/aui" %>
 <%@ taglib prefix="liferay-util" uri="http://liferay.com/tld/util" %>
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 
 <portlet:defineObjects />

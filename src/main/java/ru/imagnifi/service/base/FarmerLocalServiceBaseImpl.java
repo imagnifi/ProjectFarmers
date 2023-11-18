@@ -284,6 +284,150 @@ public abstract class FarmerLocalServiceBaseImpl extends BaseLocalServiceImpl
     }
 
     /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void addDistrictFarmer(long districtId, long farmerId)
+        throws SystemException {
+        districtPersistence.addFarmer(districtId, farmerId);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void addDistrictFarmer(long districtId, Farmer farmer)
+        throws SystemException {
+        districtPersistence.addFarmer(districtId, farmer);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void addDistrictFarmers(long districtId, long[] farmerIds)
+        throws SystemException {
+        districtPersistence.addFarmers(districtId, farmerIds);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void addDistrictFarmers(long districtId, List<Farmer> Farmers)
+        throws SystemException {
+        districtPersistence.addFarmers(districtId, Farmers);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void clearDistrictFarmers(long districtId) throws SystemException {
+        districtPersistence.clearFarmers(districtId);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void deleteDistrictFarmer(long districtId, long farmerId)
+        throws SystemException {
+        districtPersistence.removeFarmer(districtId, farmerId);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void deleteDistrictFarmer(long districtId, Farmer farmer)
+        throws SystemException {
+        districtPersistence.removeFarmer(districtId, farmer);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void deleteDistrictFarmers(long districtId, long[] farmerIds)
+        throws SystemException {
+        districtPersistence.removeFarmers(districtId, farmerIds);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void deleteDistrictFarmers(long districtId, List<Farmer> Farmers)
+        throws SystemException {
+        districtPersistence.removeFarmers(districtId, Farmers);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> getDistrictFarmers(long districtId)
+        throws SystemException {
+        return districtPersistence.getFarmers(districtId);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> getDistrictFarmers(long districtId, int start, int end)
+        throws SystemException {
+        return districtPersistence.getFarmers(districtId, start, end);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> getDistrictFarmers(long districtId, int start, int end,
+        OrderByComparator orderByComparator) throws SystemException {
+        return districtPersistence.getFarmers(districtId, start, end,
+            orderByComparator);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public int getDistrictFarmersCount(long districtId)
+        throws SystemException {
+        return districtPersistence.getFarmersSize(districtId);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public boolean hasDistrictFarmer(long districtId, long farmerId)
+        throws SystemException {
+        return districtPersistence.containsFarmer(districtId, farmerId);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public boolean hasDistrictFarmers(long districtId)
+        throws SystemException {
+        return districtPersistence.containsFarmers(districtId);
+    }
+
+    /**
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void setDistrictFarmers(long districtId, long[] farmerIds)
+        throws SystemException {
+        districtPersistence.setFarmers(districtId, farmerIds);
+    }
+
+    /**
      * Returns the district local service.
      *
      * @return the district local service

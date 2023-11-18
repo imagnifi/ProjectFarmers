@@ -23,6 +23,8 @@
 		<property name="inn" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="kpp" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="ogrn" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="districtId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="districtNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="registrationDate" type="org.hibernate.type.TimestampType" />
+		<property name="archiveStatus" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 </hibernate-mapping>

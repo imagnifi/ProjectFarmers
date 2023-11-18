@@ -217,6 +217,116 @@ public interface FarmerLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void addDistrictFarmer(long districtId, long farmerId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void addDistrictFarmer(long districtId,
+        ru.imagnifi.model.Farmer farmer)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void addDistrictFarmers(long districtId, long[] farmerIds)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void addDistrictFarmers(long districtId,
+        java.util.List<ru.imagnifi.model.Farmer> Farmers)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void clearDistrictFarmers(long districtId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void deleteDistrictFarmer(long districtId, long farmerId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void deleteDistrictFarmer(long districtId,
+        ru.imagnifi.model.Farmer farmer)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void deleteDistrictFarmers(long districtId, long[] farmerIds)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void deleteDistrictFarmers(long districtId,
+        java.util.List<ru.imagnifi.model.Farmer> Farmers)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<ru.imagnifi.model.Farmer> getDistrictFarmers(
+        long districtId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<ru.imagnifi.model.Farmer> getDistrictFarmers(
+        long districtId, int start, int end)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<ru.imagnifi.model.Farmer> getDistrictFarmers(
+        long districtId, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public int getDistrictFarmersCount(long districtId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public boolean hasDistrictFarmer(long districtId, long farmerId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public boolean hasDistrictFarmers(long districtId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void setDistrictFarmers(long districtId, long[] farmerIds)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
     * Returns the Spring bean ID for this bean.
     *
     * @return the Spring bean ID for this bean
@@ -236,10 +346,50 @@ public interface FarmerLocalService extends BaseLocalService,
         throws java.lang.Throwable;
 
     public ru.imagnifi.model.Farmer addFarmer(java.lang.String organization,
-        java.lang.String orgForm, long inn, long kpp, long ogrn, long districtId)
+        java.lang.String orgForm, long inn, long kpp, long ogrn,
+        long districtNumber, java.lang.String shownDistricts,
+        java.util.Date regDate, boolean archiveStatus)
         throws com.liferay.portal.kernel.exception.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.lang.String getListSownDistricts(long farmerId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    public void addFarmerDistricts(ru.imagnifi.model.Farmer farmer,
+        java.lang.String districtIds)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    public void addFarmerDistricts(long farmerId, long[] districtIds)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    public void deleteFarmerDistricts(ru.imagnifi.model.Farmer farmer,
+        java.lang.String districtIds)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    public void updateFarmerDistricts(ru.imagnifi.model.Farmer farmer,
+        java.lang.String districtIds)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public boolean isDistrictNumberExist(java.lang.Long districtNumber)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public boolean isDistrictIdExist(java.lang.Long districtId)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
+
+    public void updateFarmerCust(ru.imagnifi.model.Farmer farmer)
+        throws com.liferay.portal.kernel.exception.SystemException,
+            ru.imagnifi.NoSuchFarmerException;
 
     public java.util.List<ru.imagnifi.model.Farmer> findByNameInn(
         java.lang.String name, long inn)
         throws com.liferay.portal.kernel.exception.SystemException;
+
+    public ru.imagnifi.model.Farmer findById(long id)
+        throws com.liferay.portal.kernel.exception.SystemException,
+            ru.imagnifi.NoSuchFarmerException;
+
+    public void clearCash();
 }

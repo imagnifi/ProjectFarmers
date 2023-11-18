@@ -1,6 +1,11 @@
 package ru.imagnifi.service.impl;
 
+import com.liferay.portal.kernel.exception.SystemException;
+import ru.imagnifi.model.District;
+import ru.imagnifi.service.DistrictLocalServiceUtil;
 import ru.imagnifi.service.base.DistrictLocalServiceBaseImpl;
+
+import java.util.List;
 
 /**
  * The implementation of the district local service.
@@ -22,4 +27,17 @@ public class DistrictLocalServiceImpl extends DistrictLocalServiceBaseImpl {
      *
      * Never reference this interface directly. Always use {@link ru.imagnifi.service.DistrictLocalServiceUtil} to access the district local service.
      */
+    public District findDistrictToNumber(long number) throws SystemException {
+        District district = null;
+        List<District> districtList =
+                DistrictLocalServiceUtil.getDistricts(0, DistrictLocalServiceUtil.getDistrictsCount());
+        for (District d : districtList) {
+            if (d.getNumber() == number){
+                district = d;
+            }
+        }
+       return district;
+    }
+
+
 }

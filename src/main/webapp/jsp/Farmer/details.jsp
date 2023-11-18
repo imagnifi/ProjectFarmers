@@ -14,18 +14,14 @@
     <portlet:param name="loc" value="<%=org%>"/>
 </portlet:actionURL>
 
-<portlet:renderURL var="editURL" windowState="<%=LiferayWindowState.POP_UP.toString()%>">
+<portlet:renderURL var="editURL" windowState="<%=LiferayWindowState.POP_UP.toString()%>" >
     <portlet:param name="path" value="addFarmerPage"/>
-<%--    <portlet:param name="selRequestNo" value="<%=String.valueOf(farmer.getRequestNo()) %>"/>--%>
+    <portlet:param name="farmerIdEdit" value="<%=String.valueOf(id)%>"/>
 </portlet:renderURL>
 
-<portlet:renderURL var="ss"/>
-
-
 <liferay-ui:icon-menu>
-<%--    <liferay-ui:icon message="Edit Farmer" id="editFarmer" useDialog="true" url="${editURL }" />--%>
-    <liferay-ui:icon iconCssClass="icon-edit" message="Edit Farmer" id="editFarmer" target="top" url="${editURL}" useDialog="true"  />
-    <liferay-ui:icon iconCssClass="icon-trash" message="Delete Famer" id="deleteFarmer" url="${deleteURL }" />
+    <liferay-ui:icon iconCssClass="icon-edit" message="Edit Farmer" id="editFarmer" target="top" url="<%=editURL%>" useDialog="true" />
+    <liferay-ui:icon iconCssClass="icon-trash" message="Delete Famer" id="deleteFarmer" url="${deleteURL}" />
 </liferay-ui:icon-menu>
 
 <%--<aui:script use="liferay-util-window">--%>
@@ -39,8 +35,7 @@
 <%--    width: 500--%>
 <%--    },--%>
 <%--    id: '<portlet:namespace/>dialog',--%>
-<%--    title: 'Add new Farmer or Edit existing Farmer',--%>
-<%--    uri: '<%=editURL %>'--%>
+<%--    title: 'Edit Farmer'--%>
 <%--    });--%>
 <%--    });--%>
 <%--</aui:script>--%>

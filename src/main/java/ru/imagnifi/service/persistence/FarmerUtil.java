@@ -416,6 +416,230 @@ public class FarmerUtil {
         return getPersistence().countAll();
     }
 
+    /**
+    * Returns all the districts associated with the farmer.
+    *
+    * @param pk the primary key of the farmer
+    * @return the districts associated with the farmer
+    * @throws SystemException if a system exception occurred
+    */
+    public static java.util.List<ru.imagnifi.model.District> getDistricts(
+        long pk) throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().getDistricts(pk);
+    }
+
+    /**
+    * Returns a range of all the districts associated with the farmer.
+    *
+    * <p>
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.FarmerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * </p>
+    *
+    * @param pk the primary key of the farmer
+    * @param start the lower bound of the range of farmers
+    * @param end the upper bound of the range of farmers (not inclusive)
+    * @return the range of districts associated with the farmer
+    * @throws SystemException if a system exception occurred
+    */
+    public static java.util.List<ru.imagnifi.model.District> getDistricts(
+        long pk, int start, int end)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().getDistricts(pk, start, end);
+    }
+
+    /**
+    * Returns an ordered range of all the districts associated with the farmer.
+    *
+    * <p>
+    * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.FarmerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+    * </p>
+    *
+    * @param pk the primary key of the farmer
+    * @param start the lower bound of the range of farmers
+    * @param end the upper bound of the range of farmers (not inclusive)
+    * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+    * @return the ordered range of districts associated with the farmer
+    * @throws SystemException if a system exception occurred
+    */
+    public static java.util.List<ru.imagnifi.model.District> getDistricts(
+        long pk, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().getDistricts(pk, start, end, orderByComparator);
+    }
+
+    /**
+    * Returns the number of districts associated with the farmer.
+    *
+    * @param pk the primary key of the farmer
+    * @return the number of districts associated with the farmer
+    * @throws SystemException if a system exception occurred
+    */
+    public static int getDistrictsSize(long pk)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().getDistrictsSize(pk);
+    }
+
+    /**
+    * Returns <code>true</code> if the district is associated with the farmer.
+    *
+    * @param pk the primary key of the farmer
+    * @param districtPK the primary key of the district
+    * @return <code>true</code> if the district is associated with the farmer; <code>false</code> otherwise
+    * @throws SystemException if a system exception occurred
+    */
+    public static boolean containsDistrict(long pk, long districtPK)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().containsDistrict(pk, districtPK);
+    }
+
+    /**
+    * Returns <code>true</code> if the farmer has any districts associated with it.
+    *
+    * @param pk the primary key of the farmer to check for associations with districts
+    * @return <code>true</code> if the farmer has any districts associated with it; <code>false</code> otherwise
+    * @throws SystemException if a system exception occurred
+    */
+    public static boolean containsDistricts(long pk)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().containsDistricts(pk);
+    }
+
+    /**
+    * Adds an association between the farmer and the district. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+    *
+    * @param pk the primary key of the farmer
+    * @param districtPK the primary key of the district
+    * @throws SystemException if a system exception occurred
+    */
+    public static void addDistrict(long pk, long districtPK)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getPersistence().addDistrict(pk, districtPK);
+    }
+
+    /**
+    * Adds an association between the farmer and the district. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+    *
+    * @param pk the primary key of the farmer
+    * @param district the district
+    * @throws SystemException if a system exception occurred
+    */
+    public static void addDistrict(long pk, ru.imagnifi.model.District district)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getPersistence().addDistrict(pk, district);
+    }
+
+    /**
+    * Adds an association between the farmer and the districts. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+    *
+    * @param pk the primary key of the farmer
+    * @param districtPKs the primary keys of the districts
+    * @throws SystemException if a system exception occurred
+    */
+    public static void addDistricts(long pk, long[] districtPKs)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getPersistence().addDistricts(pk, districtPKs);
+    }
+
+    /**
+    * Adds an association between the farmer and the districts. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+    *
+    * @param pk the primary key of the farmer
+    * @param districts the districts
+    * @throws SystemException if a system exception occurred
+    */
+    public static void addDistricts(long pk,
+        java.util.List<ru.imagnifi.model.District> districts)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getPersistence().addDistricts(pk, districts);
+    }
+
+    /**
+    * Clears all associations between the farmer and its districts. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+    *
+    * @param pk the primary key of the farmer to clear the associated districts from
+    * @throws SystemException if a system exception occurred
+    */
+    public static void clearDistricts(long pk)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getPersistence().clearDistricts(pk);
+    }
+
+    /**
+    * Removes the association between the farmer and the district. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+    *
+    * @param pk the primary key of the farmer
+    * @param districtPK the primary key of the district
+    * @throws SystemException if a system exception occurred
+    */
+    public static void removeDistrict(long pk, long districtPK)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getPersistence().removeDistrict(pk, districtPK);
+    }
+
+    /**
+    * Removes the association between the farmer and the district. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+    *
+    * @param pk the primary key of the farmer
+    * @param district the district
+    * @throws SystemException if a system exception occurred
+    */
+    public static void removeDistrict(long pk,
+        ru.imagnifi.model.District district)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getPersistence().removeDistrict(pk, district);
+    }
+
+    /**
+    * Removes the association between the farmer and the districts. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+    *
+    * @param pk the primary key of the farmer
+    * @param districtPKs the primary keys of the districts
+    * @throws SystemException if a system exception occurred
+    */
+    public static void removeDistricts(long pk, long[] districtPKs)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getPersistence().removeDistricts(pk, districtPKs);
+    }
+
+    /**
+    * Removes the association between the farmer and the districts. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+    *
+    * @param pk the primary key of the farmer
+    * @param districts the districts
+    * @throws SystemException if a system exception occurred
+    */
+    public static void removeDistricts(long pk,
+        java.util.List<ru.imagnifi.model.District> districts)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getPersistence().removeDistricts(pk, districts);
+    }
+
+    /**
+    * Sets the districts associated with the farmer, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+    *
+    * @param pk the primary key of the farmer
+    * @param districtPKs the primary keys of the districts to be associated with the farmer
+    * @throws SystemException if a system exception occurred
+    */
+    public static void setDistricts(long pk, long[] districtPKs)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getPersistence().setDistricts(pk, districtPKs);
+    }
+
+    /**
+    * Sets the districts associated with the farmer, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+    *
+    * @param pk the primary key of the farmer
+    * @param districts the districts to be associated with the farmer
+    * @throws SystemException if a system exception occurred
+    */
+    public static void setDistricts(long pk,
+        java.util.List<ru.imagnifi.model.District> districts)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        getPersistence().setDistricts(pk, districts);
+    }
+
     public static FarmerPersistence getPersistence() {
         if (_persistence == null) {
             _persistence = (FarmerPersistence) PortletBeanLocatorUtil.locate(ru.imagnifi.service.ClpSerializer.getServletContextName(),

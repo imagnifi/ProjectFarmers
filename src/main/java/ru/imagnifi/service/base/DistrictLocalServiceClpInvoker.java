@@ -41,10 +41,44 @@ public class DistrictLocalServiceClpInvoker {
     private String[] _methodParameterTypes14;
     private String _methodName15;
     private String[] _methodParameterTypes15;
-    private String _methodName36;
-    private String[] _methodParameterTypes36;
-    private String _methodName37;
-    private String[] _methodParameterTypes37;
+    private String _methodName16;
+    private String[] _methodParameterTypes16;
+    private String _methodName17;
+    private String[] _methodParameterTypes17;
+    private String _methodName18;
+    private String[] _methodParameterTypes18;
+    private String _methodName19;
+    private String[] _methodParameterTypes19;
+    private String _methodName20;
+    private String[] _methodParameterTypes20;
+    private String _methodName21;
+    private String[] _methodParameterTypes21;
+    private String _methodName22;
+    private String[] _methodParameterTypes22;
+    private String _methodName23;
+    private String[] _methodParameterTypes23;
+    private String _methodName24;
+    private String[] _methodParameterTypes24;
+    private String _methodName25;
+    private String[] _methodParameterTypes25;
+    private String _methodName26;
+    private String[] _methodParameterTypes26;
+    private String _methodName27;
+    private String[] _methodParameterTypes27;
+    private String _methodName28;
+    private String[] _methodParameterTypes28;
+    private String _methodName29;
+    private String[] _methodParameterTypes29;
+    private String _methodName30;
+    private String[] _methodParameterTypes30;
+    private String _methodName31;
+    private String[] _methodParameterTypes31;
+    private String _methodName52;
+    private String[] _methodParameterTypes52;
+    private String _methodName53;
+    private String[] _methodParameterTypes53;
+    private String _methodName58;
+    private String[] _methodParameterTypes58;
 
     public DistrictLocalServiceClpInvoker() {
         _methodName0 = "addDistrict";
@@ -123,13 +157,88 @@ public class DistrictLocalServiceClpInvoker {
 
         _methodParameterTypes15 = new String[] { "ru.imagnifi.model.District" };
 
-        _methodName36 = "getBeanIdentifier";
+        _methodName16 = "addFarmerDistrict";
 
-        _methodParameterTypes36 = new String[] {  };
+        _methodParameterTypes16 = new String[] { "long", "long" };
 
-        _methodName37 = "setBeanIdentifier";
+        _methodName17 = "addFarmerDistrict";
 
-        _methodParameterTypes37 = new String[] { "java.lang.String" };
+        _methodParameterTypes17 = new String[] {
+                "long", "ru.imagnifi.model.District"
+            };
+
+        _methodName18 = "addFarmerDistricts";
+
+        _methodParameterTypes18 = new String[] { "long", "long[][]" };
+
+        _methodName19 = "addFarmerDistricts";
+
+        _methodParameterTypes19 = new String[] { "long", "java.util.List" };
+
+        _methodName20 = "clearFarmerDistricts";
+
+        _methodParameterTypes20 = new String[] { "long" };
+
+        _methodName21 = "deleteFarmerDistrict";
+
+        _methodParameterTypes21 = new String[] { "long", "long" };
+
+        _methodName22 = "deleteFarmerDistrict";
+
+        _methodParameterTypes22 = new String[] {
+                "long", "ru.imagnifi.model.District"
+            };
+
+        _methodName23 = "deleteFarmerDistricts";
+
+        _methodParameterTypes23 = new String[] { "long", "long[][]" };
+
+        _methodName24 = "deleteFarmerDistricts";
+
+        _methodParameterTypes24 = new String[] { "long", "java.util.List" };
+
+        _methodName25 = "getFarmerDistricts";
+
+        _methodParameterTypes25 = new String[] { "long" };
+
+        _methodName26 = "getFarmerDistricts";
+
+        _methodParameterTypes26 = new String[] { "long", "int", "int" };
+
+        _methodName27 = "getFarmerDistricts";
+
+        _methodParameterTypes27 = new String[] {
+                "long", "int", "int",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            };
+
+        _methodName28 = "getFarmerDistrictsCount";
+
+        _methodParameterTypes28 = new String[] { "long" };
+
+        _methodName29 = "hasFarmerDistrict";
+
+        _methodParameterTypes29 = new String[] { "long", "long" };
+
+        _methodName30 = "hasFarmerDistricts";
+
+        _methodParameterTypes30 = new String[] { "long" };
+
+        _methodName31 = "setFarmerDistricts";
+
+        _methodParameterTypes31 = new String[] { "long", "long[][]" };
+
+        _methodName52 = "getBeanIdentifier";
+
+        _methodParameterTypes52 = new String[] {  };
+
+        _methodName53 = "setBeanIdentifier";
+
+        _methodParameterTypes53 = new String[] { "java.lang.String" };
+
+        _methodName58 = "findDistrictToNumber";
+
+        _methodParameterTypes58 = new String[] { "long" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -221,16 +330,136 @@ public class DistrictLocalServiceClpInvoker {
             return DistrictLocalServiceUtil.updateDistrict((ru.imagnifi.model.District) arguments[0]);
         }
 
-        if (_methodName36.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
+        if (_methodName16.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
+            DistrictLocalServiceUtil.addFarmerDistrict(((Long) arguments[0]).longValue(),
+                ((Long) arguments[1]).longValue());
+
+            return null;
+        }
+
+        if (_methodName17.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
+            DistrictLocalServiceUtil.addFarmerDistrict(((Long) arguments[0]).longValue(),
+                (ru.imagnifi.model.District) arguments[1]);
+
+            return null;
+        }
+
+        if (_methodName18.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
+            DistrictLocalServiceUtil.addFarmerDistricts(((Long) arguments[0]).longValue(),
+                (long[]) arguments[1]);
+
+            return null;
+        }
+
+        if (_methodName19.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes19, parameterTypes)) {
+            DistrictLocalServiceUtil.addFarmerDistricts(((Long) arguments[0]).longValue(),
+                (java.util.List<ru.imagnifi.model.District>) arguments[1]);
+
+            return null;
+        }
+
+        if (_methodName20.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes20, parameterTypes)) {
+            DistrictLocalServiceUtil.clearFarmerDistricts(((Long) arguments[0]).longValue());
+
+            return null;
+        }
+
+        if (_methodName21.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes21, parameterTypes)) {
+            DistrictLocalServiceUtil.deleteFarmerDistrict(((Long) arguments[0]).longValue(),
+                ((Long) arguments[1]).longValue());
+
+            return null;
+        }
+
+        if (_methodName22.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes22, parameterTypes)) {
+            DistrictLocalServiceUtil.deleteFarmerDistrict(((Long) arguments[0]).longValue(),
+                (ru.imagnifi.model.District) arguments[1]);
+
+            return null;
+        }
+
+        if (_methodName23.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes23, parameterTypes)) {
+            DistrictLocalServiceUtil.deleteFarmerDistricts(((Long) arguments[0]).longValue(),
+                (long[]) arguments[1]);
+
+            return null;
+        }
+
+        if (_methodName24.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes24, parameterTypes)) {
+            DistrictLocalServiceUtil.deleteFarmerDistricts(((Long) arguments[0]).longValue(),
+                (java.util.List<ru.imagnifi.model.District>) arguments[1]);
+
+            return null;
+        }
+
+        if (_methodName25.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes25, parameterTypes)) {
+            return DistrictLocalServiceUtil.getFarmerDistricts(((Long) arguments[0]).longValue());
+        }
+
+        if (_methodName26.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
+            return DistrictLocalServiceUtil.getFarmerDistricts(((Long) arguments[0]).longValue(),
+                ((Integer) arguments[1]).intValue(),
+                ((Integer) arguments[2]).intValue());
+        }
+
+        if (_methodName27.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
+            return DistrictLocalServiceUtil.getFarmerDistricts(((Long) arguments[0]).longValue(),
+                ((Integer) arguments[1]).intValue(),
+                ((Integer) arguments[2]).intValue(),
+                (com.liferay.portal.kernel.util.OrderByComparator) arguments[3]);
+        }
+
+        if (_methodName28.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes28, parameterTypes)) {
+            return DistrictLocalServiceUtil.getFarmerDistrictsCount(((Long) arguments[0]).longValue());
+        }
+
+        if (_methodName29.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes29, parameterTypes)) {
+            return DistrictLocalServiceUtil.hasFarmerDistrict(((Long) arguments[0]).longValue(),
+                ((Long) arguments[1]).longValue());
+        }
+
+        if (_methodName30.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
+            return DistrictLocalServiceUtil.hasFarmerDistricts(((Long) arguments[0]).longValue());
+        }
+
+        if (_methodName31.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+            DistrictLocalServiceUtil.setFarmerDistricts(((Long) arguments[0]).longValue(),
+                (long[]) arguments[1]);
+
+            return null;
+        }
+
+        if (_methodName52.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
             return DistrictLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName37.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
+        if (_methodName53.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
             DistrictLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
+        }
+
+        if (_methodName58.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+            return DistrictLocalServiceUtil.findDistrictToNumber(((Long) arguments[0]).longValue());
         }
 
         throw new UnsupportedOperationException();

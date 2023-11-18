@@ -14,10 +14,12 @@
         <column name="name" type="String"/>
         <column name="number" type="int" />
         <column name="status" type="boolean"/>
+        <column name="farmers" type="Collection" entity="Farmer" mapping-table="imagnifi_mapping_shown_district"/>
 
         <order>
             <order-column name="districtId" order-by="asc" />
         </order>
+
 
         <finder name="status" return-type="Collection">
             <finder-column name="status"/>
@@ -33,12 +35,14 @@
         <column name="inn" type="long"/>
         <column name="kpp" type="long"/>
         <column name="ogrn" type="long"/>
-        <column name="districtId" type="long" />
-<!--        <column name="areas of acreage" type="Collections" entity="Disrict" mapping-table="mapping_district"></column>-->
-<!--        <column name="registrationDate" type="Date"></column>-->
+        <column name="districtNumber" type="long" />
+        <column name="shownDistricts" type="Collection" entity="District" mapping-table="imagnifi_mapping_shown_district"/>
+        <column name="registrationDate" type="Date"/>
+        <column name="archiveStatus" type="boolean"/>
         <order by="asc">
             <order-column name="farmerId"/>
         </order>
+
         <finder name="name_inn" return-type="Collection">
             <finder-column name="organization"/>
             <finder-column name="inn"/>

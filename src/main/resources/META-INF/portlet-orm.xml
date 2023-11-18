@@ -28,7 +28,11 @@
 			<basic name="inn" />
 			<basic name="kpp" />
 			<basic name="ogrn" />
-			<basic name="districtId" />
+			<basic name="districtNumber" />
+			<basic name="registrationDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="archiveStatus" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

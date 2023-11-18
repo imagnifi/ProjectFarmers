@@ -1,11 +1,18 @@
 package ru.imagnifi.service.impl;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import ru.imagnifi.NoSuchFarmerException;
+import ru.imagnifi.model.District;
 import ru.imagnifi.model.Farmer;
+import ru.imagnifi.service.DistrictLocalServiceUtil;
+import ru.imagnifi.service.FarmerLocalServiceUtil;
 import ru.imagnifi.service.base.FarmerLocalServiceBaseImpl;
 import ru.imagnifi.service.persistence.FarmerPersistence;
 import ru.imagnifi.service.persistence.FarmerUtil;
 
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +32,7 @@ import java.util.List;
  * @see ru.imagnifi.service.FarmerLocalServiceUtil
  */
 public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
+    private final String noAcreage = "no acreage";
     /*
      * NOTE FOR DEVELOPERS:
      *
@@ -33,22 +41,118 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
      */
 
     public ru.imagnifi.model.Farmer addFarmer(String organization, String orgForm, long inn, long kpp, long ogrn,
-                                              long districtId) throws SystemException, SystemException {
-        long increment = counterLocalService.increment();
+                                              long districtNumber, String shownDistricts, Date regDate,
+                                              boolean archiveStatus) throws SystemException, SystemException {
+
+//        long increment = counterLocalService.increment();
         FarmerPersistence pers = FarmerUtil.getPersistence();
-        Farmer farmer = pers.create(increment);
-        farmer.setFarmerId(increment);
+        Farmer farmer = pers.create(1);
+//        farmer.setFarmerId(increment);
         farmer.setOrganization(organization);
         farmer.setOrgForm(orgForm);
         farmer.setInn(inn);
         farmer.setKpp(kpp);
         farmer.setOgrn(ogrn);
-        farmer.setDistrictId(districtId);
+        farmer.setDistrictNumber(districtNumber);
+        farmer.setRegistrationDate(regDate);
+        farmer.setArchiveStatus(archiveStatus);
         pers.update(farmer);
+        FarmerLocalServiceUtil.addFarmerDistricts(farmer, shownDistricts);
         return farmer;
+    }
+
+    public String getListSownDistricts(long farmerId) throws SystemException {
+        StringBuilder result = new StringBuilder();
+        List<District> farmerDistricts = DistrictLocalServiceUtil.getFarmerDistricts(farmerId);
+//        List<Farmer> districtFarmers = FarmerLocalServiceUtil.getDistrictFarmers(1);
+//        System.out.println(districtFarmers);
+        if (farmerDistricts.size() > 0) {
+            for (District d : farmerDistricts) {
+                result.append(d.getNumber())
+                      .append(",");
+            }
+            result = new StringBuilder(result.substring(0, result.length() - 1));
+        } else {
+            result.append(noAcreage);
+        }
+
+
+        return result.toString();
+    }
+
+    public void addFarmerDistricts(Farmer farmer, String districtIds) throws SystemException {
+        String[] strings = districtIds.split(",");
+        long[] arrayDistrictIds = new long[strings.length];
+        for (int i = 0; i < strings.length; i++) {
+            arrayDistrictIds[i] = Long.parseLong(strings[i]);
+        }
+        List<Farmer> farmers = FarmerLocalServiceUtil.findByNameInn(farmer.getOrganization(), farmer.getInn());
+        if (!farmers.isEmpty()) {
+            addFarmerDistricts(farmers.get(0).getFarmerId(), arrayDistrictIds);
+        }
+    }
+
+    public void addFarmerDistricts(long farmerId, long[] districtIds) throws SystemException {
+        for (long dId : districtIds) {
+            FarmerLocalServiceUtil.addDistrictFarmer(dId, farmerId);
+        }
+    }
+
+    public void deleteFarmerDistricts(Farmer farmer, String districtIds) throws SystemException {
+        String[] split = districtIds.split(",");
+        List<Farmer> listNameInn = FarmerLocalServiceUtil.findByNameInn(farmer.getOrganization(), farmer.getInn());
+        if (listNameInn.size() == 1){
+            Farmer farmer1 = listNameInn.get(0);
+            String listSownDistricts = FarmerLocalServiceUtil.getListSownDistricts(farmer1.getFarmerId());
+            if (!listSownDistricts.equalsIgnoreCase(noAcreage)) {
+                String[] split1 = listSownDistricts.split(",");
+                if (!Arrays.equals(split, split1)) {
+                    for (String s : split1) {
+                        FarmerLocalServiceUtil.deleteDistrictFarmer(Long.parseLong(s), farmer1);
+                    }
+                }
+            }
+        }
+    }
+
+    public void updateFarmerDistricts(Farmer farmer, String districtIds) throws SystemException {
+        deleteFarmerDistricts(farmer,districtIds);
+        addFarmerDistricts(farmer, districtIds);
+    }
+
+    public boolean isDistrictNumberExist(Long districtNumber) throws SystemException {
+        boolean result = false;
+        District district = DistrictLocalServiceUtil.findDistrictToNumber(districtNumber);
+        if (district != null){
+            result = true;
+        }
+        return result;
+    }
+    public boolean isDistrictIdExist(Long districtId) throws SystemException, PortalException {
+        boolean result = false;
+        District district = DistrictLocalServiceUtil.getDistrict(districtId);
+        if (district != null){
+            result = true;
+        }
+        return result;
+    }
+
+
+    public void updateFarmerCust(Farmer farmer) throws SystemException, NoSuchFarmerException {
+        FarmerPersistence pers = FarmerUtil.getPersistence();
+        Farmer farmer1 = pers.findByPrimaryKey(farmer.getPrimaryKey());
+        pers.update(farmer);
     }
 
     public List<Farmer> findByNameInn(String name, long inn) throws SystemException {
         return FarmerUtil.findByname_inn(name, inn);
+    }
+
+    public Farmer findById(long id) throws SystemException, NoSuchFarmerException {
+        return FarmerUtil.findByPrimaryKey(id);
+    }
+
+    public void clearCash() {
+        FarmerUtil.clearCache();
     }
 }

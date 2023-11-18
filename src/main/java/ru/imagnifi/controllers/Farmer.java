@@ -8,11 +8,16 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import ru.imagnifi.NoSuchFarmerException;
+import ru.imagnifi.model.District;
+import ru.imagnifi.service.DistrictLocalServiceUtil;
 import ru.imagnifi.service.FarmerLocalServiceUtil;
 import ru.imagnifi.service.persistence.FarmerUtil;
 
 import javax.portlet.*;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
 
 public class Farmer extends MVCPortlet {
 
@@ -25,8 +30,15 @@ public class Farmer extends MVCPortlet {
         long inn = ParamUtil.getLong(request, "inn");
         long kpp = ParamUtil.getLong(request, "kpp");
         long ogrn = ParamUtil.getLong(request, "ogrn");
-        long districtId = ParamUtil.getLong(request, "districtId");
-        FarmerLocalServiceUtil.addFarmer(org, orgForm, inn, kpp, ogrn, districtId);
+        long districtNumber = ParamUtil.getLong(request, "districtNumber");
+        if (!FarmerLocalServiceUtil.isDistrictNumberExist(districtNumber)){
+            districtNumber = 0;
+        }
+        String shownDistricts = ParamUtil.getString(request, "shownDistricts");
+//        String regDate = ParamUtil.getString(request, "regDate");
+        boolean archiveStatus = Boolean.parseBoolean(ParamUtil.getString(request, "archiveStatus"));
+        Date f = new Date();
+        FarmerLocalServiceUtil.addFarmer(org, orgForm, inn, kpp, ogrn, districtNumber, shownDistricts, f, archiveStatus);
         String path = ParamUtil.getString(request, "path");
         System.out.println("path in addFarmer:30 = " + path);
         response.setRenderParameter("path", "addFarmerPage");
@@ -47,22 +59,63 @@ public class Farmer extends MVCPortlet {
         FarmerUtil.clearCache();
     }
 
-    private void update() {
-        FarmerUtil.clearCache();
+    public void update() {
+        FarmerLocalServiceUtil.clearCash();
     }
 
-    public void editFarmer(ActionRequest request, ActionResponse response) {
+    public void updateFinder(ActionRequest request,
+                             ActionResponse response) throws SystemException, NoSuchFarmerException {
+        FarmerLocalServiceUtil.clearCash();
+        response.setRenderParameter("path", "findFormPage");
+        long farmId = ParamUtil.getLong(request, "farmId");
+        ru.imagnifi.model.Farmer farmer = FarmerLocalServiceUtil.findById(farmId);
+        response.setRenderParameter("farmId", String.valueOf(farmId));
+        response.setRenderParameter("org", farmer.getOrganization());
+        response.setRenderParameter("inn", String.valueOf(farmer.getInn()));
+    }
+
+    public void editFarmer(ActionRequest request,
+                           ActionResponse response) throws SystemException, PortalException {
         System.out.println("Farmer controller: editFarmer 42");
-        ru.imagnifi.model.Farmer farmer = getLFarmer(request);
+        PortletSession ps = request.getPortletSession();
+        ru.imagnifi.model.Farmer farmer = getLFarmer(request, "idEdit");
         if (farmer != null) {
             response.setRenderParameter("path", "addFarmerPage");
+            farmer.setOrganization(ParamUtil.getString(request, "organization"));
+            farmer.setOrgForm(ParamUtil.getString(request, "orgForm"));
+            farmer.setInn(ParamUtil.getLong(request, "inn"));
+            farmer.setKpp(ParamUtil.getLong(request, "kpp"));
+            farmer.setOgrn(ParamUtil.getLong(request, "ogrn"));
+            long districtNumber = ParamUtil.getLong(request, "districtNumber");
+            if (!FarmerLocalServiceUtil.isDistrictNumberExist(districtNumber)){
+                districtNumber = 0;
+            }
+            farmer.setDistrictNumber(districtNumber);
+            farmer.setRegistrationDate(ParamUtil.getDate(request, "regDate", DateFormat.getInstance()));
+            farmer.setArchiveStatus(ParamUtil.getBoolean(request, "archiveStatus"));
+            FarmerLocalServiceUtil.updateFarmerCust(farmer);
+            String shownDistricts = ParamUtil.getString(request, "shownDistricts");
+            String districtIds = numbersDistrictToIds(shownDistricts);
+            FarmerLocalServiceUtil.updateFarmerDistricts(farmer, districtIds);
         }
+    }
+
+    private String numbersDistrictToIds(String numbersDistrict) throws SystemException {
+        StringBuilder result = new StringBuilder();
+        String[] split = numbersDistrict.split(",");
+        for (String s : split) {
+            District district = DistrictLocalServiceUtil.findDistrictToNumber(Long.parseLong(s));
+            if (district != null) {
+                result.append(district.getDistrictId())
+                      .append(",");
+            }
+        }
+        return result.toString();
     }
 
     public void deleteFarmer(ActionRequest request, ActionResponse response) {
         System.out.println("Farmer controller: deleteFarmer 46");
-        ru.imagnifi.model.Farmer farmer = getLFarmer(request);
-
+        ru.imagnifi.model.Farmer farmer = getLFarmer(request, "farmerId");
         if (farmer != null) {
             try {
                 FarmerLocalServiceUtil.deleteFarmer(farmer);
@@ -84,8 +137,9 @@ public class Farmer extends MVCPortlet {
         }
     }
 
-    private static ru.imagnifi.model.Farmer getLFarmer(ActionRequest request) {
-        long farmerId = Long.parseLong(request.getParameter("farmerId"));
+    private static ru.imagnifi.model.Farmer getLFarmer(ActionRequest request, String param) {
+        String parameter = request.getParameter(param);
+        long farmerId = Long.parseLong(parameter);
         ru.imagnifi.model.Farmer farmer = null;
         try {
             farmer = FarmerLocalServiceUtil.getFarmer(farmerId);
@@ -108,20 +162,41 @@ public class Farmer extends MVCPortlet {
     public void doView(RenderRequest renderRequest,
                        RenderResponse renderResponse) throws IOException, PortletException {
         System.out.println(" Farmer controller: doView 50");
+        update();
         String path = renderRequest.getParameter("path");
         String path1 = ParamUtil.getString(renderRequest, "path", "");
-        System.out.println("path = " + path);
-        if (path != null && path.equalsIgnoreCase("addFarmerPage")) {
+        String farmerIdEdit = renderRequest.getParameter("farmerIdEdit");
+        System.out.println("farmerIdEdit = " + farmerIdEdit);
+        if (path != null && path.equalsIgnoreCase("addFarmerPage") && farmerIdEdit == null) {
             include("/jsp/Farmer/addFarmer.jsp", renderRequest, renderResponse);
+            System.out.println(" from doView 118");
+        } else if (path != null && path.equalsIgnoreCase("addFarmerPage") && farmerIdEdit != null) {
+            try {
+                ru.imagnifi.model.Farmer farmer = FarmerLocalServiceUtil.findById(Long.parseLong(farmerIdEdit));
+                PortletSession ps = renderRequest.getPortletSession();
+                ps.setAttribute("farmerId", farmer.getPrimaryKey());
+                ps.setAttribute("org", farmer.getOrganization());
+                ps.setAttribute("orgForm", farmer.getOrgForm());
+                ps.setAttribute("inn", farmer.getInn());
+                ps.setAttribute("kpp", farmer.getKpp());
+                ps.setAttribute("ogrn", farmer.getOgrn());
+                ps.setAttribute("districtNumber", farmer.getDistrictNumber());
+                ps.setAttribute("shownDistricts", DistrictLocalServiceUtil.getFarmerDistricts(farmer.getFarmerId()));
+                ps.setAttribute("regDate", "farmer.getRegistrationDate().toString()");
+                ps.setAttribute("archiveStatus", String.valueOf(farmer.getArchiveStatus()));
+            } catch (SystemException | NoSuchFarmerException e) {
+                throw new RuntimeException(e);
+            }
+            include("/jsp/Farmer/addFarmer.jsp", renderRequest, renderResponse);
+            System.out.println(" from doView 135");
         } else if (path != null && path.equalsIgnoreCase("findFarmerPage")) {
             include("/jsp/Farmer/addFarmer.jsp", renderRequest, renderResponse);
+            System.out.println(" from doView 138");
         } else if (path != null && path.equalsIgnoreCase("findFormPage")) {
-            String org = renderRequest.getParameter("org");
-            renderRequest.setAttribute("org", org);
-            String inn = renderRequest.getParameter("inn");
-            renderRequest.setAttribute("inn", inn);
             include("/jsp/Farmer/findFarmer.jsp", renderRequest, renderResponse);
+            System.out.println(" from doView 145");
         } else {
+            System.out.println(" from doView 147");
             super.doView(renderRequest, renderResponse);
         }
     }

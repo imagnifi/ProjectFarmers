@@ -1,5 +1,6 @@
 package ru.imagnifi.service.persistence;
 
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -24,6 +25,8 @@ import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+import com.liferay.portal.service.persistence.impl.TableMapper;
+import com.liferay.portal.service.persistence.impl.TableMapperFactory;
 
 import ru.imagnifi.NoSuchDistrictException;
 
@@ -32,11 +35,13 @@ import ru.imagnifi.model.impl.DistrictImpl;
 import ru.imagnifi.model.impl.DistrictModelImpl;
 
 import ru.imagnifi.service.persistence.DistrictPersistence;
+import ru.imagnifi.service.persistence.FarmerPersistence;
 
 import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -124,6 +129,10 @@ public class DistrictPersistenceImpl extends BasePersistenceImpl<District>
                 return _nullDistrict;
             }
         };
+
+    @BeanReference(type = FarmerPersistence.class)
+    protected FarmerPersistence farmerPersistence;
+    protected TableMapper<District, ru.imagnifi.model.Farmer> districtToFarmerTableMapper;
 
     public DistrictPersistenceImpl() {
         setModelClass(District.class);
@@ -726,6 +735,8 @@ public class DistrictPersistenceImpl extends BasePersistenceImpl<District>
     protected District removeImpl(District district) throws SystemException {
         district = toUnwrappedModel(district);
 
+        districtToFarmerTableMapper.deleteLeftPrimaryKeyTableMappings(district.getPrimaryKey());
+
         Session session = null;
 
         try {
@@ -1088,6 +1099,281 @@ public class DistrictPersistenceImpl extends BasePersistenceImpl<District>
         return count.intValue();
     }
 
+    /**
+     * Returns all the farmers associated with the district.
+     *
+     * @param pk the primary key of the district
+     * @return the farmers associated with the district
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<ru.imagnifi.model.Farmer> getFarmers(long pk)
+        throws SystemException {
+        return getFarmers(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+    }
+
+    /**
+     * Returns a range of all the farmers associated with the district.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.DistrictModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param pk the primary key of the district
+     * @param start the lower bound of the range of districts
+     * @param end the upper bound of the range of districts (not inclusive)
+     * @return the range of farmers associated with the district
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<ru.imagnifi.model.Farmer> getFarmers(long pk, int start, int end)
+        throws SystemException {
+        return getFarmers(pk, start, end, null);
+    }
+
+    /**
+     * Returns an ordered range of all the farmers associated with the district.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.DistrictModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param pk the primary key of the district
+     * @param start the lower bound of the range of districts
+     * @param end the upper bound of the range of districts (not inclusive)
+     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+     * @return the ordered range of farmers associated with the district
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<ru.imagnifi.model.Farmer> getFarmers(long pk, int start,
+        int end, OrderByComparator orderByComparator) throws SystemException {
+        return districtToFarmerTableMapper.getRightBaseModels(pk, start, end,
+            orderByComparator);
+    }
+
+    /**
+     * Returns the number of farmers associated with the district.
+     *
+     * @param pk the primary key of the district
+     * @return the number of farmers associated with the district
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public int getFarmersSize(long pk) throws SystemException {
+        long[] pks = districtToFarmerTableMapper.getRightPrimaryKeys(pk);
+
+        return pks.length;
+    }
+
+    /**
+     * Returns <code>true</code> if the farmer is associated with the district.
+     *
+     * @param pk the primary key of the district
+     * @param farmerPK the primary key of the farmer
+     * @return <code>true</code> if the farmer is associated with the district; <code>false</code> otherwise
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public boolean containsFarmer(long pk, long farmerPK)
+        throws SystemException {
+        return districtToFarmerTableMapper.containsTableMapping(pk, farmerPK);
+    }
+
+    /**
+     * Returns <code>true</code> if the district has any farmers associated with it.
+     *
+     * @param pk the primary key of the district to check for associations with farmers
+     * @return <code>true</code> if the district has any farmers associated with it; <code>false</code> otherwise
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public boolean containsFarmers(long pk) throws SystemException {
+        if (getFarmersSize(pk) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Adds an association between the district and the farmer. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+     *
+     * @param pk the primary key of the district
+     * @param farmerPK the primary key of the farmer
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void addFarmer(long pk, long farmerPK) throws SystemException {
+        districtToFarmerTableMapper.addTableMapping(pk, farmerPK);
+    }
+
+    /**
+     * Adds an association between the district and the farmer. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+     *
+     * @param pk the primary key of the district
+     * @param farmer the farmer
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void addFarmer(long pk, ru.imagnifi.model.Farmer farmer)
+        throws SystemException {
+        districtToFarmerTableMapper.addTableMapping(pk, farmer.getPrimaryKey());
+    }
+
+    /**
+     * Adds an association between the district and the farmers. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+     *
+     * @param pk the primary key of the district
+     * @param farmerPKs the primary keys of the farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void addFarmers(long pk, long[] farmerPKs) throws SystemException {
+        for (long farmerPK : farmerPKs) {
+            districtToFarmerTableMapper.addTableMapping(pk, farmerPK);
+        }
+    }
+
+    /**
+     * Adds an association between the district and the farmers. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+     *
+     * @param pk the primary key of the district
+     * @param farmers the farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void addFarmers(long pk, List<ru.imagnifi.model.Farmer> farmers)
+        throws SystemException {
+        for (ru.imagnifi.model.Farmer farmer : farmers) {
+            districtToFarmerTableMapper.addTableMapping(pk,
+                farmer.getPrimaryKey());
+        }
+    }
+
+    /**
+     * Clears all associations between the district and its farmers. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+     *
+     * @param pk the primary key of the district to clear the associated farmers from
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void clearFarmers(long pk) throws SystemException {
+        districtToFarmerTableMapper.deleteLeftPrimaryKeyTableMappings(pk);
+    }
+
+    /**
+     * Removes the association between the district and the farmer. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+     *
+     * @param pk the primary key of the district
+     * @param farmerPK the primary key of the farmer
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void removeFarmer(long pk, long farmerPK) throws SystemException {
+        districtToFarmerTableMapper.deleteTableMapping(pk, farmerPK);
+    }
+
+    /**
+     * Removes the association between the district and the farmer. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+     *
+     * @param pk the primary key of the district
+     * @param farmer the farmer
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void removeFarmer(long pk, ru.imagnifi.model.Farmer farmer)
+        throws SystemException {
+        districtToFarmerTableMapper.deleteTableMapping(pk,
+            farmer.getPrimaryKey());
+    }
+
+    /**
+     * Removes the association between the district and the farmers. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+     *
+     * @param pk the primary key of the district
+     * @param farmerPKs the primary keys of the farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void removeFarmers(long pk, long[] farmerPKs)
+        throws SystemException {
+        for (long farmerPK : farmerPKs) {
+            districtToFarmerTableMapper.deleteTableMapping(pk, farmerPK);
+        }
+    }
+
+    /**
+     * Removes the association between the district and the farmers. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+     *
+     * @param pk the primary key of the district
+     * @param farmers the farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void removeFarmers(long pk, List<ru.imagnifi.model.Farmer> farmers)
+        throws SystemException {
+        for (ru.imagnifi.model.Farmer farmer : farmers) {
+            districtToFarmerTableMapper.deleteTableMapping(pk,
+                farmer.getPrimaryKey());
+        }
+    }
+
+    /**
+     * Sets the farmers associated with the district, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+     *
+     * @param pk the primary key of the district
+     * @param farmerPKs the primary keys of the farmers to be associated with the district
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void setFarmers(long pk, long[] farmerPKs) throws SystemException {
+        Set<Long> newFarmerPKsSet = SetUtil.fromArray(farmerPKs);
+        Set<Long> oldFarmerPKsSet = SetUtil.fromArray(districtToFarmerTableMapper.getRightPrimaryKeys(
+                    pk));
+
+        Set<Long> removeFarmerPKsSet = new HashSet<Long>(oldFarmerPKsSet);
+
+        removeFarmerPKsSet.removeAll(newFarmerPKsSet);
+
+        for (long removeFarmerPK : removeFarmerPKsSet) {
+            districtToFarmerTableMapper.deleteTableMapping(pk, removeFarmerPK);
+        }
+
+        newFarmerPKsSet.removeAll(oldFarmerPKsSet);
+
+        for (long newFarmerPK : newFarmerPKsSet) {
+            districtToFarmerTableMapper.addTableMapping(pk, newFarmerPK);
+        }
+    }
+
+    /**
+     * Sets the farmers associated with the district, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+     *
+     * @param pk the primary key of the district
+     * @param farmers the farmers to be associated with the district
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void setFarmers(long pk, List<ru.imagnifi.model.Farmer> farmers)
+        throws SystemException {
+        try {
+            long[] farmerPKs = new long[farmers.size()];
+
+            for (int i = 0; i < farmers.size(); i++) {
+                ru.imagnifi.model.Farmer farmer = farmers.get(i);
+
+                farmerPKs[i] = farmer.getPrimaryKey();
+            }
+
+            setFarmers(pk, farmerPKs);
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            FinderCacheUtil.clearCache(DistrictModelImpl.MAPPING_TABLE_FARMER_IMAGNIFI_MAPPING_SHOWN_DISTRICT_NAME);
+        }
+    }
+
     @Override
     protected Set<String> getBadColumnNames() {
         return _badColumnNames;
@@ -1115,6 +1401,9 @@ public class DistrictPersistenceImpl extends BasePersistenceImpl<District>
                 _log.error(e);
             }
         }
+
+        districtToFarmerTableMapper = TableMapperFactory.getTableMapper("farmer_imagnifi_mapping_shown_district",
+                "districtId", "farmerId", this, farmerPersistence);
     }
 
     public void destroy() {
@@ -1122,5 +1411,8 @@ public class DistrictPersistenceImpl extends BasePersistenceImpl<District>
         FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
         FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
         FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+        TableMapperFactory.removeTableMapper(
+            "farmer_imagnifi_mapping_shown_district");
     }
 }

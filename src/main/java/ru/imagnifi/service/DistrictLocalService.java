@@ -218,6 +218,116 @@ public interface DistrictLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void addFarmerDistrict(long farmerId, long districtId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void addFarmerDistrict(long farmerId,
+        ru.imagnifi.model.District district)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void addFarmerDistricts(long farmerId, long[] districtIds)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void addFarmerDistricts(long farmerId,
+        java.util.List<ru.imagnifi.model.District> Districts)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void clearFarmerDistricts(long farmerId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void deleteFarmerDistrict(long farmerId, long districtId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void deleteFarmerDistrict(long farmerId,
+        ru.imagnifi.model.District district)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void deleteFarmerDistricts(long farmerId, long[] districtIds)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void deleteFarmerDistricts(long farmerId,
+        java.util.List<ru.imagnifi.model.District> Districts)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<ru.imagnifi.model.District> getFarmerDistricts(
+        long farmerId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<ru.imagnifi.model.District> getFarmerDistricts(
+        long farmerId, int start, int end)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<ru.imagnifi.model.District> getFarmerDistricts(
+        long farmerId, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public int getFarmerDistrictsCount(long farmerId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public boolean hasFarmerDistrict(long farmerId, long districtId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public boolean hasFarmerDistricts(long farmerId)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
+    * @throws SystemException if a system exception occurred
+    */
+    public void setFarmerDistricts(long farmerId, long[] districtIds)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    /**
     * Returns the Spring bean ID for this bean.
     *
     * @return the Spring bean ID for this bean
@@ -235,4 +345,7 @@ public interface DistrictLocalService extends BaseLocalService,
     public java.lang.Object invokeMethod(java.lang.String name,
         java.lang.String[] parameterTypes, java.lang.Object[] arguments)
         throws java.lang.Throwable;
+
+    public ru.imagnifi.model.District findDistrictToNumber(long number)
+        throws com.liferay.portal.kernel.exception.SystemException;
 }

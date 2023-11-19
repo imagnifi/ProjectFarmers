@@ -95,7 +95,7 @@
                    value="<%=districtNumber%>"/>
         <aui:input label="Shown Districts" disabled="<%=bool%>" name="shownDistricts" type="text"
                    value="<%=shownDistricts%>"/>
-        <aui:input label="Registration Date" disabled="<%=bool%>" name="regDate" type="timeZone"
+        <aui:input name="regDate" id="regDate" class="form-control" type="text"  placeholder="mm/dd/yy" label="Registration Date" disabled="<%=bool%>"
                    value="<%=regDate%>"/>
         <aui:input label="Archive Status" disabled="<%=bool%>" name="archiveStatus" type="checkbox"
                    value="<%=archiveStatus%>"/>
@@ -124,4 +124,24 @@
     var data = '';
     Liferay.Util.getOpener().<portlet:namespace/>closeYourPopUp(data, '<portlet:namespace/>dialog');
     });
+</aui:script>
+<aui:script>
+    YUI().use(
+            'aui-datepicker',
+            function(Y) {
+                new Y.DatePicker(
+                        {
+                            trigger: '#<portlet:namespace />regDate',
+                            mask: '%m/%d/%y',
+                            calendar: {
+                                selectionMode: 'multiple'
+                            },
+                            popover: {
+                                zIndex: 1
+                            },
+                            panes: 2
+                        }
+                );
+            }
+    );
 </aui:script>

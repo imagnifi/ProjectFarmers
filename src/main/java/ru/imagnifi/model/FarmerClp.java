@@ -14,7 +14,6 @@ import java.io.Serializable;
 
 import java.lang.reflect.Method;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +26,7 @@ public class FarmerClp extends BaseModelImpl<Farmer> implements Farmer {
     private long _kpp;
     private long _ogrn;
     private long _districtNumber;
-    private Date _registrationDate;
+    private String _registrationDate;
     private boolean _archiveStatus;
     private BaseModel<?> _farmerRemoteModel;
     private Class<?> _clpSerializerClass = ru.imagnifi.service.ClpSerializer.class;
@@ -126,7 +125,7 @@ public class FarmerClp extends BaseModelImpl<Farmer> implements Farmer {
             setDistrictNumber(districtNumber);
         }
 
-        Date registrationDate = (Date) attributes.get("registrationDate");
+        String registrationDate = (String) attributes.get("registrationDate");
 
         if (registrationDate != null) {
             setRegistrationDate(registrationDate);
@@ -294,12 +293,12 @@ public class FarmerClp extends BaseModelImpl<Farmer> implements Farmer {
     }
 
     @Override
-    public Date getRegistrationDate() {
+    public String getRegistrationDate() {
         return _registrationDate;
     }
 
     @Override
-    public void setRegistrationDate(Date registrationDate) {
+    public void setRegistrationDate(String registrationDate) {
         _registrationDate = registrationDate;
 
         if (_farmerRemoteModel != null) {
@@ -307,7 +306,7 @@ public class FarmerClp extends BaseModelImpl<Farmer> implements Farmer {
                 Class<?> clazz = _farmerRemoteModel.getClass();
 
                 Method method = clazz.getMethod("setRegistrationDate",
-                        Date.class);
+                        String.class);
 
                 method.invoke(_farmerRemoteModel, registrationDate);
             } catch (Exception e) {

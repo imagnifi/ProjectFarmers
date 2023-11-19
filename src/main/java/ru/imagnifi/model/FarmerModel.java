@@ -9,8 +9,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 
 import java.io.Serializable;
 
-import java.util.Date;
-
 /**
  * The base model interface for the Farmer service. Represents a row in the &quot;imagnifi_farmer&quot; database table, with each column mapped to a property of this class.
  *
@@ -150,14 +148,15 @@ public interface FarmerModel extends BaseModel<Farmer> {
      *
      * @return the registration date of this farmer
      */
-    public Date getRegistrationDate();
+    @AutoEscape
+    public String getRegistrationDate();
 
     /**
      * Sets the registration date of this farmer.
      *
      * @param registrationDate the registration date of this farmer
      */
-    public void setRegistrationDate(Date registrationDate);
+    public void setRegistrationDate(String registrationDate);
 
     /**
      * Returns the archive status of this farmer.

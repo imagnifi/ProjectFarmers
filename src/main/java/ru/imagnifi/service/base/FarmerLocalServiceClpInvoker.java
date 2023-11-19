@@ -262,7 +262,7 @@ public class FarmerLocalServiceClpInvoker {
 
         _methodParameterTypes58 = new String[] {
                 "java.lang.String", "java.lang.String", "long", "long", "long",
-                "long", "java.lang.String", "java.util.Date", "boolean"
+                "long", "java.lang.String", "java.lang.String", "boolean"
             };
 
         _methodName59 = "getListSownDistricts";
@@ -540,7 +540,8 @@ public class FarmerLocalServiceClpInvoker {
                 ((Long) arguments[3]).longValue(),
                 ((Long) arguments[4]).longValue(),
                 ((Long) arguments[5]).longValue(),
-                (java.lang.String) arguments[6], (java.util.Date) arguments[7],
+                (java.lang.String) arguments[6],
+                (java.lang.String) arguments[7],
                 ((Boolean) arguments[8]).booleanValue());
         }
 

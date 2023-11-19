@@ -263,7 +263,7 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
 
         _methodParameterTypes35 = new String[] {
                 "java.lang.String", "java.lang.String", "long", "long", "long",
-                "long", "java.lang.String", "java.util.Date", "boolean"
+                "long", "java.lang.String", "java.lang.String", "boolean"
             };
 
         _methodName36 = "getListSownDistricts";
@@ -1234,7 +1234,7 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
     public ru.imagnifi.model.Farmer addFarmer(java.lang.String organization,
         java.lang.String orgForm, long inn, long kpp, long ogrn,
         long districtNumber, java.lang.String shownDistricts,
-        java.util.Date regDate, boolean archiveStatus)
+        java.lang.String regDate, boolean archiveStatus)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 

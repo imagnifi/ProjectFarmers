@@ -29,9 +29,7 @@
 			<basic name="kpp" />
 			<basic name="ogrn" />
 			<basic name="districtNumber" />
-			<basic name="registrationDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
+			<basic name="registrationDate" />
 			<basic name="archiveStatus" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />

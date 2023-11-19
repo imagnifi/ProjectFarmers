@@ -40,14 +40,17 @@
     <liferay-ui:search-container-results
             results="<%= ListUtil.subList(farmerList, searchContainer.getStart(), searchContainer.getEnd()) %>"
             total="<%= farmerList.size() %>"/>
-    <liferay-ui:search-container-row className="ru.imagnifi.model.impl.FarmerModelImpl" modelVar="farmer">
+    <liferay-ui:search-container-row className="ru.imagnifi.model.impl.FarmerModelImpl" modelVar="farmerModel">
         <liferay-ui:search-container-column-text property="farmerId" title="ID"/>
         <liferay-ui:search-container-column-text property="organization"/>
         <liferay-ui:search-container-column-text property="orgForm"/>
         <liferay-ui:search-container-column-text property="inn"/>
         <liferay-ui:search-container-column-text property="kpp"/>
         <liferay-ui:search-container-column-text property="ogrn"/>
-        <liferay-ui:search-container-column-text property="districtId" title="District Registration"/>
+        <liferay-ui:search-container-column-text property="districtNumber" title="District Registration"/>
+        <liferay-ui:search-container-column-text value="<%=FarmerLocalServiceUtil.getListSownDistricts(farmerModel.getFarmerId())%>" name="Shown Districts"/>
+        <liferay-ui:search-container-column-text property="registrationDate" name="Reg Data"/>
+        <liferay-ui:search-container-column-text property="archiveStatus" name="Archive Status"/>
         <liferay-ui:search-container-column-jsp name="Action" align="center" path="/jsp/Farmer/details.jsp"/>
     </liferay-ui:search-container-row>
     <liferay-ui:search-iterator searchContainer="<%=searchContainer %>" paginate="<%=true %>"/>

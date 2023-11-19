@@ -37,7 +37,7 @@
         <column name="ogrn" type="long"/>
         <column name="districtNumber" type="long" />
         <column name="shownDistricts" type="Collection" entity="District" mapping-table="imagnifi_mapping_shown_district"/>
-        <column name="registrationDate" type="Date"/>
+        <column name="registrationDate" type="String"/>
         <column name="archiveStatus" type="boolean"/>
         <order by="asc">
             <order-column name="farmerId"/>

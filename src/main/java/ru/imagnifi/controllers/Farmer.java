@@ -17,7 +17,7 @@ import ru.imagnifi.service.persistence.FarmerUtil;
 import javax.portlet.*;
 import java.io.IOException;
 import java.text.DateFormat;
-import java.util.Date;
+
 
 public class Farmer extends MVCPortlet {
 
@@ -35,12 +35,11 @@ public class Farmer extends MVCPortlet {
             districtNumber = 0;
         }
         String shownDistricts = ParamUtil.getString(request, "shownDistricts");
-//        String regDate = ParamUtil.getString(request, "regDate");
+        String districtIds = numbersDistrictToIds(shownDistricts);
+        String regDate = ParamUtil.getString(request, "regDate");
         boolean archiveStatus = Boolean.parseBoolean(ParamUtil.getString(request, "archiveStatus"));
-        Date f = new Date();
-        FarmerLocalServiceUtil.addFarmer(org, orgForm, inn, kpp, ogrn, districtNumber, shownDistricts, f, archiveStatus);
+        FarmerLocalServiceUtil.addFarmer(org, orgForm, inn, kpp, ogrn, districtNumber, districtIds, regDate, archiveStatus);
         String path = ParamUtil.getString(request, "path");
-        System.out.println("path in addFarmer:30 = " + path);
         response.setRenderParameter("path", "addFarmerPage");
     }
 
@@ -91,7 +90,7 @@ public class Farmer extends MVCPortlet {
                 districtNumber = 0;
             }
             farmer.setDistrictNumber(districtNumber);
-            farmer.setRegistrationDate(ParamUtil.getDate(request, "regDate", DateFormat.getInstance()));
+            farmer.setRegistrationDate(ParamUtil.getString(request, "regDate"));
             farmer.setArchiveStatus(ParamUtil.getBoolean(request, "archiveStatus"));
             FarmerLocalServiceUtil.updateFarmerCust(farmer);
             String shownDistricts = ParamUtil.getString(request, "shownDistricts");
@@ -182,7 +181,7 @@ public class Farmer extends MVCPortlet {
                 ps.setAttribute("ogrn", farmer.getOgrn());
                 ps.setAttribute("districtNumber", farmer.getDistrictNumber());
                 ps.setAttribute("shownDistricts", DistrictLocalServiceUtil.getFarmerDistricts(farmer.getFarmerId()));
-                ps.setAttribute("regDate", "farmer.getRegistrationDate().toString()");
+                ps.setAttribute("regDate", farmer.getRegistrationDate());
                 ps.setAttribute("archiveStatus", String.valueOf(farmer.getArchiveStatus()));
             } catch (SystemException | NoSuchFarmerException e) {
                 throw new RuntimeException(e);

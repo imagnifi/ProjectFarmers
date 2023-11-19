@@ -399,7 +399,7 @@ public class FarmerLocalServiceUtil {
     public static ru.imagnifi.model.Farmer addFarmer(
         java.lang.String organization, java.lang.String orgForm, long inn,
         long kpp, long ogrn, long districtNumber,
-        java.lang.String shownDistricts, java.util.Date regDate,
+        java.lang.String shownDistricts, java.lang.String regDate,
         boolean archiveStatus)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getService()

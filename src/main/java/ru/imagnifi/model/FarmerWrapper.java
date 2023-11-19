@@ -3,7 +3,6 @@ package ru.imagnifi.model;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -94,7 +93,7 @@ public class FarmerWrapper implements Farmer, ModelWrapper<Farmer> {
             setDistrictNumber(districtNumber);
         }
 
-        Date registrationDate = (Date) attributes.get("registrationDate");
+        String registrationDate = (String) attributes.get("registrationDate");
 
         if (registrationDate != null) {
             setRegistrationDate(registrationDate);
@@ -273,7 +272,7 @@ public class FarmerWrapper implements Farmer, ModelWrapper<Farmer> {
     * @return the registration date of this farmer
     */
     @Override
-    public java.util.Date getRegistrationDate() {
+    public java.lang.String getRegistrationDate() {
         return _farmer.getRegistrationDate();
     }
 
@@ -283,7 +282,7 @@ public class FarmerWrapper implements Farmer, ModelWrapper<Farmer> {
     * @param registrationDate the registration date of this farmer
     */
     @Override
-    public void setRegistrationDate(java.util.Date registrationDate) {
+    public void setRegistrationDate(java.lang.String registrationDate) {
         _farmer.setRegistrationDate(registrationDate);
     }
 

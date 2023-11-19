@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import java.util.Date;
-
 /**
  * The cache model class for representing Farmer in entity cache.
  *
@@ -28,7 +26,7 @@ public class FarmerCacheModel implements CacheModel<Farmer>, Externalizable {
     public long kpp;
     public long ogrn;
     public long districtNumber;
-    public long registrationDate;
+    public String registrationDate;
     public boolean archiveStatus;
 
     @Override
@@ -81,10 +79,10 @@ public class FarmerCacheModel implements CacheModel<Farmer>, Externalizable {
         farmerImpl.setOgrn(ogrn);
         farmerImpl.setDistrictNumber(districtNumber);
 
-        if (registrationDate == Long.MIN_VALUE) {
-            farmerImpl.setRegistrationDate(null);
+        if (registrationDate == null) {
+            farmerImpl.setRegistrationDate(StringPool.BLANK);
         } else {
-            farmerImpl.setRegistrationDate(new Date(registrationDate));
+            farmerImpl.setRegistrationDate(registrationDate);
         }
 
         farmerImpl.setArchiveStatus(archiveStatus);
@@ -103,7 +101,7 @@ public class FarmerCacheModel implements CacheModel<Farmer>, Externalizable {
         kpp = objectInput.readLong();
         ogrn = objectInput.readLong();
         districtNumber = objectInput.readLong();
-        registrationDate = objectInput.readLong();
+        registrationDate = objectInput.readUTF();
         archiveStatus = objectInput.readBoolean();
     }
 
@@ -128,7 +126,13 @@ public class FarmerCacheModel implements CacheModel<Farmer>, Externalizable {
         objectOutput.writeLong(kpp);
         objectOutput.writeLong(ogrn);
         objectOutput.writeLong(districtNumber);
-        objectOutput.writeLong(registrationDate);
+
+        if (registrationDate == null) {
+            objectOutput.writeUTF(StringPool.BLANK);
+        } else {
+            objectOutput.writeUTF(registrationDate);
+        }
+
         objectOutput.writeBoolean(archiveStatus);
     }
 }

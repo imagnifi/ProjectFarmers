@@ -348,7 +348,7 @@ public interface FarmerLocalService extends BaseLocalService,
     public ru.imagnifi.model.Farmer addFarmer(java.lang.String organization,
         java.lang.String orgForm, long inn, long kpp, long ogrn,
         long districtNumber, java.lang.String shownDistricts,
-        java.util.Date regDate, boolean archiveStatus)
+        java.lang.String regDate, boolean archiveStatus)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

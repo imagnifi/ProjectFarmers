@@ -19,7 +19,6 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,10 +51,10 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
             { "kpp", Types.BIGINT },
             { "ogrn", Types.BIGINT },
             { "districtNumber", Types.BIGINT },
-            { "registrationDate", Types.TIMESTAMP },
+            { "registrationDate", Types.VARCHAR },
             { "archiveStatus", Types.BOOLEAN }
         };
-    public static final String TABLE_SQL_CREATE = "create table imagnifi_farmer (farmerId LONG not null primary key,organization VARCHAR(75) null,orgForm VARCHAR(75) null,inn LONG,kpp LONG,ogrn LONG,districtNumber LONG,registrationDate DATE null,archiveStatus BOOLEAN)";
+    public static final String TABLE_SQL_CREATE = "create table imagnifi_farmer (farmerId LONG not null primary key,organization VARCHAR(75) null,orgForm VARCHAR(75) null,inn LONG,kpp LONG,ogrn LONG,districtNumber LONG,registrationDate VARCHAR(75) null,archiveStatus BOOLEAN)";
     public static final String TABLE_SQL_DROP = "drop table imagnifi_farmer";
     public static final String ORDER_BY_JPQL = " ORDER BY farmer.farmerId ASC";
     public static final String ORDER_BY_SQL = " ORDER BY imagnifi_farmer.farmerId ASC";
@@ -101,7 +100,7 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
     private long _kpp;
     private long _ogrn;
     private long _districtNumber;
-    private Date _registrationDate;
+    private String _registrationDate;
     private boolean _archiveStatus;
     private long _columnBitmask;
     private Farmer _escapedModel;
@@ -200,7 +199,7 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
             setDistrictNumber(districtNumber);
         }
 
-        Date registrationDate = (Date) attributes.get("registrationDate");
+        String registrationDate = (String) attributes.get("registrationDate");
 
         if (registrationDate != null) {
             setRegistrationDate(registrationDate);
@@ -316,12 +315,16 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
     }
 
     @Override
-    public Date getRegistrationDate() {
-        return _registrationDate;
+    public String getRegistrationDate() {
+        if (_registrationDate == null) {
+            return StringPool.BLANK;
+        } else {
+            return _registrationDate;
+        }
     }
 
     @Override
-    public void setRegistrationDate(Date registrationDate) {
+    public void setRegistrationDate(String registrationDate) {
         _registrationDate = registrationDate;
     }
 
@@ -474,12 +477,12 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
 
         farmerCacheModel.districtNumber = getDistrictNumber();
 
-        Date registrationDate = getRegistrationDate();
+        farmerCacheModel.registrationDate = getRegistrationDate();
 
-        if (registrationDate != null) {
-            farmerCacheModel.registrationDate = registrationDate.getTime();
-        } else {
-            farmerCacheModel.registrationDate = Long.MIN_VALUE;
+        String registrationDate = farmerCacheModel.registrationDate;
+
+        if ((registrationDate != null) && (registrationDate.length() == 0)) {
+            farmerCacheModel.registrationDate = null;
         }
 
         farmerCacheModel.archiveStatus = getArchiveStatus();

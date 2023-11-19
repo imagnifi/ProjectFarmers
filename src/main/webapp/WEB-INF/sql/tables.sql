@@ -19,6 +19,6 @@ create table imagnifi_farmer (
 	kpp LONG,
 	ogrn LONG,
 	districtNumber LONG,
-	registrationDate DATE null,
+	registrationDate VARCHAR(75) null,
 	archiveStatus BOOLEAN
 );

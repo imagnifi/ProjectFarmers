@@ -12,7 +12,6 @@ import ru.imagnifi.service.persistence.FarmerPersistence;
 import ru.imagnifi.service.persistence.FarmerUtil;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,7 +40,7 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
      */
 
     public ru.imagnifi.model.Farmer addFarmer(String organization, String orgForm, long inn, long kpp, long ogrn,
-                                              long districtNumber, String shownDistricts, Date regDate,
+                                              long districtNumber, String shownDistricts, String regDate,
                                               boolean archiveStatus) throws SystemException, SystemException {
 
 //        long increment = counterLocalService.increment();

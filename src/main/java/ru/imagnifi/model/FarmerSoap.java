@@ -3,7 +3,6 @@ package ru.imagnifi.model;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,7 +19,7 @@ public class FarmerSoap implements Serializable {
     private long _kpp;
     private long _ogrn;
     private long _districtNumber;
-    private Date _registrationDate;
+    private String _registrationDate;
     private boolean _archiveStatus;
 
     public FarmerSoap() {
@@ -142,11 +141,11 @@ public class FarmerSoap implements Serializable {
         _districtNumber = districtNumber;
     }
 
-    public Date getRegistrationDate() {
+    public String getRegistrationDate() {
         return _registrationDate;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
+    public void setRegistrationDate(String registrationDate) {
         _registrationDate = registrationDate;
     }
 

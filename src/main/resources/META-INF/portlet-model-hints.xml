@@ -15,7 +15,7 @@
 		<field name="kpp" type="long" />
 		<field name="ogrn" type="long" />
 		<field name="districtNumber" type="long" />
-		<field name="registrationDate" type="Date" />
+		<field name="registrationDate" type="String" />
 		<field name="archiveStatus" type="boolean" />
 	</model>
 </model-hints>

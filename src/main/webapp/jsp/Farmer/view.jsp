@@ -52,9 +52,8 @@ This is the <b>Farmer Portlet</b>.
         <liferay-ui:search-container-column-text property="kpp"/>
         <liferay-ui:search-container-column-text property="ogrn"/>
         <liferay-ui:search-container-column-text property="districtNumber" name="District Registration"/>
-<%--        <liferay-ui:search-container-column-text value="<%=(DistrictLocalServiceUtil.getFarmerDistricts(((Farmer)results.get(index)).getFarmerId())).toString()%>" name="Shown Districts"/>--%>
         <liferay-ui:search-container-column-text value="<%=FarmerLocalServiceUtil.getListSownDistricts(farmerModel.getFarmerId())%>" name="Shown Districts"/>
-        <liferay-ui:search-container-column-date property="registrationDate" name="Reg Data"/>
+        <liferay-ui:search-container-column-text property="registrationDate" name="Reg Data"/>
         <liferay-ui:search-container-column-text property="archiveStatus" name="Archive Status"/>
         <liferay-ui:search-container-column-jsp name="Action" align="center" path="/jsp/Farmer/details.jsp"/>
     </liferay-ui:search-container-row>

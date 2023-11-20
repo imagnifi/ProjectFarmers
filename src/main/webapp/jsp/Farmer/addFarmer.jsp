@@ -100,9 +100,7 @@
         <aui:input label="Archive Status" disabled="<%=bool%>" name="archiveStatus" type="checkbox"
                    value="<%=archiveStatus%>"/>
     </aui:fieldset>
-    <%
-        System.out.println("request.getParameter(\"path\") = " + request.getParameter("path"));
-    %>
+
     <aui:button-row>
         <aui:button type="submit" value="confirm"/>
         <aui:button type="cancel" name="cancel"/>
@@ -132,7 +130,7 @@
                 new Y.DatePicker(
                         {
                             trigger: '#<portlet:namespace />regDate',
-                            mask: '%m/%d/%y',
+                            mask: '%d/%m/%y',
                             calendar: {
                                 selectionMode: 'multiple'
                             },

@@ -497,6 +497,39 @@ public class FarmerLocalServiceWrapper implements FarmerLocalService,
     }
 
     @Override
+    public java.util.Set<ru.imagnifi.model.Farmer> findByOrganization(
+        java.lang.String org)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _farmerLocalService.findByOrganization(org);
+    }
+
+    @Override
+    public java.util.Set<ru.imagnifi.model.Farmer> findByInn(long inn)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _farmerLocalService.findByInn(inn);
+    }
+
+    @Override
+    public java.util.Set<ru.imagnifi.model.Farmer> findByDistrictNumber(
+        long inn) throws com.liferay.portal.kernel.exception.SystemException {
+        return _farmerLocalService.findByDistrictNumber(inn);
+    }
+
+    @Override
+    public java.util.Set<ru.imagnifi.model.Farmer> findByRegistrationDate(
+        java.lang.String regDate)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _farmerLocalService.findByRegistrationDate(regDate);
+    }
+
+    @Override
+    public java.util.Set<ru.imagnifi.model.Farmer> findByArchiveStatus(
+        boolean status)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _farmerLocalService.findByArchiveStatus(status);
+    }
+
+    @Override
     public void clearCash() {
         _farmerLocalService.clearCash();
     }

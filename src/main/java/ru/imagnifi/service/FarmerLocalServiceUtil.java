@@ -464,6 +464,34 @@ public class FarmerLocalServiceUtil {
         return getService().findById(id);
     }
 
+    public static java.util.Set<ru.imagnifi.model.Farmer> findByOrganization(
+        java.lang.String org)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getService().findByOrganization(org);
+    }
+
+    public static java.util.Set<ru.imagnifi.model.Farmer> findByInn(long inn)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getService().findByInn(inn);
+    }
+
+    public static java.util.Set<ru.imagnifi.model.Farmer> findByDistrictNumber(
+        long inn) throws com.liferay.portal.kernel.exception.SystemException {
+        return getService().findByDistrictNumber(inn);
+    }
+
+    public static java.util.Set<ru.imagnifi.model.Farmer> findByRegistrationDate(
+        java.lang.String regDate)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getService().findByRegistrationDate(regDate);
+    }
+
+    public static java.util.Set<ru.imagnifi.model.Farmer> findByArchiveStatus(
+        boolean status)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getService().findByArchiveStatus(status);
+    }
+
     public static void clearCash() {
         getService().clearCash();
     }

@@ -47,7 +47,21 @@
             <finder-column name="organization"/>
             <finder-column name="inn"/>
         </finder>
-
+        <finder name="organization" return-type="Collection">
+            <finder-column name="organization"/>
+        </finder>
+        <finder name="inn" return-type="Collection">
+            <finder-column name="inn"/>
+        </finder>
+        <finder name="districtNumber" return-type="Collection">
+            <finder-column name="districtNumber"/>
+        </finder>
+        <finder name="registrationDate" return-type="Collection">
+            <finder-column name="registrationDate"/>
+        </finder>
+        <finder name="archiveStatus" return-type="Collection">
+            <finder-column name="archiveStatus"/>
+        </finder>
     </entity>
 
 </service-builder>

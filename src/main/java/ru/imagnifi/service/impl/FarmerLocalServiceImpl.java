@@ -12,7 +12,9 @@ import ru.imagnifi.service.persistence.FarmerPersistence;
 import ru.imagnifi.service.persistence.FarmerUtil;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The implementation of the farmer local service.
@@ -149,6 +151,22 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
 
     public Farmer findById(long id) throws SystemException, NoSuchFarmerException {
         return FarmerUtil.findByPrimaryKey(id);
+    }
+
+    public Set<Farmer> findByOrganization(String org) throws SystemException {
+        return new HashSet<Farmer>(FarmerUtil.findByorganization(org));
+    }
+    public Set<Farmer> findByInn(long inn) throws SystemException {
+        return new HashSet<Farmer>(FarmerUtil.findByinn(inn));
+    }
+    public Set<Farmer> findByDistrictNumber(long inn) throws SystemException {
+        return new HashSet<Farmer>(FarmerUtil.findBydistrictNumber(inn));
+    }
+    public Set<Farmer> findByRegistrationDate(String regDate) throws SystemException {
+        return new HashSet<Farmer>(FarmerUtil.findByregistrationDate(regDate));
+    }
+    public Set<Farmer> findByArchiveStatus(boolean status) throws SystemException {
+        return new HashSet<Farmer>(FarmerUtil.findByarchiveStatus(status));
     }
 
     public void clearCash() {

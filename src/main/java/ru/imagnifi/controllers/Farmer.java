@@ -9,6 +9,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import ru.imagnifi.NoSuchFarmerException;
+import ru.imagnifi.comparator.CustomComparatorUtil;
 import ru.imagnifi.model.District;
 import ru.imagnifi.service.DistrictLocalServiceUtil;
 import ru.imagnifi.service.FarmerLocalServiceUtil;
@@ -16,7 +17,9 @@ import ru.imagnifi.service.persistence.FarmerUtil;
 
 import javax.portlet.*;
 import java.io.IOException;
-import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class Farmer extends MVCPortlet {
@@ -31,14 +34,15 @@ public class Farmer extends MVCPortlet {
         long kpp = ParamUtil.getLong(request, "kpp");
         long ogrn = ParamUtil.getLong(request, "ogrn");
         long districtNumber = ParamUtil.getLong(request, "districtNumber");
-        if (!FarmerLocalServiceUtil.isDistrictNumberExist(districtNumber)){
+        if (!FarmerLocalServiceUtil.isDistrictNumberExist(districtNumber)) {
             districtNumber = 0;
         }
         String shownDistricts = ParamUtil.getString(request, "shownDistricts");
         String districtIds = numbersDistrictToIds(shownDistricts);
         String regDate = ParamUtil.getString(request, "regDate");
         boolean archiveStatus = Boolean.parseBoolean(ParamUtil.getString(request, "archiveStatus"));
-        FarmerLocalServiceUtil.addFarmer(org, orgForm, inn, kpp, ogrn, districtNumber, districtIds, regDate, archiveStatus);
+        FarmerLocalServiceUtil.addFarmer(org, orgForm, inn, kpp, ogrn, districtNumber, districtIds, regDate,
+                archiveStatus);
         String path = ParamUtil.getString(request, "path");
         response.setRenderParameter("path", "addFarmerPage");
     }
@@ -53,9 +57,15 @@ public class Farmer extends MVCPortlet {
         update();
     }
 
-    public void updateFarmerBase(ActionRequest request, ActionResponse response) {
+    public void updateFarmerBase(ActionRequest request, ActionResponse response) throws SystemException {
         System.out.println("Farmer controller: updateFarmerBase 34");
         FarmerUtil.clearCache();
+        PortletSession session = request.getPortletSession();
+        String resetButtonFarmerFilter = (String) session.getAttribute("resetButtonFarmerFilter");
+        if (resetButtonFarmerFilter != null && resetButtonFarmerFilter.equals("true")) {
+            session.setAttribute("updateFarmerBaseControl", "true");
+            filterFarmer(request, response);
+        }
     }
 
     public void update() {
@@ -73,8 +83,7 @@ public class Farmer extends MVCPortlet {
         response.setRenderParameter("inn", String.valueOf(farmer.getInn()));
     }
 
-    public void editFarmer(ActionRequest request,
-                           ActionResponse response) throws SystemException, PortalException {
+    public void editFarmer(ActionRequest request, ActionResponse response) throws SystemException, PortalException {
         System.out.println("Farmer controller: editFarmer 42");
         PortletSession ps = request.getPortletSession();
         ru.imagnifi.model.Farmer farmer = getLFarmer(request, "idEdit");
@@ -86,7 +95,7 @@ public class Farmer extends MVCPortlet {
             farmer.setKpp(ParamUtil.getLong(request, "kpp"));
             farmer.setOgrn(ParamUtil.getLong(request, "ogrn"));
             long districtNumber = ParamUtil.getLong(request, "districtNumber");
-            if (!FarmerLocalServiceUtil.isDistrictNumberExist(districtNumber)){
+            if (!FarmerLocalServiceUtil.isDistrictNumberExist(districtNumber)) {
                 districtNumber = 0;
             }
             farmer.setDistrictNumber(districtNumber);
@@ -157,6 +166,149 @@ public class Farmer extends MVCPortlet {
         super.processAction(actionRequest, actionResponse);
     }
 
+    public void filterFarmer(ActionRequest request, ActionResponse response) throws SystemException {
+        PortletSession portletSession = request.getPortletSession();
+        String control = (String) portletSession.getAttribute("updateFarmerBaseControl");
+        String organization, inn, districtNumber, regDateFrom, regDateTo, archiveStatusTrue, archiveStatusFalse;
+        organization = inn = districtNumber = regDateFrom = regDateTo = archiveStatusTrue = archiveStatusFalse = null;
+
+        if (control != null && control.equals("true")) {
+            organization = (String) portletSession.getAttribute("organizationFilter");
+            inn = (String) portletSession.getAttribute("innFilter");
+            districtNumber = (String) portletSession.getAttribute("districtNumberFilter");
+            regDateFrom = (String) portletSession.getAttribute("regDateFromFilter");
+            regDateTo = (String) portletSession.getAttribute("regDateToFilter");
+            archiveStatusTrue = (String) portletSession.getAttribute("archiveStatusTrueFilter");
+            archiveStatusFalse = (String) portletSession.getAttribute("archiveStatusFalseFilter");
+        } else {
+            organization = ParamUtil.getString(request, "organizationFilter");
+            inn = ParamUtil.getString(request, "innFilter");
+            districtNumber = ParamUtil.getString(request, "districtNumberFilter");
+            regDateFrom = ParamUtil.getString(request, "regDateFromFilter");
+            regDateTo = ParamUtil.getString(request, "regDateToFilter");
+            archiveStatusTrue = ParamUtil.getString(request, "archiveStatusTrueFilter");
+            archiveStatusFalse = ParamUtil.getString(request, "archiveStatusFalseFilter");
+        }
+        Set<ru.imagnifi.model.Farmer> farmerSetOrganizaion = null;
+        Set<ru.imagnifi.model.Farmer> farmerSetInn = null;
+        Set<ru.imagnifi.model.Farmer> farmerSetDistrictNumber = null;
+        Set<ru.imagnifi.model.Farmer> farmerSetRegDateFrom = null;
+        Set<ru.imagnifi.model.Farmer> farmerSetRegDateTo = null;
+        Set<ru.imagnifi.model.Farmer> farmerSetArchiveStatusTrue = null;
+        Set<ru.imagnifi.model.Farmer> farmerSetArchiveStatusFalse = null;
+        int farmersCount = FarmerLocalServiceUtil.getFarmersCount();
+        Set<ru.imagnifi.model.Farmer> farmers =
+                new HashSet<ru.imagnifi.model.Farmer>(FarmerLocalServiceUtil.getFarmers(0, farmersCount));
+        if (organization != null && !organization.equals("")) {
+            portletSession.setAttribute("organizationFilter", organization);
+            portletSession.setAttribute("resetButtonFarmerFilter", "true");
+            farmerSetOrganizaion = FarmerLocalServiceUtil.findByOrganization(organization);
+        }
+        if (inn != null && !inn.equals("")) {
+            portletSession.setAttribute("innFilter", inn);
+            portletSession.setAttribute("resetButtonFarmerFilter", "true");
+            long innL = Long.parseLong(inn);
+            farmerSetInn = FarmerLocalServiceUtil.findByInn(innL);
+        }
+        if (districtNumber != null && !districtNumber.equals("")) {
+            portletSession.setAttribute("districtNumberFilter", districtNumber);
+            portletSession.setAttribute("resetButtonFarmerFilter", "true");
+            long number = Long.parseLong(districtNumber);
+            farmerSetDistrictNumber = FarmerLocalServiceUtil.findByDistrictNumber(number);
+        }
+        ru.imagnifi.model.Farmer farmerCurrent = FarmerUtil.getPersistence()
+                                                           .create(1);
+        CustomComparatorUtil.OrderByDate order = new CustomComparatorUtil.OrderByDate("asc");
+        if (regDateFrom != null && !regDateFrom.equals("")) {
+            portletSession.setAttribute("regDateFromFilter", regDateFrom);
+            portletSession.setAttribute("resetButtonFarmerFilter", "true");
+            farmerSetRegDateFrom = new HashSet<>();
+            farmerCurrent.setRegistrationDate(regDateFrom);
+            for (ru.imagnifi.model.Farmer farmer : farmers) {
+                if (order.compare(farmer, farmerCurrent) >= 0) {
+                    farmerSetRegDateFrom.add(farmer);
+                }
+            }
+        }
+        if (regDateTo != null && !regDateTo.equals("")) {
+            portletSession.setAttribute("regDateToFilter", regDateTo);
+            portletSession.setAttribute("resetButtonFarmerFilter", "true");
+            farmerSetRegDateTo = new HashSet<>();
+            farmerCurrent.setRegistrationDate(regDateTo);
+            for (ru.imagnifi.model.Farmer farmer : farmers) {
+                if (order.compare(farmer, farmerCurrent) <= 0) {
+                    farmerSetRegDateTo.add(farmer);
+                }
+            }
+        }
+        Set<ru.imagnifi.model.Farmer> arhiveStatus = null;
+        if (archiveStatusTrue != null && !archiveStatusTrue.equals("") && !archiveStatusTrue.equals("false") ||
+                archiveStatusFalse != null && !archiveStatusFalse.equals("") && !archiveStatusFalse.equals("false")) {
+            portletSession.setAttribute("archiveStatusTrueFilter", archiveStatusTrue);
+            portletSession.setAttribute("archiveStatusFalseFilter", archiveStatusFalse);
+            if (!(archiveStatusTrue.equals("true") && archiveStatusFalse.equals("true"))) {
+                portletSession.setAttribute("resetButtonFarmerFilter", "true");
+            }
+
+            if (archiveStatusTrue.equals("true")) {
+                farmerSetArchiveStatusTrue = FarmerLocalServiceUtil.findByArchiveStatus(true);
+            }
+            if (archiveStatusFalse.equals("true")) {
+                farmerSetArchiveStatusFalse = FarmerLocalServiceUtil.findByArchiveStatus(false);
+            }
+            if (farmerSetArchiveStatusTrue != null && farmerSetArchiveStatusFalse != null) {
+                arhiveStatus = farmerSetArchiveStatusTrue;
+                arhiveStatus.addAll(farmerSetArchiveStatusFalse);
+            } else if (farmerSetArchiveStatusTrue != null) {
+                arhiveStatus = farmerSetArchiveStatusTrue;
+            } else if (farmerSetArchiveStatusFalse != null) {
+                arhiveStatus = farmerSetArchiveStatusFalse;
+            }
+        }
+
+        if (farmerSetOrganizaion != null && !farmerSetOrganizaion.isEmpty()) {
+            farmers.retainAll(farmerSetOrganizaion);
+        }
+        if (farmerSetInn != null && !farmerSetInn.isEmpty()) {
+            farmers.retainAll(farmerSetInn);
+        }
+        if (farmerSetDistrictNumber != null && !farmerSetDistrictNumber.isEmpty()) {
+            farmers.retainAll(farmerSetDistrictNumber);
+        }
+        if (farmerSetRegDateFrom != null && !farmerSetRegDateFrom.isEmpty()) {
+            farmers.retainAll(farmerSetRegDateFrom);
+        }
+        if (farmerSetRegDateTo != null && !farmerSetRegDateTo.isEmpty()) {
+            farmers.retainAll(farmerSetRegDateTo);
+        }
+        if (arhiveStatus != null && !arhiveStatus.isEmpty()) {
+            farmers.retainAll(arhiveStatus);
+        }
+
+        ArrayList<ru.imagnifi.model.Farmer> listResult = new ArrayList<>(farmers);
+        portletSession.setAttribute("listFarmers", listResult);
+        if (control != null && control.equals("true")) {
+            response.setRenderParameter("path", "");
+            portletSession.removeAttribute("updateFarmerBaseControl");
+        } else {
+            response.setRenderParameter("path", "filterFarmerPage");
+        }
+    }
+
+    public void resetFilter(ActionRequest request, ActionResponse response) throws SystemException {
+        PortletSession ps = request.getPortletSession();
+        ps.removeAttribute("organizationFilter");
+        ps.removeAttribute("innFilter");
+        ps.removeAttribute("districtNumberFilter");
+        ps.removeAttribute("regDateFromFilter");
+        ps.removeAttribute("regDateToFilter");
+        ps.removeAttribute("archiveStatusTrueFilter");
+        ps.removeAttribute("archiveStatusFalseFilter");
+        ps.removeAttribute("resetButtonFarmerFilter");
+        filterFarmer(request, response);
+        response.setRenderParameter("path", "");
+    }
+
     @Override
     public void doView(RenderRequest renderRequest,
                        RenderResponse renderResponse) throws IOException, PortletException {
@@ -193,6 +345,9 @@ public class Farmer extends MVCPortlet {
             System.out.println(" from doView 138");
         } else if (path != null && path.equalsIgnoreCase("findFormPage")) {
             include("/jsp/Farmer/findFarmer.jsp", renderRequest, renderResponse);
+            System.out.println(" from doView 145");
+        } else if (path != null && path.equalsIgnoreCase("filterFarmerPage")) {
+            include("/jsp/Farmer/filterFarmer.jsp", renderRequest, renderResponse);
             System.out.println(" from doView 145");
         } else {
             System.out.println(" from doView 147");

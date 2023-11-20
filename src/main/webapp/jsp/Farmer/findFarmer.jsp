@@ -1,8 +1,8 @@
 <%@include file="/jsp/init.jsp" %>
 
-<portlet:renderURL var="update">
-    <portlet:param name="path" value="findFarmerPage"/>
-</portlet:renderURL>
+<%--<portlet:renderURL var="update">--%>
+<%--    <portlet:param name="path" value="findFarmerPage"/>--%>
+<%--</portlet:renderURL>--%>
 
 
 <%
@@ -49,7 +49,7 @@
         <liferay-ui:search-container-column-text property="ogrn"/>
         <liferay-ui:search-container-column-text property="districtNumber" title="District Registration"/>
         <liferay-ui:search-container-column-text value="<%=FarmerLocalServiceUtil.getListSownDistricts(farmerModel.getFarmerId())%>" name="Shown Districts"/>
-        <liferay-ui:search-container-column-text property="registrationDate" name="Reg Data"/>
+        <liferay-ui:search-container-column-text property="registrationDate" name="Reg Date"/>
         <liferay-ui:search-container-column-text property="archiveStatus" name="Archive Status"/>
         <liferay-ui:search-container-column-jsp name="Action" align="center" path="/jsp/Farmer/details.jsp"/>
     </liferay-ui:search-container-row>

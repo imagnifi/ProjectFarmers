@@ -101,6 +101,16 @@ public class FarmerLocalServiceClpInvoker {
     private String[] _methodParameterTypes68;
     private String _methodName69;
     private String[] _methodParameterTypes69;
+    private String _methodName70;
+    private String[] _methodParameterTypes70;
+    private String _methodName71;
+    private String[] _methodParameterTypes71;
+    private String _methodName72;
+    private String[] _methodParameterTypes72;
+    private String _methodName73;
+    private String[] _methodParameterTypes73;
+    private String _methodName74;
+    private String[] _methodParameterTypes74;
 
     public FarmerLocalServiceClpInvoker() {
         _methodName0 = "addFarmer";
@@ -311,9 +321,29 @@ public class FarmerLocalServiceClpInvoker {
 
         _methodParameterTypes68 = new String[] { "long" };
 
-        _methodName69 = "clearCash";
+        _methodName69 = "findByOrganization";
 
-        _methodParameterTypes69 = new String[] {  };
+        _methodParameterTypes69 = new String[] { "java.lang.String" };
+
+        _methodName70 = "findByInn";
+
+        _methodParameterTypes70 = new String[] { "long" };
+
+        _methodName71 = "findByDistrictNumber";
+
+        _methodParameterTypes71 = new String[] { "long" };
+
+        _methodName72 = "findByRegistrationDate";
+
+        _methodParameterTypes72 = new String[] { "java.lang.String" };
+
+        _methodName73 = "findByArchiveStatus";
+
+        _methodParameterTypes73 = new String[] { "boolean" };
+
+        _methodName74 = "clearCash";
+
+        _methodParameterTypes74 = new String[] {  };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -612,6 +642,31 @@ public class FarmerLocalServiceClpInvoker {
 
         if (_methodName69.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+            return FarmerLocalServiceUtil.findByOrganization((java.lang.String) arguments[0]);
+        }
+
+        if (_methodName70.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+            return FarmerLocalServiceUtil.findByInn(((Long) arguments[0]).longValue());
+        }
+
+        if (_methodName71.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+            return FarmerLocalServiceUtil.findByDistrictNumber(((Long) arguments[0]).longValue());
+        }
+
+        if (_methodName72.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+            return FarmerLocalServiceUtil.findByRegistrationDate((java.lang.String) arguments[0]);
+        }
+
+        if (_methodName73.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+            return FarmerLocalServiceUtil.findByArchiveStatus(((Boolean) arguments[0]).booleanValue());
+        }
+
+        if (_methodName74.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
             FarmerLocalServiceUtil.clearCash();
 
             return null;

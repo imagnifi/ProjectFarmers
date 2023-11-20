@@ -70,9 +70,12 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
     public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
                 "value.object.column.bitmask.enabled.ru.imagnifi.model.Farmer"),
             true);
-    public static long INN_COLUMN_BITMASK = 1L;
-    public static long ORGANIZATION_COLUMN_BITMASK = 2L;
-    public static long FARMERID_COLUMN_BITMASK = 4L;
+    public static long ARCHIVESTATUS_COLUMN_BITMASK = 1L;
+    public static long DISTRICTNUMBER_COLUMN_BITMASK = 2L;
+    public static long INN_COLUMN_BITMASK = 4L;
+    public static long ORGANIZATION_COLUMN_BITMASK = 8L;
+    public static long REGISTRATIONDATE_COLUMN_BITMASK = 16L;
+    public static long FARMERID_COLUMN_BITMASK = 32L;
     public static final String MAPPING_TABLE_FARMER_IMAGNIFI_MAPPING_SHOWN_DISTRICT_NAME =
         "farmer_imagnifi_mapping_shown_district";
     public static final Object[][] MAPPING_TABLE_FARMER_IMAGNIFI_MAPPING_SHOWN_DISTRICT_COLUMNS =
@@ -100,8 +103,13 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
     private long _kpp;
     private long _ogrn;
     private long _districtNumber;
+    private long _originalDistrictNumber;
+    private boolean _setOriginalDistrictNumber;
     private String _registrationDate;
+    private String _originalRegistrationDate;
     private boolean _archiveStatus;
+    private boolean _originalArchiveStatus;
+    private boolean _setOriginalArchiveStatus;
     private long _columnBitmask;
     private Farmer _escapedModel;
 
@@ -311,7 +319,19 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
 
     @Override
     public void setDistrictNumber(long districtNumber) {
+        _columnBitmask |= DISTRICTNUMBER_COLUMN_BITMASK;
+
+        if (!_setOriginalDistrictNumber) {
+            _setOriginalDistrictNumber = true;
+
+            _originalDistrictNumber = _districtNumber;
+        }
+
         _districtNumber = districtNumber;
+    }
+
+    public long getOriginalDistrictNumber() {
+        return _originalDistrictNumber;
     }
 
     @Override
@@ -325,7 +345,17 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
 
     @Override
     public void setRegistrationDate(String registrationDate) {
+        _columnBitmask |= REGISTRATIONDATE_COLUMN_BITMASK;
+
+        if (_originalRegistrationDate == null) {
+            _originalRegistrationDate = _registrationDate;
+        }
+
         _registrationDate = registrationDate;
+    }
+
+    public String getOriginalRegistrationDate() {
+        return GetterUtil.getString(_originalRegistrationDate);
     }
 
     @Override
@@ -340,7 +370,19 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
 
     @Override
     public void setArchiveStatus(boolean archiveStatus) {
+        _columnBitmask |= ARCHIVESTATUS_COLUMN_BITMASK;
+
+        if (!_setOriginalArchiveStatus) {
+            _setOriginalArchiveStatus = true;
+
+            _originalArchiveStatus = _archiveStatus;
+        }
+
         _archiveStatus = archiveStatus;
+    }
+
+    public boolean getOriginalArchiveStatus() {
+        return _originalArchiveStatus;
     }
 
     public long getColumnBitmask() {
@@ -443,6 +485,16 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
         farmerModelImpl._originalInn = farmerModelImpl._inn;
 
         farmerModelImpl._setOriginalInn = false;
+
+        farmerModelImpl._originalDistrictNumber = farmerModelImpl._districtNumber;
+
+        farmerModelImpl._setOriginalDistrictNumber = false;
+
+        farmerModelImpl._originalRegistrationDate = farmerModelImpl._registrationDate;
+
+        farmerModelImpl._originalArchiveStatus = farmerModelImpl._archiveStatus;
+
+        farmerModelImpl._setOriginalArchiveStatus = false;
 
         farmerModelImpl._columnBitmask = 0;
     }

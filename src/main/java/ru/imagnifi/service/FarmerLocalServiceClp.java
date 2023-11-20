@@ -100,6 +100,16 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
     private String[] _methodParameterTypes45;
     private String _methodName46;
     private String[] _methodParameterTypes46;
+    private String _methodName47;
+    private String[] _methodParameterTypes47;
+    private String _methodName48;
+    private String[] _methodParameterTypes48;
+    private String _methodName49;
+    private String[] _methodParameterTypes49;
+    private String _methodName50;
+    private String[] _methodParameterTypes50;
+    private String _methodName51;
+    private String[] _methodParameterTypes51;
 
     public FarmerLocalServiceClp(InvokableLocalService invokableLocalService) {
         _invokableLocalService = invokableLocalService;
@@ -312,9 +322,29 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
 
         _methodParameterTypes45 = new String[] { "long" };
 
-        _methodName46 = "clearCash";
+        _methodName46 = "findByOrganization";
 
-        _methodParameterTypes46 = new String[] {  };
+        _methodParameterTypes46 = new String[] { "java.lang.String" };
+
+        _methodName47 = "findByInn";
+
+        _methodParameterTypes47 = new String[] { "long" };
+
+        _methodName48 = "findByDistrictNumber";
+
+        _methodParameterTypes48 = new String[] { "long" };
+
+        _methodName49 = "findByRegistrationDate";
+
+        _methodParameterTypes49 = new String[] { "java.lang.String" };
+
+        _methodName50 = "findByArchiveStatus";
+
+        _methodParameterTypes50 = new String[] { "boolean" };
+
+        _methodName51 = "clearCash";
+
+        _methodParameterTypes51 = new String[] {  };
     }
 
     @Override
@@ -1559,10 +1589,145 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
     }
 
     @Override
+    public java.util.Set<ru.imagnifi.model.Farmer> findByOrganization(
+        java.lang.String org)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName46,
+                    _methodParameterTypes46,
+                    new Object[] { ClpSerializer.translateInput(org) });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (java.util.Set<ru.imagnifi.model.Farmer>) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public java.util.Set<ru.imagnifi.model.Farmer> findByInn(long inn)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName47,
+                    _methodParameterTypes47, new Object[] { inn });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (java.util.Set<ru.imagnifi.model.Farmer>) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public java.util.Set<ru.imagnifi.model.Farmer> findByDistrictNumber(
+        long inn) throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName48,
+                    _methodParameterTypes48, new Object[] { inn });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (java.util.Set<ru.imagnifi.model.Farmer>) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public java.util.Set<ru.imagnifi.model.Farmer> findByRegistrationDate(
+        java.lang.String regDate)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName49,
+                    _methodParameterTypes49,
+                    new Object[] { ClpSerializer.translateInput(regDate) });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (java.util.Set<ru.imagnifi.model.Farmer>) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public java.util.Set<ru.imagnifi.model.Farmer> findByArchiveStatus(
+        boolean status)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName50,
+                    _methodParameterTypes50, new Object[] { status });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (java.util.Set<ru.imagnifi.model.Farmer>) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
     public void clearCash() {
         try {
-            _invokableLocalService.invokeMethod(_methodName46,
-                _methodParameterTypes46, new Object[] {  });
+            _invokableLocalService.invokeMethod(_methodName51,
+                _methodParameterTypes51, new Object[] {  });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 

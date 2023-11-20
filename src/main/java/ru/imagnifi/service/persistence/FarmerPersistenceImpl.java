@@ -103,6 +103,116 @@ public class FarmerPersistenceImpl extends BasePersistenceImpl<Farmer>
     private static final String _FINDER_COLUMN_NAME_INN_ORGANIZATION_2 = "farmer.organization = ? AND ";
     private static final String _FINDER_COLUMN_NAME_INN_ORGANIZATION_3 = "(farmer.organization IS NULL OR farmer.organization = '') AND ";
     private static final String _FINDER_COLUMN_NAME_INN_INN_2 = "farmer.inn = ?";
+    public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_ORGANIZATION =
+        new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, FarmerImpl.class,
+            FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByorganization",
+            new String[] {
+                String.class.getName(),
+                
+            Integer.class.getName(), Integer.class.getName(),
+                OrderByComparator.class.getName()
+            });
+    public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ORGANIZATION =
+        new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, FarmerImpl.class,
+            FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByorganization",
+            new String[] { String.class.getName() },
+            FarmerModelImpl.ORGANIZATION_COLUMN_BITMASK);
+    public static final FinderPath FINDER_PATH_COUNT_BY_ORGANIZATION = new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+            FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByorganization",
+            new String[] { String.class.getName() });
+    private static final String _FINDER_COLUMN_ORGANIZATION_ORGANIZATION_1 = "farmer.organization IS NULL";
+    private static final String _FINDER_COLUMN_ORGANIZATION_ORGANIZATION_2 = "farmer.organization = ?";
+    private static final String _FINDER_COLUMN_ORGANIZATION_ORGANIZATION_3 = "(farmer.organization IS NULL OR farmer.organization = '')";
+    public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_INN = new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, FarmerImpl.class,
+            FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByinn",
+            new String[] {
+                Long.class.getName(),
+                
+            Integer.class.getName(), Integer.class.getName(),
+                OrderByComparator.class.getName()
+            });
+    public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_INN = new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, FarmerImpl.class,
+            FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByinn",
+            new String[] { Long.class.getName() },
+            FarmerModelImpl.INN_COLUMN_BITMASK);
+    public static final FinderPath FINDER_PATH_COUNT_BY_INN = new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+            FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByinn",
+            new String[] { Long.class.getName() });
+    private static final String _FINDER_COLUMN_INN_INN_2 = "farmer.inn = ?";
+    public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_DISTRICTNUMBER =
+        new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, FarmerImpl.class,
+            FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findBydistrictNumber",
+            new String[] {
+                Long.class.getName(),
+                
+            Integer.class.getName(), Integer.class.getName(),
+                OrderByComparator.class.getName()
+            });
+    public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DISTRICTNUMBER =
+        new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, FarmerImpl.class,
+            FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findBydistrictNumber",
+            new String[] { Long.class.getName() },
+            FarmerModelImpl.DISTRICTNUMBER_COLUMN_BITMASK);
+    public static final FinderPath FINDER_PATH_COUNT_BY_DISTRICTNUMBER = new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+            FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countBydistrictNumber",
+            new String[] { Long.class.getName() });
+    private static final String _FINDER_COLUMN_DISTRICTNUMBER_DISTRICTNUMBER_2 = "farmer.districtNumber = ?";
+    public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_REGISTRATIONDATE =
+        new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, FarmerImpl.class,
+            FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByregistrationDate",
+            new String[] {
+                String.class.getName(),
+                
+            Integer.class.getName(), Integer.class.getName(),
+                OrderByComparator.class.getName()
+            });
+    public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REGISTRATIONDATE =
+        new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, FarmerImpl.class,
+            FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+            "findByregistrationDate", new String[] { String.class.getName() },
+            FarmerModelImpl.REGISTRATIONDATE_COLUMN_BITMASK);
+    public static final FinderPath FINDER_PATH_COUNT_BY_REGISTRATIONDATE = new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+            FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+            "countByregistrationDate", new String[] { String.class.getName() });
+    private static final String _FINDER_COLUMN_REGISTRATIONDATE_REGISTRATIONDATE_1 =
+        "farmer.registrationDate IS NULL";
+    private static final String _FINDER_COLUMN_REGISTRATIONDATE_REGISTRATIONDATE_2 =
+        "farmer.registrationDate = ?";
+    private static final String _FINDER_COLUMN_REGISTRATIONDATE_REGISTRATIONDATE_3 =
+        "(farmer.registrationDate IS NULL OR farmer.registrationDate = '')";
+    public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_ARCHIVESTATUS =
+        new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, FarmerImpl.class,
+            FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByarchiveStatus",
+            new String[] {
+                Boolean.class.getName(),
+                
+            Integer.class.getName(), Integer.class.getName(),
+                OrderByComparator.class.getName()
+            });
+    public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ARCHIVESTATUS =
+        new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, FarmerImpl.class,
+            FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByarchiveStatus",
+            new String[] { Boolean.class.getName() },
+            FarmerModelImpl.ARCHIVESTATUS_COLUMN_BITMASK);
+    public static final FinderPath FINDER_PATH_COUNT_BY_ARCHIVESTATUS = new FinderPath(FarmerModelImpl.ENTITY_CACHE_ENABLED,
+            FarmerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+            FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByarchiveStatus",
+            new String[] { Boolean.class.getName() });
+    private static final String _FINDER_COLUMN_ARCHIVESTATUS_ARCHIVESTATUS_2 = "farmer.archiveStatus = ?";
     private static final String _SQL_SELECT_FARMER = "SELECT farmer FROM Farmer farmer";
     private static final String _SQL_SELECT_FARMER_WHERE = "SELECT farmer FROM Farmer farmer WHERE ";
     private static final String _SQL_COUNT_FARMER = "SELECT COUNT(farmer) FROM Farmer farmer";
@@ -664,6 +774,2349 @@ public class FarmerPersistenceImpl extends BasePersistenceImpl<Farmer>
     }
 
     /**
+     * Returns all the farmers where organization = &#63;.
+     *
+     * @param organization the organization
+     * @return the matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findByorganization(String organization)
+        throws SystemException {
+        return findByorganization(organization, QueryUtil.ALL_POS,
+            QueryUtil.ALL_POS, null);
+    }
+
+    /**
+     * Returns a range of all the farmers where organization = &#63;.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.FarmerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param organization the organization
+     * @param start the lower bound of the range of farmers
+     * @param end the upper bound of the range of farmers (not inclusive)
+     * @return the range of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findByorganization(String organization, int start,
+        int end) throws SystemException {
+        return findByorganization(organization, start, end, null);
+    }
+
+    /**
+     * Returns an ordered range of all the farmers where organization = &#63;.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.FarmerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param organization the organization
+     * @param start the lower bound of the range of farmers
+     * @param end the upper bound of the range of farmers (not inclusive)
+     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+     * @return the ordered range of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findByorganization(String organization, int start,
+        int end, OrderByComparator orderByComparator) throws SystemException {
+        boolean pagination = true;
+        FinderPath finderPath = null;
+        Object[] finderArgs = null;
+
+        if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+                (orderByComparator == null)) {
+            pagination = false;
+            finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ORGANIZATION;
+            finderArgs = new Object[] { organization };
+        } else {
+            finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_ORGANIZATION;
+            finderArgs = new Object[] {
+                    organization,
+                    
+                    start, end, orderByComparator
+                };
+        }
+
+        List<Farmer> list = (List<Farmer>) FinderCacheUtil.getResult(finderPath,
+                finderArgs, this);
+
+        if ((list != null) && !list.isEmpty()) {
+            for (Farmer farmer : list) {
+                if (!Validator.equals(organization, farmer.getOrganization())) {
+                    list = null;
+
+                    break;
+                }
+            }
+        }
+
+        if (list == null) {
+            StringBundler query = null;
+
+            if (orderByComparator != null) {
+                query = new StringBundler(3 +
+                        (orderByComparator.getOrderByFields().length * 3));
+            } else {
+                query = new StringBundler(3);
+            }
+
+            query.append(_SQL_SELECT_FARMER_WHERE);
+
+            boolean bindOrganization = false;
+
+            if (organization == null) {
+                query.append(_FINDER_COLUMN_ORGANIZATION_ORGANIZATION_1);
+            } else if (organization.equals(StringPool.BLANK)) {
+                query.append(_FINDER_COLUMN_ORGANIZATION_ORGANIZATION_3);
+            } else {
+                bindOrganization = true;
+
+                query.append(_FINDER_COLUMN_ORGANIZATION_ORGANIZATION_2);
+            }
+
+            if (orderByComparator != null) {
+                appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+                    orderByComparator);
+            } else
+             if (pagination) {
+                query.append(FarmerModelImpl.ORDER_BY_JPQL);
+            }
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                if (bindOrganization) {
+                    qPos.add(organization);
+                }
+
+                if (!pagination) {
+                    list = (List<Farmer>) QueryUtil.list(q, getDialect(),
+                            start, end, false);
+
+                    Collections.sort(list);
+
+                    list = new UnmodifiableList<Farmer>(list);
+                } else {
+                    list = (List<Farmer>) QueryUtil.list(q, getDialect(),
+                            start, end);
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(finderPath, finderArgs, list);
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    /**
+     * Returns the first farmer in the ordered set where organization = &#63;.
+     *
+     * @param organization the organization
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the first matching farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer findByorganization_First(String organization,
+        OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = fetchByorganization_First(organization,
+                orderByComparator);
+
+        if (farmer != null) {
+            return farmer;
+        }
+
+        StringBundler msg = new StringBundler(4);
+
+        msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+        msg.append("organization=");
+        msg.append(organization);
+
+        msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+        throw new NoSuchFarmerException(msg.toString());
+    }
+
+    /**
+     * Returns the first farmer in the ordered set where organization = &#63;.
+     *
+     * @param organization the organization
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the first matching farmer, or <code>null</code> if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer fetchByorganization_First(String organization,
+        OrderByComparator orderByComparator) throws SystemException {
+        List<Farmer> list = findByorganization(organization, 0, 1,
+                orderByComparator);
+
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the last farmer in the ordered set where organization = &#63;.
+     *
+     * @param organization the organization
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the last matching farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer findByorganization_Last(String organization,
+        OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = fetchByorganization_Last(organization, orderByComparator);
+
+        if (farmer != null) {
+            return farmer;
+        }
+
+        StringBundler msg = new StringBundler(4);
+
+        msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+        msg.append("organization=");
+        msg.append(organization);
+
+        msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+        throw new NoSuchFarmerException(msg.toString());
+    }
+
+    /**
+     * Returns the last farmer in the ordered set where organization = &#63;.
+     *
+     * @param organization the organization
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the last matching farmer, or <code>null</code> if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer fetchByorganization_Last(String organization,
+        OrderByComparator orderByComparator) throws SystemException {
+        int count = countByorganization(organization);
+
+        if (count == 0) {
+            return null;
+        }
+
+        List<Farmer> list = findByorganization(organization, count - 1, count,
+                orderByComparator);
+
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the farmers before and after the current farmer in the ordered set where organization = &#63;.
+     *
+     * @param farmerId the primary key of the current farmer
+     * @param organization the organization
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the previous, current, and next farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a farmer with the primary key could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer[] findByorganization_PrevAndNext(long farmerId,
+        String organization, OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = findByPrimaryKey(farmerId);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            Farmer[] array = new FarmerImpl[3];
+
+            array[0] = getByorganization_PrevAndNext(session, farmer,
+                    organization, orderByComparator, true);
+
+            array[1] = farmer;
+
+            array[2] = getByorganization_PrevAndNext(session, farmer,
+                    organization, orderByComparator, false);
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
+    protected Farmer getByorganization_PrevAndNext(Session session,
+        Farmer farmer, String organization,
+        OrderByComparator orderByComparator, boolean previous) {
+        StringBundler query = null;
+
+        if (orderByComparator != null) {
+            query = new StringBundler(6 +
+                    (orderByComparator.getOrderByFields().length * 6));
+        } else {
+            query = new StringBundler(3);
+        }
+
+        query.append(_SQL_SELECT_FARMER_WHERE);
+
+        boolean bindOrganization = false;
+
+        if (organization == null) {
+            query.append(_FINDER_COLUMN_ORGANIZATION_ORGANIZATION_1);
+        } else if (organization.equals(StringPool.BLANK)) {
+            query.append(_FINDER_COLUMN_ORGANIZATION_ORGANIZATION_3);
+        } else {
+            bindOrganization = true;
+
+            query.append(_FINDER_COLUMN_ORGANIZATION_ORGANIZATION_2);
+        }
+
+        if (orderByComparator != null) {
+            String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+            if (orderByConditionFields.length > 0) {
+                query.append(WHERE_AND);
+            }
+
+            for (int i = 0; i < orderByConditionFields.length; i++) {
+                query.append(_ORDER_BY_ENTITY_ALIAS);
+                query.append(orderByConditionFields[i]);
+
+                if ((i + 1) < orderByConditionFields.length) {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(WHERE_GREATER_THAN_HAS_NEXT);
+                    } else {
+                        query.append(WHERE_LESSER_THAN_HAS_NEXT);
+                    }
+                } else {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(WHERE_GREATER_THAN);
+                    } else {
+                        query.append(WHERE_LESSER_THAN);
+                    }
+                }
+            }
+
+            query.append(ORDER_BY_CLAUSE);
+
+            String[] orderByFields = orderByComparator.getOrderByFields();
+
+            for (int i = 0; i < orderByFields.length; i++) {
+                query.append(_ORDER_BY_ENTITY_ALIAS);
+                query.append(orderByFields[i]);
+
+                if ((i + 1) < orderByFields.length) {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(ORDER_BY_ASC_HAS_NEXT);
+                    } else {
+                        query.append(ORDER_BY_DESC_HAS_NEXT);
+                    }
+                } else {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(ORDER_BY_ASC);
+                    } else {
+                        query.append(ORDER_BY_DESC);
+                    }
+                }
+            }
+        } else {
+            query.append(FarmerModelImpl.ORDER_BY_JPQL);
+        }
+
+        String sql = query.toString();
+
+        Query q = session.createQuery(sql);
+
+        q.setFirstResult(0);
+        q.setMaxResults(2);
+
+        QueryPos qPos = QueryPos.getInstance(q);
+
+        if (bindOrganization) {
+            qPos.add(organization);
+        }
+
+        if (orderByComparator != null) {
+            Object[] values = orderByComparator.getOrderByConditionValues(farmer);
+
+            for (Object value : values) {
+                qPos.add(value);
+            }
+        }
+
+        List<Farmer> list = q.list();
+
+        if (list.size() == 2) {
+            return list.get(1);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Removes all the farmers where organization = &#63; from the database.
+     *
+     * @param organization the organization
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void removeByorganization(String organization)
+        throws SystemException {
+        for (Farmer farmer : findByorganization(organization,
+                QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+            remove(farmer);
+        }
+    }
+
+    /**
+     * Returns the number of farmers where organization = &#63;.
+     *
+     * @param organization the organization
+     * @return the number of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public int countByorganization(String organization)
+        throws SystemException {
+        FinderPath finderPath = FINDER_PATH_COUNT_BY_ORGANIZATION;
+
+        Object[] finderArgs = new Object[] { organization };
+
+        Long count = (Long) FinderCacheUtil.getResult(finderPath, finderArgs,
+                this);
+
+        if (count == null) {
+            StringBundler query = new StringBundler(2);
+
+            query.append(_SQL_COUNT_FARMER_WHERE);
+
+            boolean bindOrganization = false;
+
+            if (organization == null) {
+                query.append(_FINDER_COLUMN_ORGANIZATION_ORGANIZATION_1);
+            } else if (organization.equals(StringPool.BLANK)) {
+                query.append(_FINDER_COLUMN_ORGANIZATION_ORGANIZATION_3);
+            } else {
+                bindOrganization = true;
+
+                query.append(_FINDER_COLUMN_ORGANIZATION_ORGANIZATION_2);
+            }
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                if (bindOrganization) {
+                    qPos.add(organization);
+                }
+
+                count = (Long) q.uniqueResult();
+
+                FinderCacheUtil.putResult(finderPath, finderArgs, count);
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
+    }
+
+    /**
+     * Returns all the farmers where inn = &#63;.
+     *
+     * @param inn the inn
+     * @return the matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findByinn(long inn) throws SystemException {
+        return findByinn(inn, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+    }
+
+    /**
+     * Returns a range of all the farmers where inn = &#63;.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.FarmerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param inn the inn
+     * @param start the lower bound of the range of farmers
+     * @param end the upper bound of the range of farmers (not inclusive)
+     * @return the range of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findByinn(long inn, int start, int end)
+        throws SystemException {
+        return findByinn(inn, start, end, null);
+    }
+
+    /**
+     * Returns an ordered range of all the farmers where inn = &#63;.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.FarmerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param inn the inn
+     * @param start the lower bound of the range of farmers
+     * @param end the upper bound of the range of farmers (not inclusive)
+     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+     * @return the ordered range of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findByinn(long inn, int start, int end,
+        OrderByComparator orderByComparator) throws SystemException {
+        boolean pagination = true;
+        FinderPath finderPath = null;
+        Object[] finderArgs = null;
+
+        if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+                (orderByComparator == null)) {
+            pagination = false;
+            finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_INN;
+            finderArgs = new Object[] { inn };
+        } else {
+            finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_INN;
+            finderArgs = new Object[] { inn, start, end, orderByComparator };
+        }
+
+        List<Farmer> list = (List<Farmer>) FinderCacheUtil.getResult(finderPath,
+                finderArgs, this);
+
+        if ((list != null) && !list.isEmpty()) {
+            for (Farmer farmer : list) {
+                if ((inn != farmer.getInn())) {
+                    list = null;
+
+                    break;
+                }
+            }
+        }
+
+        if (list == null) {
+            StringBundler query = null;
+
+            if (orderByComparator != null) {
+                query = new StringBundler(3 +
+                        (orderByComparator.getOrderByFields().length * 3));
+            } else {
+                query = new StringBundler(3);
+            }
+
+            query.append(_SQL_SELECT_FARMER_WHERE);
+
+            query.append(_FINDER_COLUMN_INN_INN_2);
+
+            if (orderByComparator != null) {
+                appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+                    orderByComparator);
+            } else
+             if (pagination) {
+                query.append(FarmerModelImpl.ORDER_BY_JPQL);
+            }
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(inn);
+
+                if (!pagination) {
+                    list = (List<Farmer>) QueryUtil.list(q, getDialect(),
+                            start, end, false);
+
+                    Collections.sort(list);
+
+                    list = new UnmodifiableList<Farmer>(list);
+                } else {
+                    list = (List<Farmer>) QueryUtil.list(q, getDialect(),
+                            start, end);
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(finderPath, finderArgs, list);
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    /**
+     * Returns the first farmer in the ordered set where inn = &#63;.
+     *
+     * @param inn the inn
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the first matching farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer findByinn_First(long inn, OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = fetchByinn_First(inn, orderByComparator);
+
+        if (farmer != null) {
+            return farmer;
+        }
+
+        StringBundler msg = new StringBundler(4);
+
+        msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+        msg.append("inn=");
+        msg.append(inn);
+
+        msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+        throw new NoSuchFarmerException(msg.toString());
+    }
+
+    /**
+     * Returns the first farmer in the ordered set where inn = &#63;.
+     *
+     * @param inn the inn
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the first matching farmer, or <code>null</code> if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer fetchByinn_First(long inn, OrderByComparator orderByComparator)
+        throws SystemException {
+        List<Farmer> list = findByinn(inn, 0, 1, orderByComparator);
+
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the last farmer in the ordered set where inn = &#63;.
+     *
+     * @param inn the inn
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the last matching farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer findByinn_Last(long inn, OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = fetchByinn_Last(inn, orderByComparator);
+
+        if (farmer != null) {
+            return farmer;
+        }
+
+        StringBundler msg = new StringBundler(4);
+
+        msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+        msg.append("inn=");
+        msg.append(inn);
+
+        msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+        throw new NoSuchFarmerException(msg.toString());
+    }
+
+    /**
+     * Returns the last farmer in the ordered set where inn = &#63;.
+     *
+     * @param inn the inn
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the last matching farmer, or <code>null</code> if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer fetchByinn_Last(long inn, OrderByComparator orderByComparator)
+        throws SystemException {
+        int count = countByinn(inn);
+
+        if (count == 0) {
+            return null;
+        }
+
+        List<Farmer> list = findByinn(inn, count - 1, count, orderByComparator);
+
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the farmers before and after the current farmer in the ordered set where inn = &#63;.
+     *
+     * @param farmerId the primary key of the current farmer
+     * @param inn the inn
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the previous, current, and next farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a farmer with the primary key could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer[] findByinn_PrevAndNext(long farmerId, long inn,
+        OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = findByPrimaryKey(farmerId);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            Farmer[] array = new FarmerImpl[3];
+
+            array[0] = getByinn_PrevAndNext(session, farmer, inn,
+                    orderByComparator, true);
+
+            array[1] = farmer;
+
+            array[2] = getByinn_PrevAndNext(session, farmer, inn,
+                    orderByComparator, false);
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
+    protected Farmer getByinn_PrevAndNext(Session session, Farmer farmer,
+        long inn, OrderByComparator orderByComparator, boolean previous) {
+        StringBundler query = null;
+
+        if (orderByComparator != null) {
+            query = new StringBundler(6 +
+                    (orderByComparator.getOrderByFields().length * 6));
+        } else {
+            query = new StringBundler(3);
+        }
+
+        query.append(_SQL_SELECT_FARMER_WHERE);
+
+        query.append(_FINDER_COLUMN_INN_INN_2);
+
+        if (orderByComparator != null) {
+            String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+            if (orderByConditionFields.length > 0) {
+                query.append(WHERE_AND);
+            }
+
+            for (int i = 0; i < orderByConditionFields.length; i++) {
+                query.append(_ORDER_BY_ENTITY_ALIAS);
+                query.append(orderByConditionFields[i]);
+
+                if ((i + 1) < orderByConditionFields.length) {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(WHERE_GREATER_THAN_HAS_NEXT);
+                    } else {
+                        query.append(WHERE_LESSER_THAN_HAS_NEXT);
+                    }
+                } else {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(WHERE_GREATER_THAN);
+                    } else {
+                        query.append(WHERE_LESSER_THAN);
+                    }
+                }
+            }
+
+            query.append(ORDER_BY_CLAUSE);
+
+            String[] orderByFields = orderByComparator.getOrderByFields();
+
+            for (int i = 0; i < orderByFields.length; i++) {
+                query.append(_ORDER_BY_ENTITY_ALIAS);
+                query.append(orderByFields[i]);
+
+                if ((i + 1) < orderByFields.length) {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(ORDER_BY_ASC_HAS_NEXT);
+                    } else {
+                        query.append(ORDER_BY_DESC_HAS_NEXT);
+                    }
+                } else {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(ORDER_BY_ASC);
+                    } else {
+                        query.append(ORDER_BY_DESC);
+                    }
+                }
+            }
+        } else {
+            query.append(FarmerModelImpl.ORDER_BY_JPQL);
+        }
+
+        String sql = query.toString();
+
+        Query q = session.createQuery(sql);
+
+        q.setFirstResult(0);
+        q.setMaxResults(2);
+
+        QueryPos qPos = QueryPos.getInstance(q);
+
+        qPos.add(inn);
+
+        if (orderByComparator != null) {
+            Object[] values = orderByComparator.getOrderByConditionValues(farmer);
+
+            for (Object value : values) {
+                qPos.add(value);
+            }
+        }
+
+        List<Farmer> list = q.list();
+
+        if (list.size() == 2) {
+            return list.get(1);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Removes all the farmers where inn = &#63; from the database.
+     *
+     * @param inn the inn
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void removeByinn(long inn) throws SystemException {
+        for (Farmer farmer : findByinn(inn, QueryUtil.ALL_POS,
+                QueryUtil.ALL_POS, null)) {
+            remove(farmer);
+        }
+    }
+
+    /**
+     * Returns the number of farmers where inn = &#63;.
+     *
+     * @param inn the inn
+     * @return the number of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public int countByinn(long inn) throws SystemException {
+        FinderPath finderPath = FINDER_PATH_COUNT_BY_INN;
+
+        Object[] finderArgs = new Object[] { inn };
+
+        Long count = (Long) FinderCacheUtil.getResult(finderPath, finderArgs,
+                this);
+
+        if (count == null) {
+            StringBundler query = new StringBundler(2);
+
+            query.append(_SQL_COUNT_FARMER_WHERE);
+
+            query.append(_FINDER_COLUMN_INN_INN_2);
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(inn);
+
+                count = (Long) q.uniqueResult();
+
+                FinderCacheUtil.putResult(finderPath, finderArgs, count);
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
+    }
+
+    /**
+     * Returns all the farmers where districtNumber = &#63;.
+     *
+     * @param districtNumber the district number
+     * @return the matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findBydistrictNumber(long districtNumber)
+        throws SystemException {
+        return findBydistrictNumber(districtNumber, QueryUtil.ALL_POS,
+            QueryUtil.ALL_POS, null);
+    }
+
+    /**
+     * Returns a range of all the farmers where districtNumber = &#63;.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.FarmerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param districtNumber the district number
+     * @param start the lower bound of the range of farmers
+     * @param end the upper bound of the range of farmers (not inclusive)
+     * @return the range of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findBydistrictNumber(long districtNumber, int start,
+        int end) throws SystemException {
+        return findBydistrictNumber(districtNumber, start, end, null);
+    }
+
+    /**
+     * Returns an ordered range of all the farmers where districtNumber = &#63;.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.FarmerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param districtNumber the district number
+     * @param start the lower bound of the range of farmers
+     * @param end the upper bound of the range of farmers (not inclusive)
+     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+     * @return the ordered range of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findBydistrictNumber(long districtNumber, int start,
+        int end, OrderByComparator orderByComparator) throws SystemException {
+        boolean pagination = true;
+        FinderPath finderPath = null;
+        Object[] finderArgs = null;
+
+        if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+                (orderByComparator == null)) {
+            pagination = false;
+            finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DISTRICTNUMBER;
+            finderArgs = new Object[] { districtNumber };
+        } else {
+            finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_DISTRICTNUMBER;
+            finderArgs = new Object[] {
+                    districtNumber,
+                    
+                    start, end, orderByComparator
+                };
+        }
+
+        List<Farmer> list = (List<Farmer>) FinderCacheUtil.getResult(finderPath,
+                finderArgs, this);
+
+        if ((list != null) && !list.isEmpty()) {
+            for (Farmer farmer : list) {
+                if ((districtNumber != farmer.getDistrictNumber())) {
+                    list = null;
+
+                    break;
+                }
+            }
+        }
+
+        if (list == null) {
+            StringBundler query = null;
+
+            if (orderByComparator != null) {
+                query = new StringBundler(3 +
+                        (orderByComparator.getOrderByFields().length * 3));
+            } else {
+                query = new StringBundler(3);
+            }
+
+            query.append(_SQL_SELECT_FARMER_WHERE);
+
+            query.append(_FINDER_COLUMN_DISTRICTNUMBER_DISTRICTNUMBER_2);
+
+            if (orderByComparator != null) {
+                appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+                    orderByComparator);
+            } else
+             if (pagination) {
+                query.append(FarmerModelImpl.ORDER_BY_JPQL);
+            }
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(districtNumber);
+
+                if (!pagination) {
+                    list = (List<Farmer>) QueryUtil.list(q, getDialect(),
+                            start, end, false);
+
+                    Collections.sort(list);
+
+                    list = new UnmodifiableList<Farmer>(list);
+                } else {
+                    list = (List<Farmer>) QueryUtil.list(q, getDialect(),
+                            start, end);
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(finderPath, finderArgs, list);
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    /**
+     * Returns the first farmer in the ordered set where districtNumber = &#63;.
+     *
+     * @param districtNumber the district number
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the first matching farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer findBydistrictNumber_First(long districtNumber,
+        OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = fetchBydistrictNumber_First(districtNumber,
+                orderByComparator);
+
+        if (farmer != null) {
+            return farmer;
+        }
+
+        StringBundler msg = new StringBundler(4);
+
+        msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+        msg.append("districtNumber=");
+        msg.append(districtNumber);
+
+        msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+        throw new NoSuchFarmerException(msg.toString());
+    }
+
+    /**
+     * Returns the first farmer in the ordered set where districtNumber = &#63;.
+     *
+     * @param districtNumber the district number
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the first matching farmer, or <code>null</code> if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer fetchBydistrictNumber_First(long districtNumber,
+        OrderByComparator orderByComparator) throws SystemException {
+        List<Farmer> list = findBydistrictNumber(districtNumber, 0, 1,
+                orderByComparator);
+
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the last farmer in the ordered set where districtNumber = &#63;.
+     *
+     * @param districtNumber the district number
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the last matching farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer findBydistrictNumber_Last(long districtNumber,
+        OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = fetchBydistrictNumber_Last(districtNumber,
+                orderByComparator);
+
+        if (farmer != null) {
+            return farmer;
+        }
+
+        StringBundler msg = new StringBundler(4);
+
+        msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+        msg.append("districtNumber=");
+        msg.append(districtNumber);
+
+        msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+        throw new NoSuchFarmerException(msg.toString());
+    }
+
+    /**
+     * Returns the last farmer in the ordered set where districtNumber = &#63;.
+     *
+     * @param districtNumber the district number
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the last matching farmer, or <code>null</code> if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer fetchBydistrictNumber_Last(long districtNumber,
+        OrderByComparator orderByComparator) throws SystemException {
+        int count = countBydistrictNumber(districtNumber);
+
+        if (count == 0) {
+            return null;
+        }
+
+        List<Farmer> list = findBydistrictNumber(districtNumber, count - 1,
+                count, orderByComparator);
+
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the farmers before and after the current farmer in the ordered set where districtNumber = &#63;.
+     *
+     * @param farmerId the primary key of the current farmer
+     * @param districtNumber the district number
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the previous, current, and next farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a farmer with the primary key could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer[] findBydistrictNumber_PrevAndNext(long farmerId,
+        long districtNumber, OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = findByPrimaryKey(farmerId);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            Farmer[] array = new FarmerImpl[3];
+
+            array[0] = getBydistrictNumber_PrevAndNext(session, farmer,
+                    districtNumber, orderByComparator, true);
+
+            array[1] = farmer;
+
+            array[2] = getBydistrictNumber_PrevAndNext(session, farmer,
+                    districtNumber, orderByComparator, false);
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
+    protected Farmer getBydistrictNumber_PrevAndNext(Session session,
+        Farmer farmer, long districtNumber,
+        OrderByComparator orderByComparator, boolean previous) {
+        StringBundler query = null;
+
+        if (orderByComparator != null) {
+            query = new StringBundler(6 +
+                    (orderByComparator.getOrderByFields().length * 6));
+        } else {
+            query = new StringBundler(3);
+        }
+
+        query.append(_SQL_SELECT_FARMER_WHERE);
+
+        query.append(_FINDER_COLUMN_DISTRICTNUMBER_DISTRICTNUMBER_2);
+
+        if (orderByComparator != null) {
+            String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+            if (orderByConditionFields.length > 0) {
+                query.append(WHERE_AND);
+            }
+
+            for (int i = 0; i < orderByConditionFields.length; i++) {
+                query.append(_ORDER_BY_ENTITY_ALIAS);
+                query.append(orderByConditionFields[i]);
+
+                if ((i + 1) < orderByConditionFields.length) {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(WHERE_GREATER_THAN_HAS_NEXT);
+                    } else {
+                        query.append(WHERE_LESSER_THAN_HAS_NEXT);
+                    }
+                } else {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(WHERE_GREATER_THAN);
+                    } else {
+                        query.append(WHERE_LESSER_THAN);
+                    }
+                }
+            }
+
+            query.append(ORDER_BY_CLAUSE);
+
+            String[] orderByFields = orderByComparator.getOrderByFields();
+
+            for (int i = 0; i < orderByFields.length; i++) {
+                query.append(_ORDER_BY_ENTITY_ALIAS);
+                query.append(orderByFields[i]);
+
+                if ((i + 1) < orderByFields.length) {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(ORDER_BY_ASC_HAS_NEXT);
+                    } else {
+                        query.append(ORDER_BY_DESC_HAS_NEXT);
+                    }
+                } else {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(ORDER_BY_ASC);
+                    } else {
+                        query.append(ORDER_BY_DESC);
+                    }
+                }
+            }
+        } else {
+            query.append(FarmerModelImpl.ORDER_BY_JPQL);
+        }
+
+        String sql = query.toString();
+
+        Query q = session.createQuery(sql);
+
+        q.setFirstResult(0);
+        q.setMaxResults(2);
+
+        QueryPos qPos = QueryPos.getInstance(q);
+
+        qPos.add(districtNumber);
+
+        if (orderByComparator != null) {
+            Object[] values = orderByComparator.getOrderByConditionValues(farmer);
+
+            for (Object value : values) {
+                qPos.add(value);
+            }
+        }
+
+        List<Farmer> list = q.list();
+
+        if (list.size() == 2) {
+            return list.get(1);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Removes all the farmers where districtNumber = &#63; from the database.
+     *
+     * @param districtNumber the district number
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void removeBydistrictNumber(long districtNumber)
+        throws SystemException {
+        for (Farmer farmer : findBydistrictNumber(districtNumber,
+                QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+            remove(farmer);
+        }
+    }
+
+    /**
+     * Returns the number of farmers where districtNumber = &#63;.
+     *
+     * @param districtNumber the district number
+     * @return the number of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public int countBydistrictNumber(long districtNumber)
+        throws SystemException {
+        FinderPath finderPath = FINDER_PATH_COUNT_BY_DISTRICTNUMBER;
+
+        Object[] finderArgs = new Object[] { districtNumber };
+
+        Long count = (Long) FinderCacheUtil.getResult(finderPath, finderArgs,
+                this);
+
+        if (count == null) {
+            StringBundler query = new StringBundler(2);
+
+            query.append(_SQL_COUNT_FARMER_WHERE);
+
+            query.append(_FINDER_COLUMN_DISTRICTNUMBER_DISTRICTNUMBER_2);
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(districtNumber);
+
+                count = (Long) q.uniqueResult();
+
+                FinderCacheUtil.putResult(finderPath, finderArgs, count);
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
+    }
+
+    /**
+     * Returns all the farmers where registrationDate = &#63;.
+     *
+     * @param registrationDate the registration date
+     * @return the matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findByregistrationDate(String registrationDate)
+        throws SystemException {
+        return findByregistrationDate(registrationDate, QueryUtil.ALL_POS,
+            QueryUtil.ALL_POS, null);
+    }
+
+    /**
+     * Returns a range of all the farmers where registrationDate = &#63;.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.FarmerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param registrationDate the registration date
+     * @param start the lower bound of the range of farmers
+     * @param end the upper bound of the range of farmers (not inclusive)
+     * @return the range of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findByregistrationDate(String registrationDate,
+        int start, int end) throws SystemException {
+        return findByregistrationDate(registrationDate, start, end, null);
+    }
+
+    /**
+     * Returns an ordered range of all the farmers where registrationDate = &#63;.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.FarmerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param registrationDate the registration date
+     * @param start the lower bound of the range of farmers
+     * @param end the upper bound of the range of farmers (not inclusive)
+     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+     * @return the ordered range of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findByregistrationDate(String registrationDate,
+        int start, int end, OrderByComparator orderByComparator)
+        throws SystemException {
+        boolean pagination = true;
+        FinderPath finderPath = null;
+        Object[] finderArgs = null;
+
+        if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+                (orderByComparator == null)) {
+            pagination = false;
+            finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REGISTRATIONDATE;
+            finderArgs = new Object[] { registrationDate };
+        } else {
+            finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_REGISTRATIONDATE;
+            finderArgs = new Object[] {
+                    registrationDate,
+                    
+                    start, end, orderByComparator
+                };
+        }
+
+        List<Farmer> list = (List<Farmer>) FinderCacheUtil.getResult(finderPath,
+                finderArgs, this);
+
+        if ((list != null) && !list.isEmpty()) {
+            for (Farmer farmer : list) {
+                if (!Validator.equals(registrationDate,
+                            farmer.getRegistrationDate())) {
+                    list = null;
+
+                    break;
+                }
+            }
+        }
+
+        if (list == null) {
+            StringBundler query = null;
+
+            if (orderByComparator != null) {
+                query = new StringBundler(3 +
+                        (orderByComparator.getOrderByFields().length * 3));
+            } else {
+                query = new StringBundler(3);
+            }
+
+            query.append(_SQL_SELECT_FARMER_WHERE);
+
+            boolean bindRegistrationDate = false;
+
+            if (registrationDate == null) {
+                query.append(_FINDER_COLUMN_REGISTRATIONDATE_REGISTRATIONDATE_1);
+            } else if (registrationDate.equals(StringPool.BLANK)) {
+                query.append(_FINDER_COLUMN_REGISTRATIONDATE_REGISTRATIONDATE_3);
+            } else {
+                bindRegistrationDate = true;
+
+                query.append(_FINDER_COLUMN_REGISTRATIONDATE_REGISTRATIONDATE_2);
+            }
+
+            if (orderByComparator != null) {
+                appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+                    orderByComparator);
+            } else
+             if (pagination) {
+                query.append(FarmerModelImpl.ORDER_BY_JPQL);
+            }
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                if (bindRegistrationDate) {
+                    qPos.add(registrationDate);
+                }
+
+                if (!pagination) {
+                    list = (List<Farmer>) QueryUtil.list(q, getDialect(),
+                            start, end, false);
+
+                    Collections.sort(list);
+
+                    list = new UnmodifiableList<Farmer>(list);
+                } else {
+                    list = (List<Farmer>) QueryUtil.list(q, getDialect(),
+                            start, end);
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(finderPath, finderArgs, list);
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    /**
+     * Returns the first farmer in the ordered set where registrationDate = &#63;.
+     *
+     * @param registrationDate the registration date
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the first matching farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer findByregistrationDate_First(String registrationDate,
+        OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = fetchByregistrationDate_First(registrationDate,
+                orderByComparator);
+
+        if (farmer != null) {
+            return farmer;
+        }
+
+        StringBundler msg = new StringBundler(4);
+
+        msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+        msg.append("registrationDate=");
+        msg.append(registrationDate);
+
+        msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+        throw new NoSuchFarmerException(msg.toString());
+    }
+
+    /**
+     * Returns the first farmer in the ordered set where registrationDate = &#63;.
+     *
+     * @param registrationDate the registration date
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the first matching farmer, or <code>null</code> if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer fetchByregistrationDate_First(String registrationDate,
+        OrderByComparator orderByComparator) throws SystemException {
+        List<Farmer> list = findByregistrationDate(registrationDate, 0, 1,
+                orderByComparator);
+
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the last farmer in the ordered set where registrationDate = &#63;.
+     *
+     * @param registrationDate the registration date
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the last matching farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer findByregistrationDate_Last(String registrationDate,
+        OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = fetchByregistrationDate_Last(registrationDate,
+                orderByComparator);
+
+        if (farmer != null) {
+            return farmer;
+        }
+
+        StringBundler msg = new StringBundler(4);
+
+        msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+        msg.append("registrationDate=");
+        msg.append(registrationDate);
+
+        msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+        throw new NoSuchFarmerException(msg.toString());
+    }
+
+    /**
+     * Returns the last farmer in the ordered set where registrationDate = &#63;.
+     *
+     * @param registrationDate the registration date
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the last matching farmer, or <code>null</code> if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer fetchByregistrationDate_Last(String registrationDate,
+        OrderByComparator orderByComparator) throws SystemException {
+        int count = countByregistrationDate(registrationDate);
+
+        if (count == 0) {
+            return null;
+        }
+
+        List<Farmer> list = findByregistrationDate(registrationDate, count - 1,
+                count, orderByComparator);
+
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the farmers before and after the current farmer in the ordered set where registrationDate = &#63;.
+     *
+     * @param farmerId the primary key of the current farmer
+     * @param registrationDate the registration date
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the previous, current, and next farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a farmer with the primary key could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer[] findByregistrationDate_PrevAndNext(long farmerId,
+        String registrationDate, OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = findByPrimaryKey(farmerId);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            Farmer[] array = new FarmerImpl[3];
+
+            array[0] = getByregistrationDate_PrevAndNext(session, farmer,
+                    registrationDate, orderByComparator, true);
+
+            array[1] = farmer;
+
+            array[2] = getByregistrationDate_PrevAndNext(session, farmer,
+                    registrationDate, orderByComparator, false);
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
+    protected Farmer getByregistrationDate_PrevAndNext(Session session,
+        Farmer farmer, String registrationDate,
+        OrderByComparator orderByComparator, boolean previous) {
+        StringBundler query = null;
+
+        if (orderByComparator != null) {
+            query = new StringBundler(6 +
+                    (orderByComparator.getOrderByFields().length * 6));
+        } else {
+            query = new StringBundler(3);
+        }
+
+        query.append(_SQL_SELECT_FARMER_WHERE);
+
+        boolean bindRegistrationDate = false;
+
+        if (registrationDate == null) {
+            query.append(_FINDER_COLUMN_REGISTRATIONDATE_REGISTRATIONDATE_1);
+        } else if (registrationDate.equals(StringPool.BLANK)) {
+            query.append(_FINDER_COLUMN_REGISTRATIONDATE_REGISTRATIONDATE_3);
+        } else {
+            bindRegistrationDate = true;
+
+            query.append(_FINDER_COLUMN_REGISTRATIONDATE_REGISTRATIONDATE_2);
+        }
+
+        if (orderByComparator != null) {
+            String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+            if (orderByConditionFields.length > 0) {
+                query.append(WHERE_AND);
+            }
+
+            for (int i = 0; i < orderByConditionFields.length; i++) {
+                query.append(_ORDER_BY_ENTITY_ALIAS);
+                query.append(orderByConditionFields[i]);
+
+                if ((i + 1) < orderByConditionFields.length) {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(WHERE_GREATER_THAN_HAS_NEXT);
+                    } else {
+                        query.append(WHERE_LESSER_THAN_HAS_NEXT);
+                    }
+                } else {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(WHERE_GREATER_THAN);
+                    } else {
+                        query.append(WHERE_LESSER_THAN);
+                    }
+                }
+            }
+
+            query.append(ORDER_BY_CLAUSE);
+
+            String[] orderByFields = orderByComparator.getOrderByFields();
+
+            for (int i = 0; i < orderByFields.length; i++) {
+                query.append(_ORDER_BY_ENTITY_ALIAS);
+                query.append(orderByFields[i]);
+
+                if ((i + 1) < orderByFields.length) {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(ORDER_BY_ASC_HAS_NEXT);
+                    } else {
+                        query.append(ORDER_BY_DESC_HAS_NEXT);
+                    }
+                } else {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(ORDER_BY_ASC);
+                    } else {
+                        query.append(ORDER_BY_DESC);
+                    }
+                }
+            }
+        } else {
+            query.append(FarmerModelImpl.ORDER_BY_JPQL);
+        }
+
+        String sql = query.toString();
+
+        Query q = session.createQuery(sql);
+
+        q.setFirstResult(0);
+        q.setMaxResults(2);
+
+        QueryPos qPos = QueryPos.getInstance(q);
+
+        if (bindRegistrationDate) {
+            qPos.add(registrationDate);
+        }
+
+        if (orderByComparator != null) {
+            Object[] values = orderByComparator.getOrderByConditionValues(farmer);
+
+            for (Object value : values) {
+                qPos.add(value);
+            }
+        }
+
+        List<Farmer> list = q.list();
+
+        if (list.size() == 2) {
+            return list.get(1);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Removes all the farmers where registrationDate = &#63; from the database.
+     *
+     * @param registrationDate the registration date
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void removeByregistrationDate(String registrationDate)
+        throws SystemException {
+        for (Farmer farmer : findByregistrationDate(registrationDate,
+                QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+            remove(farmer);
+        }
+    }
+
+    /**
+     * Returns the number of farmers where registrationDate = &#63;.
+     *
+     * @param registrationDate the registration date
+     * @return the number of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public int countByregistrationDate(String registrationDate)
+        throws SystemException {
+        FinderPath finderPath = FINDER_PATH_COUNT_BY_REGISTRATIONDATE;
+
+        Object[] finderArgs = new Object[] { registrationDate };
+
+        Long count = (Long) FinderCacheUtil.getResult(finderPath, finderArgs,
+                this);
+
+        if (count == null) {
+            StringBundler query = new StringBundler(2);
+
+            query.append(_SQL_COUNT_FARMER_WHERE);
+
+            boolean bindRegistrationDate = false;
+
+            if (registrationDate == null) {
+                query.append(_FINDER_COLUMN_REGISTRATIONDATE_REGISTRATIONDATE_1);
+            } else if (registrationDate.equals(StringPool.BLANK)) {
+                query.append(_FINDER_COLUMN_REGISTRATIONDATE_REGISTRATIONDATE_3);
+            } else {
+                bindRegistrationDate = true;
+
+                query.append(_FINDER_COLUMN_REGISTRATIONDATE_REGISTRATIONDATE_2);
+            }
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                if (bindRegistrationDate) {
+                    qPos.add(registrationDate);
+                }
+
+                count = (Long) q.uniqueResult();
+
+                FinderCacheUtil.putResult(finderPath, finderArgs, count);
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
+    }
+
+    /**
+     * Returns all the farmers where archiveStatus = &#63;.
+     *
+     * @param archiveStatus the archive status
+     * @return the matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findByarchiveStatus(boolean archiveStatus)
+        throws SystemException {
+        return findByarchiveStatus(archiveStatus, QueryUtil.ALL_POS,
+            QueryUtil.ALL_POS, null);
+    }
+
+    /**
+     * Returns a range of all the farmers where archiveStatus = &#63;.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.FarmerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param archiveStatus the archive status
+     * @param start the lower bound of the range of farmers
+     * @param end the upper bound of the range of farmers (not inclusive)
+     * @return the range of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findByarchiveStatus(boolean archiveStatus, int start,
+        int end) throws SystemException {
+        return findByarchiveStatus(archiveStatus, start, end, null);
+    }
+
+    /**
+     * Returns an ordered range of all the farmers where archiveStatus = &#63;.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ru.imagnifi.model.impl.FarmerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param archiveStatus the archive status
+     * @param start the lower bound of the range of farmers
+     * @param end the upper bound of the range of farmers (not inclusive)
+     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+     * @return the ordered range of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<Farmer> findByarchiveStatus(boolean archiveStatus, int start,
+        int end, OrderByComparator orderByComparator) throws SystemException {
+        boolean pagination = true;
+        FinderPath finderPath = null;
+        Object[] finderArgs = null;
+
+        if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+                (orderByComparator == null)) {
+            pagination = false;
+            finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ARCHIVESTATUS;
+            finderArgs = new Object[] { archiveStatus };
+        } else {
+            finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_ARCHIVESTATUS;
+            finderArgs = new Object[] {
+                    archiveStatus,
+                    
+                    start, end, orderByComparator
+                };
+        }
+
+        List<Farmer> list = (List<Farmer>) FinderCacheUtil.getResult(finderPath,
+                finderArgs, this);
+
+        if ((list != null) && !list.isEmpty()) {
+            for (Farmer farmer : list) {
+                if ((archiveStatus != farmer.getArchiveStatus())) {
+                    list = null;
+
+                    break;
+                }
+            }
+        }
+
+        if (list == null) {
+            StringBundler query = null;
+
+            if (orderByComparator != null) {
+                query = new StringBundler(3 +
+                        (orderByComparator.getOrderByFields().length * 3));
+            } else {
+                query = new StringBundler(3);
+            }
+
+            query.append(_SQL_SELECT_FARMER_WHERE);
+
+            query.append(_FINDER_COLUMN_ARCHIVESTATUS_ARCHIVESTATUS_2);
+
+            if (orderByComparator != null) {
+                appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+                    orderByComparator);
+            } else
+             if (pagination) {
+                query.append(FarmerModelImpl.ORDER_BY_JPQL);
+            }
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(archiveStatus);
+
+                if (!pagination) {
+                    list = (List<Farmer>) QueryUtil.list(q, getDialect(),
+                            start, end, false);
+
+                    Collections.sort(list);
+
+                    list = new UnmodifiableList<Farmer>(list);
+                } else {
+                    list = (List<Farmer>) QueryUtil.list(q, getDialect(),
+                            start, end);
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(finderPath, finderArgs, list);
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    /**
+     * Returns the first farmer in the ordered set where archiveStatus = &#63;.
+     *
+     * @param archiveStatus the archive status
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the first matching farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer findByarchiveStatus_First(boolean archiveStatus,
+        OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = fetchByarchiveStatus_First(archiveStatus,
+                orderByComparator);
+
+        if (farmer != null) {
+            return farmer;
+        }
+
+        StringBundler msg = new StringBundler(4);
+
+        msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+        msg.append("archiveStatus=");
+        msg.append(archiveStatus);
+
+        msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+        throw new NoSuchFarmerException(msg.toString());
+    }
+
+    /**
+     * Returns the first farmer in the ordered set where archiveStatus = &#63;.
+     *
+     * @param archiveStatus the archive status
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the first matching farmer, or <code>null</code> if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer fetchByarchiveStatus_First(boolean archiveStatus,
+        OrderByComparator orderByComparator) throws SystemException {
+        List<Farmer> list = findByarchiveStatus(archiveStatus, 0, 1,
+                orderByComparator);
+
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the last farmer in the ordered set where archiveStatus = &#63;.
+     *
+     * @param archiveStatus the archive status
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the last matching farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer findByarchiveStatus_Last(boolean archiveStatus,
+        OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = fetchByarchiveStatus_Last(archiveStatus,
+                orderByComparator);
+
+        if (farmer != null) {
+            return farmer;
+        }
+
+        StringBundler msg = new StringBundler(4);
+
+        msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+        msg.append("archiveStatus=");
+        msg.append(archiveStatus);
+
+        msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+        throw new NoSuchFarmerException(msg.toString());
+    }
+
+    /**
+     * Returns the last farmer in the ordered set where archiveStatus = &#63;.
+     *
+     * @param archiveStatus the archive status
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the last matching farmer, or <code>null</code> if a matching farmer could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer fetchByarchiveStatus_Last(boolean archiveStatus,
+        OrderByComparator orderByComparator) throws SystemException {
+        int count = countByarchiveStatus(archiveStatus);
+
+        if (count == 0) {
+            return null;
+        }
+
+        List<Farmer> list = findByarchiveStatus(archiveStatus, count - 1,
+                count, orderByComparator);
+
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the farmers before and after the current farmer in the ordered set where archiveStatus = &#63;.
+     *
+     * @param farmerId the primary key of the current farmer
+     * @param archiveStatus the archive status
+     * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+     * @return the previous, current, and next farmer
+     * @throws ru.imagnifi.NoSuchFarmerException if a farmer with the primary key could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Farmer[] findByarchiveStatus_PrevAndNext(long farmerId,
+        boolean archiveStatus, OrderByComparator orderByComparator)
+        throws NoSuchFarmerException, SystemException {
+        Farmer farmer = findByPrimaryKey(farmerId);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            Farmer[] array = new FarmerImpl[3];
+
+            array[0] = getByarchiveStatus_PrevAndNext(session, farmer,
+                    archiveStatus, orderByComparator, true);
+
+            array[1] = farmer;
+
+            array[2] = getByarchiveStatus_PrevAndNext(session, farmer,
+                    archiveStatus, orderByComparator, false);
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
+    protected Farmer getByarchiveStatus_PrevAndNext(Session session,
+        Farmer farmer, boolean archiveStatus,
+        OrderByComparator orderByComparator, boolean previous) {
+        StringBundler query = null;
+
+        if (orderByComparator != null) {
+            query = new StringBundler(6 +
+                    (orderByComparator.getOrderByFields().length * 6));
+        } else {
+            query = new StringBundler(3);
+        }
+
+        query.append(_SQL_SELECT_FARMER_WHERE);
+
+        query.append(_FINDER_COLUMN_ARCHIVESTATUS_ARCHIVESTATUS_2);
+
+        if (orderByComparator != null) {
+            String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+            if (orderByConditionFields.length > 0) {
+                query.append(WHERE_AND);
+            }
+
+            for (int i = 0; i < orderByConditionFields.length; i++) {
+                query.append(_ORDER_BY_ENTITY_ALIAS);
+                query.append(orderByConditionFields[i]);
+
+                if ((i + 1) < orderByConditionFields.length) {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(WHERE_GREATER_THAN_HAS_NEXT);
+                    } else {
+                        query.append(WHERE_LESSER_THAN_HAS_NEXT);
+                    }
+                } else {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(WHERE_GREATER_THAN);
+                    } else {
+                        query.append(WHERE_LESSER_THAN);
+                    }
+                }
+            }
+
+            query.append(ORDER_BY_CLAUSE);
+
+            String[] orderByFields = orderByComparator.getOrderByFields();
+
+            for (int i = 0; i < orderByFields.length; i++) {
+                query.append(_ORDER_BY_ENTITY_ALIAS);
+                query.append(orderByFields[i]);
+
+                if ((i + 1) < orderByFields.length) {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(ORDER_BY_ASC_HAS_NEXT);
+                    } else {
+                        query.append(ORDER_BY_DESC_HAS_NEXT);
+                    }
+                } else {
+                    if (orderByComparator.isAscending() ^ previous) {
+                        query.append(ORDER_BY_ASC);
+                    } else {
+                        query.append(ORDER_BY_DESC);
+                    }
+                }
+            }
+        } else {
+            query.append(FarmerModelImpl.ORDER_BY_JPQL);
+        }
+
+        String sql = query.toString();
+
+        Query q = session.createQuery(sql);
+
+        q.setFirstResult(0);
+        q.setMaxResults(2);
+
+        QueryPos qPos = QueryPos.getInstance(q);
+
+        qPos.add(archiveStatus);
+
+        if (orderByComparator != null) {
+            Object[] values = orderByComparator.getOrderByConditionValues(farmer);
+
+            for (Object value : values) {
+                qPos.add(value);
+            }
+        }
+
+        List<Farmer> list = q.list();
+
+        if (list.size() == 2) {
+            return list.get(1);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Removes all the farmers where archiveStatus = &#63; from the database.
+     *
+     * @param archiveStatus the archive status
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public void removeByarchiveStatus(boolean archiveStatus)
+        throws SystemException {
+        for (Farmer farmer : findByarchiveStatus(archiveStatus,
+                QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+            remove(farmer);
+        }
+    }
+
+    /**
+     * Returns the number of farmers where archiveStatus = &#63;.
+     *
+     * @param archiveStatus the archive status
+     * @return the number of matching farmers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public int countByarchiveStatus(boolean archiveStatus)
+        throws SystemException {
+        FinderPath finderPath = FINDER_PATH_COUNT_BY_ARCHIVESTATUS;
+
+        Object[] finderArgs = new Object[] { archiveStatus };
+
+        Long count = (Long) FinderCacheUtil.getResult(finderPath, finderArgs,
+                this);
+
+        if (count == null) {
+            StringBundler query = new StringBundler(2);
+
+            query.append(_SQL_COUNT_FARMER_WHERE);
+
+            query.append(_FINDER_COLUMN_ARCHIVESTATUS_ARCHIVESTATUS_2);
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(archiveStatus);
+
+                count = (Long) q.uniqueResult();
+
+                FinderCacheUtil.putResult(finderPath, finderArgs, count);
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
+    }
+
+    /**
      * Caches the farmer in the entity cache if it is enabled.
      *
      * @param farmer the farmer
@@ -891,6 +3344,97 @@ public class FarmerPersistenceImpl extends BasePersistenceImpl<Farmer>
 
                 FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_NAME_INN, args);
                 FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_NAME_INN,
+                    args);
+            }
+
+            if ((farmerModelImpl.getColumnBitmask() &
+                    FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ORGANIZATION.getColumnBitmask()) != 0) {
+                Object[] args = new Object[] {
+                        farmerModelImpl.getOriginalOrganization()
+                    };
+
+                FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ORGANIZATION,
+                    args);
+                FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ORGANIZATION,
+                    args);
+
+                args = new Object[] { farmerModelImpl.getOrganization() };
+
+                FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ORGANIZATION,
+                    args);
+                FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ORGANIZATION,
+                    args);
+            }
+
+            if ((farmerModelImpl.getColumnBitmask() &
+                    FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_INN.getColumnBitmask()) != 0) {
+                Object[] args = new Object[] { farmerModelImpl.getOriginalInn() };
+
+                FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_INN, args);
+                FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_INN,
+                    args);
+
+                args = new Object[] { farmerModelImpl.getInn() };
+
+                FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_INN, args);
+                FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_INN,
+                    args);
+            }
+
+            if ((farmerModelImpl.getColumnBitmask() &
+                    FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DISTRICTNUMBER.getColumnBitmask()) != 0) {
+                Object[] args = new Object[] {
+                        farmerModelImpl.getOriginalDistrictNumber()
+                    };
+
+                FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_DISTRICTNUMBER,
+                    args);
+                FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DISTRICTNUMBER,
+                    args);
+
+                args = new Object[] { farmerModelImpl.getDistrictNumber() };
+
+                FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_DISTRICTNUMBER,
+                    args);
+                FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DISTRICTNUMBER,
+                    args);
+            }
+
+            if ((farmerModelImpl.getColumnBitmask() &
+                    FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REGISTRATIONDATE.getColumnBitmask()) != 0) {
+                Object[] args = new Object[] {
+                        farmerModelImpl.getOriginalRegistrationDate()
+                    };
+
+                FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REGISTRATIONDATE,
+                    args);
+                FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REGISTRATIONDATE,
+                    args);
+
+                args = new Object[] { farmerModelImpl.getRegistrationDate() };
+
+                FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REGISTRATIONDATE,
+                    args);
+                FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REGISTRATIONDATE,
+                    args);
+            }
+
+            if ((farmerModelImpl.getColumnBitmask() &
+                    FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ARCHIVESTATUS.getColumnBitmask()) != 0) {
+                Object[] args = new Object[] {
+                        farmerModelImpl.getOriginalArchiveStatus()
+                    };
+
+                FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ARCHIVESTATUS,
+                    args);
+                FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ARCHIVESTATUS,
+                    args);
+
+                args = new Object[] { farmerModelImpl.getArchiveStatus() };
+
+                FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ARCHIVESTATUS,
+                    args);
+                FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ARCHIVESTATUS,
                     args);
             }
         }

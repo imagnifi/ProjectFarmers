@@ -20,7 +20,7 @@
 
 <aui:form action="<%= viewUrl %>" name="<portlet:namespace />fm1">
     <aui:fieldset>
-        <aui:input label="Organization Name" name="organization" type="text" value="<%=org%>">
+        <aui:input label="Organization Name" name="organizationFilter" type="text" value="<%=org%>">
             <aui:validator name="maxLength">1000</aui:validator>
         </aui:input>
 

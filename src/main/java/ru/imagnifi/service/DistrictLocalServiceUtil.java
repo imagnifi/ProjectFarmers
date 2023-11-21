@@ -396,6 +396,10 @@ public class DistrictLocalServiceUtil {
         return getService().invokeMethod(name, parameterTypes, arguments);
     }
 
+    public static void updateBase() {
+        getService().updateBase();
+    }
+
     public static ru.imagnifi.model.District findDistrictToNumber(long number)
         throws com.liferay.portal.kernel.exception.SystemException {
         return getService().findDistrictToNumber(number);

@@ -1,28 +1,25 @@
 <%@include file="/jsp/init.jsp"%>
 
-This is the <b>ProjectFarmers1</b>.
-<%="\nHello World1"%>
-<%--<%=DistrictLocalServiceUtil.printStr()%>--%>
+<portlet:renderURL var="addURL" windowState="<%=LiferayWindowState.POP_UP.toString()%>">
+    <portlet:param name="path" value="addDistrictPage"/>
+</portlet:renderURL>
+<portlet:actionURL var="updateURL" name="updateDistrictBase"/>
 <%
     List<District> districtList;
     try {
         districtList = DistrictLocalServiceUtil.getDistricts(0, DistrictLocalServiceUtil.getDistrictsCount());
-//        System.out.println("jsp/District/view.jsp:row 10 print here");
     } catch (SystemException e) {
         throw new RuntimeException(e);
     }
 %>
 
-<%--<portlet:renderURL var="addDistrictURL">--%>
-<%--    <portlet:param name="mvcPath" value="/guestbook/edit_entry.jsp"/>--%>
-<%--</portlet:renderURL>--%>
-
 <aui:button-row>
+    <aui:button value="Update District Base" name="updateDistrictBase" onClick="<%=updateURL%>"/>
     <aui:button value="Add new District" name="addDistrict"/>
 </aui:button-row>
 
 <liferay-ui:search-container
-        delta="2"
+        delta="5"
         emptyResultsMessage="No Results Found"
         deltaConfigurable="true">
 
@@ -36,3 +33,20 @@ This is the <b>ProjectFarmers1</b>.
     </liferay-ui:search-container-row>
     <liferay-ui:search-iterator searchContainer="<%=searchContainer %>" paginate="<%=true %>" />
 </liferay-ui:search-container>
+
+<aui:script use="liferay-util-window">
+    A.one('#<portlet:namespace/>addDistrict').on('click', function(event) {
+    <!-- alert("open"); -->
+    Liferay.Util.openWindow({
+    dialog: {
+    centered: true,
+    height: 500,
+    modal: true,
+    width: 500
+    },
+    id: '<portlet:namespace/>dialog',
+    uri: '<%=addURL %>',
+    title: 'Add District'
+    });
+    });
+</aui:script>

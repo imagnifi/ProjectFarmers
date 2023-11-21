@@ -106,14 +106,7 @@
         <aui:button type="cancel" name="cancel"/>
     </aui:button-row>
 
-
 </aui:form>
-
-<%--<script>--%>
-<%--    function Close() {--%>
-<%--        window.close();--%>
-<%--    }--%>
-<%--</script>--%>
 
 <!-- For Closing -->
 <aui:script use="aui-base">

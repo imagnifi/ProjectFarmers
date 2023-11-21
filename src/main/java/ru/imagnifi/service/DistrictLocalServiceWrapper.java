@@ -423,6 +423,11 @@ public class DistrictLocalServiceWrapper implements DistrictLocalService,
     }
 
     @Override
+    public void updateBase() {
+        _districtLocalService.updateBase();
+    }
+
+    @Override
     public ru.imagnifi.model.District findDistrictToNumber(long number)
         throws com.liferay.portal.kernel.exception.SystemException {
         return _districtLocalService.findDistrictToNumber(number);

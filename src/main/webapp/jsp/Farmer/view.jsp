@@ -1,7 +1,4 @@
 <%@ page import="javax.portlet.PortletSession" %>
-<%@ page import="com.liferay.portlet.PortalPreferences" %>
-<%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="ru.imagnifi.comparator.CustomComparatorUtil" %>

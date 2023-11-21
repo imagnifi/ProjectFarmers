@@ -78,6 +78,8 @@ public class DistrictLocalServiceClp implements DistrictLocalService {
     private String[] _methodParameterTypes33;
     private String _methodName35;
     private String[] _methodParameterTypes35;
+    private String _methodName36;
+    private String[] _methodParameterTypes36;
 
     public DistrictLocalServiceClp(InvokableLocalService invokableLocalService) {
         _invokableLocalService = invokableLocalService;
@@ -237,9 +239,13 @@ public class DistrictLocalServiceClp implements DistrictLocalService {
 
         _methodParameterTypes33 = new String[] { "java.lang.String" };
 
-        _methodName35 = "findDistrictToNumber";
+        _methodName35 = "updateBase";
 
-        _methodParameterTypes35 = new String[] { "long" };
+        _methodParameterTypes35 = new String[] {  };
+
+        _methodName36 = "findDistrictToNumber";
+
+        _methodParameterTypes36 = new String[] { "long" };
     }
 
     @Override
@@ -1157,13 +1163,30 @@ public class DistrictLocalServiceClp implements DistrictLocalService {
     }
 
     @Override
+    public void updateBase() {
+        try {
+            _invokableLocalService.invokeMethod(_methodName35,
+                _methodParameterTypes35, new Object[] {  });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+    }
+
+    @Override
     public ru.imagnifi.model.District findDistrictToNumber(long number)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName35,
-                    _methodParameterTypes35, new Object[] { number });
+            returnObj = _invokableLocalService.invokeMethod(_methodName36,
+                    _methodParameterTypes36, new Object[] { number });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 

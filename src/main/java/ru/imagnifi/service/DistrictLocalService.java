@@ -346,6 +346,8 @@ public interface DistrictLocalService extends BaseLocalService,
         java.lang.String[] parameterTypes, java.lang.Object[] arguments)
         throws java.lang.Throwable;
 
+    public void updateBase();
+
     public ru.imagnifi.model.District findDistrictToNumber(long number)
         throws com.liferay.portal.kernel.exception.SystemException;
 }

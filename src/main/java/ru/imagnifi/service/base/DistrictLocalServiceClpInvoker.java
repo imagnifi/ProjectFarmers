@@ -79,6 +79,8 @@ public class DistrictLocalServiceClpInvoker {
     private String[] _methodParameterTypes53;
     private String _methodName58;
     private String[] _methodParameterTypes58;
+    private String _methodName59;
+    private String[] _methodParameterTypes59;
 
     public DistrictLocalServiceClpInvoker() {
         _methodName0 = "addDistrict";
@@ -236,9 +238,13 @@ public class DistrictLocalServiceClpInvoker {
 
         _methodParameterTypes53 = new String[] { "java.lang.String" };
 
-        _methodName58 = "findDistrictToNumber";
+        _methodName58 = "updateBase";
 
-        _methodParameterTypes58 = new String[] { "long" };
+        _methodParameterTypes58 = new String[] {  };
+
+        _methodName59 = "findDistrictToNumber";
+
+        _methodParameterTypes59 = new String[] { "long" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -459,6 +465,13 @@ public class DistrictLocalServiceClpInvoker {
 
         if (_methodName58.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+            DistrictLocalServiceUtil.updateBase();
+
+            return null;
+        }
+
+        if (_methodName59.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
             return DistrictLocalServiceUtil.findDistrictToNumber(((Long) arguments[0]).longValue());
         }
 

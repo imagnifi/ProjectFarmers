@@ -19,7 +19,7 @@
 //        renderRequest.setAttribute("orderByCol", orderByCol);
     }
     if (orderByType == null || orderByType.equals(StringPool.BLANK)) {
-        orderByType = "desc";
+        orderByType = "asc";
 //        renderRequest.setAttribute("orderByType", orderByType);
     } else {
         orderByType = orderByType.equals("desc") ? "asc" : "desc";
@@ -89,7 +89,7 @@
         <liferay-ui:search-container-column-text property="farmerId" name="ID" orderable="true"
                                                  orderableProperty="farmerId"/>
         <liferay-ui:search-container-column-text property="organization"/>
-        <liferay-ui:search-container-column-text property="orgForm"/>
+        <liferay-ui:search-container-column-text property="orgForm" />
         <liferay-ui:search-container-column-text property="inn"/>
         <liferay-ui:search-container-column-text property="kpp"/>
         <liferay-ui:search-container-column-text property="ogrn"/>

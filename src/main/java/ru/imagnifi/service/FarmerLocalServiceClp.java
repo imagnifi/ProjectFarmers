@@ -110,6 +110,10 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
     private String[] _methodParameterTypes50;
     private String _methodName51;
     private String[] _methodParameterTypes51;
+    private String _methodName52;
+    private String[] _methodParameterTypes52;
+    private String _methodName53;
+    private String[] _methodParameterTypes53;
 
     public FarmerLocalServiceClp(InvokableLocalService invokableLocalService) {
         _invokableLocalService = invokableLocalService;
@@ -296,55 +300,63 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
                 "ru.imagnifi.model.Farmer", "java.lang.String"
             };
 
-        _methodName40 = "updateFarmerDistricts";
+        _methodName40 = "numbersDistrictToIds";
 
-        _methodParameterTypes40 = new String[] {
+        _methodParameterTypes40 = new String[] { "java.lang.String" };
+
+        _methodName41 = "isNumeric";
+
+        _methodParameterTypes41 = new String[] { "java.lang.String" };
+
+        _methodName42 = "updateFarmerDistricts";
+
+        _methodParameterTypes42 = new String[] {
                 "ru.imagnifi.model.Farmer", "java.lang.String"
             };
 
-        _methodName41 = "isDistrictNumberExist";
+        _methodName43 = "isDistrictNumberExist";
 
-        _methodParameterTypes41 = new String[] { "java.lang.Long" };
+        _methodParameterTypes43 = new String[] { "java.lang.Long" };
 
-        _methodName42 = "isDistrictIdExist";
+        _methodName44 = "isDistrictIdExist";
 
-        _methodParameterTypes42 = new String[] { "java.lang.Long" };
+        _methodParameterTypes44 = new String[] { "java.lang.Long" };
 
-        _methodName43 = "updateFarmerCust";
+        _methodName45 = "updateFarmerCust";
 
-        _methodParameterTypes43 = new String[] { "ru.imagnifi.model.Farmer" };
+        _methodParameterTypes45 = new String[] { "ru.imagnifi.model.Farmer" };
 
-        _methodName44 = "findByNameInn";
+        _methodName46 = "findByNameInn";
 
-        _methodParameterTypes44 = new String[] { "java.lang.String", "long" };
+        _methodParameterTypes46 = new String[] { "java.lang.String", "long" };
 
-        _methodName45 = "findById";
-
-        _methodParameterTypes45 = new String[] { "long" };
-
-        _methodName46 = "findByOrganization";
-
-        _methodParameterTypes46 = new String[] { "java.lang.String" };
-
-        _methodName47 = "findByInn";
+        _methodName47 = "findById";
 
         _methodParameterTypes47 = new String[] { "long" };
 
-        _methodName48 = "findByDistrictNumber";
+        _methodName48 = "findByOrganization";
 
-        _methodParameterTypes48 = new String[] { "long" };
+        _methodParameterTypes48 = new String[] { "java.lang.String" };
 
-        _methodName49 = "findByRegistrationDate";
+        _methodName49 = "findByInn";
 
-        _methodParameterTypes49 = new String[] { "java.lang.String" };
+        _methodParameterTypes49 = new String[] { "long" };
 
-        _methodName50 = "findByArchiveStatus";
+        _methodName50 = "findByDistrictNumber";
 
-        _methodParameterTypes50 = new String[] { "boolean" };
+        _methodParameterTypes50 = new String[] { "long" };
 
-        _methodName51 = "clearCash";
+        _methodName51 = "findByRegistrationDate";
 
-        _methodParameterTypes51 = new String[] {  };
+        _methodParameterTypes51 = new String[] { "java.lang.String" };
+
+        _methodName52 = "findByArchiveStatus";
+
+        _methodParameterTypes52 = new String[] { "boolean" };
+
+        _methodName53 = "clearCash";
+
+        _methodParameterTypes53 = new String[] {  };
     }
 
     @Override
@@ -1415,12 +1427,62 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
     }
 
     @Override
+    public java.lang.String numbersDistrictToIds(
+        java.lang.String numbersDistrict)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName40,
+                    _methodParameterTypes40,
+                    new Object[] { ClpSerializer.translateInput(numbersDistrict) });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (java.lang.String) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public boolean isNumeric(java.lang.String str) {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName41,
+                    _methodParameterTypes41,
+                    new Object[] { ClpSerializer.translateInput(str) });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return ((Boolean) returnObj).booleanValue();
+    }
+
+    @Override
     public void updateFarmerDistricts(ru.imagnifi.model.Farmer farmer,
         java.lang.String districtIds)
         throws com.liferay.portal.kernel.exception.SystemException {
         try {
-            _invokableLocalService.invokeMethod(_methodName40,
-                _methodParameterTypes40,
+            _invokableLocalService.invokeMethod(_methodName42,
+                _methodParameterTypes42,
                 new Object[] {
                     ClpSerializer.translateInput(farmer),
                     
@@ -1448,8 +1510,8 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName41,
-                    _methodParameterTypes41,
+            returnObj = _invokableLocalService.invokeMethod(_methodName43,
+                    _methodParameterTypes43,
                     new Object[] { ClpSerializer.translateInput(districtNumber) });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
@@ -1476,8 +1538,8 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName42,
-                    _methodParameterTypes42,
+            returnObj = _invokableLocalService.invokeMethod(_methodName44,
+                    _methodParameterTypes44,
                     new Object[] { ClpSerializer.translateInput(districtId) });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
@@ -1506,8 +1568,8 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         throws com.liferay.portal.kernel.exception.SystemException,
             ru.imagnifi.NoSuchFarmerException {
         try {
-            _invokableLocalService.invokeMethod(_methodName43,
-                _methodParameterTypes43,
+            _invokableLocalService.invokeMethod(_methodName45,
+                _methodParameterTypes45,
                 new Object[] { ClpSerializer.translateInput(farmer) });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
@@ -1536,8 +1598,8 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName44,
-                    _methodParameterTypes44,
+            returnObj = _invokableLocalService.invokeMethod(_methodName46,
+                    _methodParameterTypes46,
                     new Object[] { ClpSerializer.translateInput(name), inn });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
@@ -1564,8 +1626,8 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName45,
-                    _methodParameterTypes45, new Object[] { id });
+            returnObj = _invokableLocalService.invokeMethod(_methodName47,
+                    _methodParameterTypes47, new Object[] { id });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -1595,8 +1657,8 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName46,
-                    _methodParameterTypes46,
+            returnObj = _invokableLocalService.invokeMethod(_methodName48,
+                    _methodParameterTypes48,
                     new Object[] { ClpSerializer.translateInput(org) });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
@@ -1622,8 +1684,8 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName47,
-                    _methodParameterTypes47, new Object[] { inn });
+            returnObj = _invokableLocalService.invokeMethod(_methodName49,
+                    _methodParameterTypes49, new Object[] { inn });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -1648,8 +1710,8 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName48,
-                    _methodParameterTypes48, new Object[] { inn });
+            returnObj = _invokableLocalService.invokeMethod(_methodName50,
+                    _methodParameterTypes50, new Object[] { inn });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -1675,8 +1737,8 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName49,
-                    _methodParameterTypes49,
+            returnObj = _invokableLocalService.invokeMethod(_methodName51,
+                    _methodParameterTypes51,
                     new Object[] { ClpSerializer.translateInput(regDate) });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
@@ -1703,8 +1765,8 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName50,
-                    _methodParameterTypes50, new Object[] { status });
+            returnObj = _invokableLocalService.invokeMethod(_methodName52,
+                    _methodParameterTypes52, new Object[] { status });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -1726,8 +1788,8 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
     @Override
     public void clearCash() {
         try {
-            _invokableLocalService.invokeMethod(_methodName51,
-                _methodParameterTypes51, new Object[] {  });
+            _invokableLocalService.invokeMethod(_methodName53,
+                _methodParameterTypes53, new Object[] {  });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 

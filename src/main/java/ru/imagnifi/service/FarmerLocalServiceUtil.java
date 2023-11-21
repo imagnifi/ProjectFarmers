@@ -429,6 +429,16 @@ public class FarmerLocalServiceUtil {
         getService().deleteFarmerDistricts(farmer, districtIds);
     }
 
+    public static java.lang.String numbersDistrictToIds(
+        java.lang.String numbersDistrict)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getService().numbersDistrictToIds(numbersDistrict);
+    }
+
+    public static boolean isNumeric(java.lang.String str) {
+        return getService().isNumeric(str);
+    }
+
     public static void updateFarmerDistricts(ru.imagnifi.model.Farmer farmer,
         java.lang.String districtIds)
         throws com.liferay.portal.kernel.exception.SystemException {

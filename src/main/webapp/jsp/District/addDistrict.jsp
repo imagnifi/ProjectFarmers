@@ -9,7 +9,7 @@
             <aui:validator name="maxLength">1000</aui:validator>
         </aui:input>
         <aui:input label="Number"  name="numberDistrict" type="text">
-            <aui:validator name="maxLength">1000</aui:validator>
+            <aui:validator name="number"/>
         </aui:input>
         <aui:input label="Archive Status"  name="archiveStatusDistrict" type="checkbox"/>
     </aui:fieldset>

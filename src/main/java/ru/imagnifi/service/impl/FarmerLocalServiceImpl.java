@@ -11,6 +11,8 @@ import ru.imagnifi.service.base.FarmerLocalServiceBaseImpl;
 import ru.imagnifi.service.persistence.FarmerPersistence;
 import ru.imagnifi.service.persistence.FarmerUtil;
 
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -106,7 +108,8 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
             Farmer farmer1 = listNameInn.get(0);
             String listSownDistricts = FarmerLocalServiceUtil.getListSownDistricts(farmer1.getFarmerId());
             if (!listSownDistricts.equalsIgnoreCase(noAcreage)) {
-                String[] split1 = listSownDistricts.split(",");
+                String districtToIds = FarmerLocalServiceUtil.numbersDistrictToIds(listSownDistricts);
+                String[] split1 = districtToIds.split(",");
                 if (!Arrays.equals(split, split1)) {
                     for (String s : split1) {
                         FarmerLocalServiceUtil.deleteDistrictFarmer(Long.parseLong(s), farmer1);
@@ -114,6 +117,27 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
                 }
             }
         }
+    }
+
+    public String numbersDistrictToIds(String numbersDistrict) throws SystemException {
+        StringBuilder result = new StringBuilder();
+        String[] split = numbersDistrict.split(",");
+        for (String s : split) {
+            s = s.trim();
+            boolean isNumeric = isNumeric(s);
+            if(isNumeric) {
+                District district = DistrictLocalServiceUtil.findDistrictToNumber(Long.parseLong(s));
+                if (district != null) {
+                    result.append(district.getDistrictId())
+                          .append(",");
+                }
+            }
+        }
+        return result.toString();
+    }
+
+    public boolean isNumeric(String str) {
+        return str.matches("\\d+");
     }
 
     public void updateFarmerDistricts(Farmer farmer, String districtIds) throws SystemException {

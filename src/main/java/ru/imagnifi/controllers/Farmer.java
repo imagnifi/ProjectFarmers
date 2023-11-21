@@ -38,7 +38,7 @@ public class Farmer extends MVCPortlet {
             districtNumber = 0;
         }
         String shownDistricts = ParamUtil.getString(request, "shownDistricts");
-        String districtIds = numbersDistrictToIds(shownDistricts);
+        String districtIds = FarmerLocalServiceUtil.numbersDistrictToIds(shownDistricts);
         String regDate = ParamUtil.getString(request, "regDate");
         boolean archiveStatus = Boolean.parseBoolean(ParamUtil.getString(request, "archiveStatus"));
         FarmerLocalServiceUtil.addFarmer(org, orgForm, inn, kpp, ogrn, districtNumber, districtIds, regDate,
@@ -103,23 +103,12 @@ public class Farmer extends MVCPortlet {
             farmer.setArchiveStatus(ParamUtil.getBoolean(request, "archiveStatus"));
             FarmerLocalServiceUtil.updateFarmerCust(farmer);
             String shownDistricts = ParamUtil.getString(request, "shownDistricts");
-            String districtIds = numbersDistrictToIds(shownDistricts);
+            String districtIds = FarmerLocalServiceUtil.numbersDistrictToIds(shownDistricts);
             FarmerLocalServiceUtil.updateFarmerDistricts(farmer, districtIds);
         }
     }
 
-    private String numbersDistrictToIds(String numbersDistrict) throws SystemException {
-        StringBuilder result = new StringBuilder();
-        String[] split = numbersDistrict.split(",");
-        for (String s : split) {
-            District district = DistrictLocalServiceUtil.findDistrictToNumber(Long.parseLong(s));
-            if (district != null) {
-                result.append(district.getDistrictId())
-                      .append(",");
-            }
-        }
-        return result.toString();
-    }
+
 
     public void deleteFarmer(ActionRequest request, ActionResponse response) {
         System.out.println("Farmer controller: deleteFarmer 46");

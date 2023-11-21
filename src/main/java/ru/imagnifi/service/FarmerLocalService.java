@@ -366,6 +366,13 @@ public interface FarmerLocalService extends BaseLocalService,
         java.lang.String districtIds)
         throws com.liferay.portal.kernel.exception.SystemException;
 
+    public java.lang.String numbersDistrictToIds(
+        java.lang.String numbersDistrict)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public boolean isNumeric(java.lang.String str);
+
     public void updateFarmerDistricts(ru.imagnifi.model.Farmer farmer,
         java.lang.String districtIds)
         throws com.liferay.portal.kernel.exception.SystemException;

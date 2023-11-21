@@ -1,3 +1,4 @@
+<%@ taglib prefix="aiu" uri="http://alloy.liferay.com/tld/aui" %>
 <%@ page import="java.util.Enumeration" %>
 <%@ page import="javax.portlet.PortletSession" %>
 <%@include file="/jsp/init.jsp" %>
@@ -16,9 +17,21 @@
     String org, orgForm, inn, kpp, ogrn, districtNumber, shownDistricts, regDate, archiveStatus;
     org = orgForm = inn = kpp = ogrn = districtNumber = shownDistricts = regDate = archiveStatus = "";
     String farmerId = String.valueOf(ps.getAttribute("farmerId"));
+    boolean selectedFL = false;
+    boolean selectedUR = false;
+    boolean selectedIP = false;
     if (!farmerId.equalsIgnoreCase("null")) {
         org = (String) ps.getAttribute("org");
         orgForm = (String) ps.getAttribute("orgForm");
+        if (orgForm != null){
+            if (orgForm.equalsIgnoreCase("fl")){
+                selectedFL = true;
+            } else if (orgForm.equalsIgnoreCase("ur")) {
+                selectedUR = true;
+            } else if (orgForm.equalsIgnoreCase("ip")) {
+                selectedIP = true;
+            }
+        }
         inn = String.valueOf(Long.parseLong(ps.getAttribute("inn")
                                               .toString()) == 0 ? "" : ps.getAttribute("inn"));
         kpp = String.valueOf(Long.parseLong(ps.getAttribute("kpp")
@@ -73,9 +86,11 @@
             <aui:validator name="required"/>
             <aui:validator name="maxLength">1000</aui:validator>
         </aui:input>
-        <aui:input label="Organization Form" disabled="<%=bool%>" name="orgForm" type="text" value="<%=orgForm%>">
-            <aui:validator name="maxLength">1000</aui:validator>
-        </aui:input>
+        <aui:select label="Organization Form" name="orgForm" disabled="<%=bool%>" type="text">
+            <aui:option value="FL" selected="<%=selectedFL%>">FL</aui:option>
+            <aui:option value="UR" selected="<%=selectedUR%>">UR</aui:option>
+            <aui:option value="IP" selected="<%=selectedIP%>">IP</aui:option>
+        </aui:select>
         <aui:input label="INN (12-digits)" name="inn" type="number" value="<%=inn%>">
             <aui:validator name="required"/>
             <aui:validator name="number"/>
@@ -95,7 +110,8 @@
                    value="<%=districtNumber%>"/>
         <aui:input label="Shown Districts" disabled="<%=bool%>" name="shownDistricts" type="text"
                    value="<%=shownDistricts%>"/>
-        <aui:input name="regDate" id="regDate" class="form-control" type="text"  placeholder="mm/dd/yy" label="Registration Date" disabled="<%=bool%>"
+        <aui:input name="regDate" id="regDate" class="form-control" type="text" placeholder="mm/dd/yy"
+                   label="Registration Date" disabled="<%=bool%>"
                    value="<%=regDate%>"/>
         <aui:input label="Archive Status" disabled="<%=bool%>" name="archiveStatus" type="checkbox"
                    value="<%=archiveStatus%>"/>
@@ -118,21 +134,21 @@
 </aui:script>
 <aui:script>
     YUI().use(
-            'aui-datepicker',
-            function(Y) {
-                new Y.DatePicker(
-                        {
-                            trigger: '#<portlet:namespace />regDate',
-                            mask: '%d/%m/%y',
-                            calendar: {
-                                selectionMode: 'multiple'
-                            },
-                            popover: {
-                                zIndex: 1
-                            },
-                            panes: 2
-                        }
-                );
-            }
+    'aui-datepicker',
+    function(Y) {
+    new Y.DatePicker(
+    {
+    trigger: '#<portlet:namespace/>regDate',
+    mask: '%d/%m/%y',
+    calendar: {
+    selectionMode: 'multiple'
+    },
+    popover: {
+    zIndex: 1
+    },
+    panes: 2
+    }
+    );
+    }
     );
 </aui:script>

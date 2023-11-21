@@ -111,6 +111,10 @@ public class FarmerLocalServiceClpInvoker {
     private String[] _methodParameterTypes73;
     private String _methodName74;
     private String[] _methodParameterTypes74;
+    private String _methodName75;
+    private String[] _methodParameterTypes75;
+    private String _methodName76;
+    private String[] _methodParameterTypes76;
 
     public FarmerLocalServiceClpInvoker() {
         _methodName0 = "addFarmer";
@@ -295,55 +299,63 @@ public class FarmerLocalServiceClpInvoker {
                 "ru.imagnifi.model.Farmer", "java.lang.String"
             };
 
-        _methodName63 = "updateFarmerDistricts";
+        _methodName63 = "numbersDistrictToIds";
 
-        _methodParameterTypes63 = new String[] {
+        _methodParameterTypes63 = new String[] { "java.lang.String" };
+
+        _methodName64 = "isNumeric";
+
+        _methodParameterTypes64 = new String[] { "java.lang.String" };
+
+        _methodName65 = "updateFarmerDistricts";
+
+        _methodParameterTypes65 = new String[] {
                 "ru.imagnifi.model.Farmer", "java.lang.String"
             };
 
-        _methodName64 = "isDistrictNumberExist";
+        _methodName66 = "isDistrictNumberExist";
 
-        _methodParameterTypes64 = new String[] { "java.lang.Long" };
+        _methodParameterTypes66 = new String[] { "java.lang.Long" };
 
-        _methodName65 = "isDistrictIdExist";
+        _methodName67 = "isDistrictIdExist";
 
-        _methodParameterTypes65 = new String[] { "java.lang.Long" };
+        _methodParameterTypes67 = new String[] { "java.lang.Long" };
 
-        _methodName66 = "updateFarmerCust";
+        _methodName68 = "updateFarmerCust";
 
-        _methodParameterTypes66 = new String[] { "ru.imagnifi.model.Farmer" };
+        _methodParameterTypes68 = new String[] { "ru.imagnifi.model.Farmer" };
 
-        _methodName67 = "findByNameInn";
+        _methodName69 = "findByNameInn";
 
-        _methodParameterTypes67 = new String[] { "java.lang.String", "long" };
+        _methodParameterTypes69 = new String[] { "java.lang.String", "long" };
 
-        _methodName68 = "findById";
-
-        _methodParameterTypes68 = new String[] { "long" };
-
-        _methodName69 = "findByOrganization";
-
-        _methodParameterTypes69 = new String[] { "java.lang.String" };
-
-        _methodName70 = "findByInn";
+        _methodName70 = "findById";
 
         _methodParameterTypes70 = new String[] { "long" };
 
-        _methodName71 = "findByDistrictNumber";
+        _methodName71 = "findByOrganization";
 
-        _methodParameterTypes71 = new String[] { "long" };
+        _methodParameterTypes71 = new String[] { "java.lang.String" };
 
-        _methodName72 = "findByRegistrationDate";
+        _methodName72 = "findByInn";
 
-        _methodParameterTypes72 = new String[] { "java.lang.String" };
+        _methodParameterTypes72 = new String[] { "long" };
 
-        _methodName73 = "findByArchiveStatus";
+        _methodName73 = "findByDistrictNumber";
 
-        _methodParameterTypes73 = new String[] { "boolean" };
+        _methodParameterTypes73 = new String[] { "long" };
 
-        _methodName74 = "clearCash";
+        _methodName74 = "findByRegistrationDate";
 
-        _methodParameterTypes74 = new String[] {  };
+        _methodParameterTypes74 = new String[] { "java.lang.String" };
+
+        _methodName75 = "findByArchiveStatus";
+
+        _methodParameterTypes75 = new String[] { "boolean" };
+
+        _methodName76 = "clearCash";
+
+        _methodParameterTypes76 = new String[] {  };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -606,67 +618,77 @@ public class FarmerLocalServiceClpInvoker {
 
         if (_methodName63.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+            return FarmerLocalServiceUtil.numbersDistrictToIds((java.lang.String) arguments[0]);
+        }
+
+        if (_methodName64.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+            return FarmerLocalServiceUtil.isNumeric((java.lang.String) arguments[0]);
+        }
+
+        if (_methodName65.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
             FarmerLocalServiceUtil.updateFarmerDistricts((ru.imagnifi.model.Farmer) arguments[0],
                 (java.lang.String) arguments[1]);
 
             return null;
         }
 
-        if (_methodName64.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+        if (_methodName66.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
             return FarmerLocalServiceUtil.isDistrictNumberExist((java.lang.Long) arguments[0]);
         }
 
-        if (_methodName65.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+        if (_methodName67.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
             return FarmerLocalServiceUtil.isDistrictIdExist((java.lang.Long) arguments[0]);
         }
 
-        if (_methodName66.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+        if (_methodName68.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
             FarmerLocalServiceUtil.updateFarmerCust((ru.imagnifi.model.Farmer) arguments[0]);
 
             return null;
         }
 
-        if (_methodName67.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+        if (_methodName69.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
             return FarmerLocalServiceUtil.findByNameInn((java.lang.String) arguments[0],
                 ((Long) arguments[1]).longValue());
         }
 
-        if (_methodName68.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
-            return FarmerLocalServiceUtil.findById(((Long) arguments[0]).longValue());
-        }
-
-        if (_methodName69.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
-            return FarmerLocalServiceUtil.findByOrganization((java.lang.String) arguments[0]);
-        }
-
         if (_methodName70.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
-            return FarmerLocalServiceUtil.findByInn(((Long) arguments[0]).longValue());
+            return FarmerLocalServiceUtil.findById(((Long) arguments[0]).longValue());
         }
 
         if (_methodName71.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
-            return FarmerLocalServiceUtil.findByDistrictNumber(((Long) arguments[0]).longValue());
+            return FarmerLocalServiceUtil.findByOrganization((java.lang.String) arguments[0]);
         }
 
         if (_methodName72.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-            return FarmerLocalServiceUtil.findByRegistrationDate((java.lang.String) arguments[0]);
+            return FarmerLocalServiceUtil.findByInn(((Long) arguments[0]).longValue());
         }
 
         if (_methodName73.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
-            return FarmerLocalServiceUtil.findByArchiveStatus(((Boolean) arguments[0]).booleanValue());
+            return FarmerLocalServiceUtil.findByDistrictNumber(((Long) arguments[0]).longValue());
         }
 
         if (_methodName74.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+            return FarmerLocalServiceUtil.findByRegistrationDate((java.lang.String) arguments[0]);
+        }
+
+        if (_methodName75.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
+            return FarmerLocalServiceUtil.findByArchiveStatus(((Boolean) arguments[0]).booleanValue());
+        }
+
+        if (_methodName76.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
             FarmerLocalServiceUtil.clearCash();
 
             return null;

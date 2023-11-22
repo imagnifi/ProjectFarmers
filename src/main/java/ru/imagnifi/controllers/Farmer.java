@@ -234,11 +234,11 @@ public class Farmer extends MVCPortlet {
                 archiveStatusFalse != null && !archiveStatusFalse.equals("") && !archiveStatusFalse.equals("false")) {
             portletSession.setAttribute("archiveStatusTrueFilter", archiveStatusTrue);
             portletSession.setAttribute("archiveStatusFalseFilter", archiveStatusFalse);
-            if (!(archiveStatusTrue.equals("true") && archiveStatusFalse.equals("true"))) {
+            if (!(archiveStatusTrue != null && archiveStatusTrue.equals("true") && archiveStatusFalse.equals("true"))) {
                 portletSession.setAttribute("resetButtonFarmerFilter", "true");
             }
 
-            if (archiveStatusTrue.equals("true")) {
+            if (archiveStatusTrue != null && archiveStatusTrue.equals("true")) {
                 farmerSetArchiveStatusTrue = FarmerLocalServiceUtil.findByArchiveStatus(true);
             }
             if (archiveStatusFalse.equals("true")) {

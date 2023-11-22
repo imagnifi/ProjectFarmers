@@ -22,8 +22,6 @@ import java.util.Set;
 public class Farmer extends MVCPortlet {
 
     public void addFarmer(ActionRequest request, ActionResponse response) throws SystemException, PortalException {
-        System.out.println(" Farmer controller: addFarmer 21");
-
         String org = ParamUtil.getString(request, "organization");
         String orgForm = ParamUtil.getString(request, "orgForm");
         long inn = ParamUtil.getLong(request, "inn");
@@ -43,7 +41,6 @@ public class Farmer extends MVCPortlet {
     }
 
     public void findFarmer(ActionRequest request, ActionResponse response) {
-        System.out.println(" Farmer controller: findFarmer 38");
         String org = ParamUtil.getString(request, "organization");
         long inn = ParamUtil.getLong(request, "inn");
         response.setRenderParameter("org", org);
@@ -53,7 +50,6 @@ public class Farmer extends MVCPortlet {
     }
 
     public void updateFarmerBase(ActionRequest request, ActionResponse response) throws SystemException {
-        System.out.println("Farmer controller: updateFarmerBase 34");
         FarmerUtil.clearCache();
         PortletSession session = request.getPortletSession();
         String resetButtonFarmerFilter = (String) session.getAttribute("resetButtonFarmerFilter");
@@ -79,7 +75,6 @@ public class Farmer extends MVCPortlet {
     }
 
     public void editFarmer(ActionRequest request, ActionResponse response) throws SystemException, PortalException {
-        System.out.println("Farmer controller: editFarmer 42");
         PortletSession ps = request.getPortletSession();
         ru.imagnifi.model.Farmer farmer = getLFarmer(request, "idEdit");
         if (farmer != null) {
@@ -104,9 +99,7 @@ public class Farmer extends MVCPortlet {
     }
 
 
-
     public void deleteFarmer(ActionRequest request, ActionResponse response) {
-        System.out.println("Farmer controller: deleteFarmer 46");
         ru.imagnifi.model.Farmer farmer = getLFarmer(request, "farmerId");
         if (farmer != null) {
             try {
@@ -115,7 +108,6 @@ public class Farmer extends MVCPortlet {
                 update();
             } catch (SystemException e) {
                 SessionErrors.add(request, e.getMessage());
-                System.out.println("68");
                 throw new RuntimeException(e);
             }
         } else {
@@ -144,7 +136,6 @@ public class Farmer extends MVCPortlet {
     @Override
     public void processAction(ActionRequest actionRequest,
                               ActionResponse actionResponse) throws IOException, PortletException {
-        System.out.println(" Farmer controller: processAction 41");
         super.processAction(actionRequest, actionResponse);
     }
 
@@ -226,11 +217,11 @@ public class Farmer extends MVCPortlet {
                 archiveStatusFalse != null && !archiveStatusFalse.equals("") && !archiveStatusFalse.equals("false")) {
             portletSession.setAttribute("archiveStatusTrueFilter", archiveStatusTrue);
             portletSession.setAttribute("archiveStatusFalseFilter", archiveStatusFalse);
-            if (!(archiveStatusTrue.equals("true") && archiveStatusFalse.equals("true"))) {
+            if (!(archiveStatusTrue != null && archiveStatusTrue.equals("true") && archiveStatusFalse.equals("true"))) {
                 portletSession.setAttribute("resetButtonFarmerFilter", "true");
             }
 
-            if (archiveStatusTrue.equals("true")) {
+            if (archiveStatusTrue != null && archiveStatusTrue.equals("true")) {
                 farmerSetArchiveStatusTrue = FarmerLocalServiceUtil.findByArchiveStatus(true);
             }
             if (archiveStatusFalse.equals("true")) {
@@ -291,15 +282,12 @@ public class Farmer extends MVCPortlet {
     @Override
     public void doView(RenderRequest renderRequest,
                        RenderResponse renderResponse) throws IOException, PortletException {
-        System.out.println(" Farmer controller: doView 50");
         update();
         String path = renderRequest.getParameter("path");
         String path1 = ParamUtil.getString(renderRequest, "path", "");
         String farmerIdEdit = renderRequest.getParameter("farmerIdEdit");
-        System.out.println("farmerIdEdit = " + farmerIdEdit);
         if (path != null && path.equalsIgnoreCase("addFarmerPage") && farmerIdEdit == null) {
             include("/jsp/Farmer/addFarmer.jsp", renderRequest, renderResponse);
-            System.out.println(" from doView 118");
         } else if (path != null && path.equalsIgnoreCase("addFarmerPage") && farmerIdEdit != null) {
             try {
                 ru.imagnifi.model.Farmer farmer = FarmerLocalServiceUtil.findById(Long.parseLong(farmerIdEdit));
@@ -318,18 +306,13 @@ public class Farmer extends MVCPortlet {
                 throw new RuntimeException(e);
             }
             include("/jsp/Farmer/addFarmer.jsp", renderRequest, renderResponse);
-            System.out.println(" from doView 135");
         } else if (path != null && path.equalsIgnoreCase("findFarmerPage")) {
             include("/jsp/Farmer/addFarmer.jsp", renderRequest, renderResponse);
-            System.out.println(" from doView 138");
         } else if (path != null && path.equalsIgnoreCase("findFormPage")) {
             include("/jsp/Farmer/findFarmer.jsp", renderRequest, renderResponse);
-            System.out.println(" from doView 145");
         } else if (path != null && path.equalsIgnoreCase("filterFarmerPage")) {
             include("/jsp/Farmer/filterFarmer.jsp", renderRequest, renderResponse);
-            System.out.println(" from doView 145");
         } else {
-            System.out.println(" from doView 147");
             super.doView(renderRequest, renderResponse);
         }
     }

@@ -9,18 +9,13 @@
 
     String orderByCol = ParamUtil.getString(renderRequest, "orderByCol");
     String orderByType = ParamUtil.getString(renderRequest, "orderByType");
-    System.out.println("------------VVV");
-    ParamUtil.print(renderRequest);
-    System.out.println("------------^^^");
 
     /* Code to convert asc in desc after clicking on cloumn */
     if (orderByCol == null || orderByCol.equals(StringPool.BLANK)) {
         orderByCol = "farmerId";
-//        renderRequest.setAttribute("orderByCol", orderByCol);
     }
     if (orderByType == null || orderByType.equals(StringPool.BLANK)) {
         orderByType = "asc";
-//        renderRequest.setAttribute("orderByType", orderByType);
     } else {
         orderByType = orderByType.equals("desc") ? "asc" : "desc";
     }
@@ -29,7 +24,6 @@
     List<Farmer> farmerListMod;
     try {
         PortletSession ps = renderRequest.getPortletSession();
-        System.out.println("Farmer.view.jsp");
         List<Farmer> listFarmers = (List<Farmer>) ps.getAttribute("listFarmers");
         if (listFarmers != null) {
             farmerListMod = listFarmers;
@@ -37,9 +31,7 @@
             farmerListUnmod = FarmerLocalServiceUtil.getFarmers(0, FarmerLocalServiceUtil.getFarmersCount());
             farmerListMod = new ArrayList<Farmer>(farmerListUnmod);
         }
-
         Collections.sort(farmerListMod, CustomComparatorUtil.getComparator(orderByCol, orderByType));
-        System.out.println("farmerListUnmod.size() = " + farmerListMod.size());
     } catch (SystemException e) {
         throw new RuntimeException(e);
     }
@@ -84,7 +76,6 @@
             results="<%= ListUtil.subList(farmerListMod, searchContainer.getStart(), searchContainer.getEnd()) %>"
             total="<%= farmerListMod.size() %>"/>
     <liferay-ui:search-container-row className="ru.imagnifi.model.impl.FarmerModelImpl" modelVar="farmerModel">
-        <%--        <liferay-ui:custom-attribute-list className="<%=District.class.getName()%>" classPK="districtId"/>--%>
         <liferay-ui:search-container-column-text property="farmerId" name="ID" orderable="true"
                                                  orderableProperty="farmerId"/>
         <liferay-ui:search-container-column-text property="organization"/>

@@ -10,7 +10,6 @@
 <%
     boolean bool = false;
     PortletSession ps = renderRequest.getPortletSession();
-    System.out.println("Farmer/addFarmer.jsp");
     boolean edit = false;
     // if from Edit
     String org, orgForm, inn, kpp, ogrn, districtNumber, shownDistricts, regDate, archiveStatus;
@@ -75,8 +74,6 @@
     } else if (edit) {
         result = editFarmerURL;
     }
-    System.out.println("jjjj");
-
 %>
 
 <aui:form action="<%= result %>" name="<portlet:namespace />fm">

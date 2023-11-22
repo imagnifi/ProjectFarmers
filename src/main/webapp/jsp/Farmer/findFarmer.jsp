@@ -6,7 +6,6 @@
     List<Farmer> farmerList;
     long farmId = 0;
     try {
-        System.out.println("Farmer.view.jsp");
         farmerList = FarmerLocalServiceUtil.findByNameInn(org, inn);
         Farmer farmer = null;
         if (!farmerList.isEmpty()) {
@@ -15,7 +14,6 @@
         if (farmer != null) {
             farmId = farmer.getFarmerId();
         }
-        System.out.println("farmerList.size() = " + farmerList.size());
     } catch (SystemException e) {
         throw new RuntimeException(e);
     }

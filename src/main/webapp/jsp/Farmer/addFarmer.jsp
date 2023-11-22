@@ -1,5 +1,4 @@
 <%@ taglib prefix="aiu" uri="http://alloy.liferay.com/tld/aui" %>
-<%@ page import="java.util.Enumeration" %>
 <%@ page import="javax.portlet.PortletSession" %>
 <%@include file="/jsp/init.jsp" %>
 

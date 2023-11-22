@@ -10,9 +10,6 @@ import ru.imagnifi.service.FarmerLocalServiceUtil;
 import ru.imagnifi.service.base.FarmerLocalServiceBaseImpl;
 import ru.imagnifi.service.persistence.FarmerPersistence;
 import ru.imagnifi.service.persistence.FarmerUtil;
-
-import java.text.NumberFormat;
-import java.text.ParsePosition;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -67,8 +64,6 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
     public String getListSownDistricts(long farmerId) throws SystemException {
         StringBuilder result = new StringBuilder();
         List<District> farmerDistricts = DistrictLocalServiceUtil.getFarmerDistricts(farmerId);
-//        List<Farmer> districtFarmers = FarmerLocalServiceUtil.getDistrictFarmers(1);
-//        System.out.println(districtFarmers);
         if (farmerDistricts.size() > 0) {
             for (District d : farmerDistricts) {
                 result.append(d.getNumber())
@@ -78,20 +73,21 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
         } else {
             result.append(noAcreage);
         }
-
-
         return result.toString();
     }
 
     public void addFarmerDistricts(Farmer farmer, String districtIds) throws SystemException {
-        String[] strings = districtIds.split(",");
-        long[] arrayDistrictIds = new long[strings.length];
-        for (int i = 0; i < strings.length; i++) {
-            arrayDistrictIds[i] = Long.parseLong(strings[i]);
-        }
-        List<Farmer> farmers = FarmerLocalServiceUtil.findByNameInn(farmer.getOrganization(), farmer.getInn());
-        if (!farmers.isEmpty()) {
-            addFarmerDistricts(farmers.get(0).getFarmerId(), arrayDistrictIds);
+        if (districtIds != null && !districtIds.equals("") && farmer != null) {
+            String[] strings = districtIds.split(",");
+            long[] arrayDistrictIds = new long[strings.length];
+            for (int i = 0; i < strings.length; i++) {
+                arrayDistrictIds[i] = Long.parseLong(strings[i]);
+            }
+            List<Farmer> farmers = FarmerLocalServiceUtil.findByNameInn(farmer.getOrganization(), farmer.getInn());
+            if (!farmers.isEmpty()) {
+                addFarmerDistricts(farmers.get(0)
+                                          .getFarmerId(), arrayDistrictIds);
+            }
         }
     }
 
@@ -121,15 +117,17 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
 
     public String numbersDistrictToIds(String numbersDistrict) throws SystemException {
         StringBuilder result = new StringBuilder();
-        String[] split = numbersDistrict.split(",");
-        for (String s : split) {
-            s = s.trim();
-            boolean isNumeric = isNumeric(s);
-            if(isNumeric) {
-                District district = DistrictLocalServiceUtil.findDistrictToNumber(Long.parseLong(s));
-                if (district != null) {
-                    result.append(district.getDistrictId())
-                          .append(",");
+        if (numbersDistrict != null && !numbersDistrict.equals("")) {
+            String[] split = numbersDistrict.split(",");
+            for (String s : split) {
+                s = s.trim();
+                boolean isNumeric = isNumeric(s);
+                if (isNumeric) {
+                    District district = DistrictLocalServiceUtil.findDistrictToNumber(Long.parseLong(s));
+                    if (district != null) {
+                        result.append(district.getDistrictId())
+                              .append(",");
+                    }
                 }
             }
         }
@@ -165,7 +163,7 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
 
     public void updateFarmerCust(Farmer farmer) throws SystemException, NoSuchFarmerException {
         FarmerPersistence pers = FarmerUtil.getPersistence();
-        Farmer farmer1 = pers.findByPrimaryKey(farmer.getPrimaryKey());
+        pers.findByPrimaryKey(farmer.getPrimaryKey());
         pers.update(farmer);
     }
 

@@ -10,7 +10,6 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import ru.imagnifi.NoSuchFarmerException;
 import ru.imagnifi.comparator.CustomComparatorUtil;
-import ru.imagnifi.model.District;
 import ru.imagnifi.service.DistrictLocalServiceUtil;
 import ru.imagnifi.service.FarmerLocalServiceUtil;
 import ru.imagnifi.service.persistence.FarmerUtil;
@@ -27,7 +26,7 @@ public class Farmer extends MVCPortlet {
     public void addFarmer(ActionRequest request, ActionResponse response) throws SystemException, PortalException {
         System.out.println(" Farmer controller: addFarmer 21");
 
-        ServiceContext serviceContext = ServiceContextFactory.getInstance(Farmer.class.getName(), request);
+//        ServiceContext serviceContext = ServiceContextFactory.getInstance(Farmer.class.getName(), request);
         String org = ParamUtil.getString(request, "organization");
         String orgForm = ParamUtil.getString(request, "orgForm");
         long inn = ParamUtil.getLong(request, "inn");

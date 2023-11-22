@@ -7,14 +7,14 @@
 		<icon>/jsp/Farmers/icon.png</icon>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
-		<add-default-resource>true</add-default-resource>
+<!--		<add-default-resource>true</add-default-resource>-->
 	</portlet>
 	<portlet>
 		<portlet-name>District</portlet-name>
 		<icon>/jsp/District/icon.png</icon>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
-		<add-default-resource>true</add-default-resource>
+<!--		<add-default-resource>true</add-default-resource>-->
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

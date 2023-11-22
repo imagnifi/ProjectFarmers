@@ -32,7 +32,7 @@
         deltaConfigurable="true">
 
     <liferay-ui:search-container-results
-            results="<%= new ArrayList<Farmer>(ListUtil.subList(farmerList, searchContainer.getStart(), searchContainer.getEnd())) %>"
+            results="<%= ListUtil.subList(farmerList, searchContainer.getStart(), searchContainer.getEnd()) %>"
             total="<%= farmerList.size() %>"/>
     <liferay-ui:search-container-row className="ru.imagnifi.model.impl.FarmerModelImpl" modelVar="farmerModel">
         <liferay-ui:search-container-column-text property="farmerId" title="ID"/>

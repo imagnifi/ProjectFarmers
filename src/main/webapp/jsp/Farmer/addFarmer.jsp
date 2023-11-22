@@ -30,19 +30,28 @@
                 selectedIP = true;
             }
         }
-        inn = String.valueOf(Long.parseLong(ps.getAttribute("inn")
-                                              .toString()) == 0 ? "" : ps.getAttribute("inn"));
-        kpp = String.valueOf(Long.parseLong(ps.getAttribute("kpp")
-                                              .toString()) == 0 ? "" : ps.getAttribute("kpp"));
-        ogrn = String.valueOf(Long.parseLong(ps.getAttribute("ogrn")
-                                               .toString()) == 0 ? "" : ps.getAttribute("ogrn"));
+        Object isInn = ps.getAttribute("inn");
+        if (isInn != null) {
+            inn = String.valueOf(Long.parseLong(isInn.toString()) == 0 ? "" : ps.getAttribute("inn"));
+        }
+        Object isKpp = ps.getAttribute("kpp");
+        if (isKpp != null) {
+            kpp = String.valueOf(Long.parseLong(isKpp.toString()) == 0 ? "" : ps.getAttribute("kpp"));
+        }
+        Object isOgrn = ps.getAttribute("ogrn");
+        if (isOgrn !=  null) {
+            ogrn = String.valueOf(Long.parseLong(isOgrn.toString()) == 0 ? "" : ps.getAttribute("ogrn"));
+        }
         districtNumber = String.valueOf(ps.getAttribute("districtNumber"));
         String distr = "";
-        for (District district : (List<District>) ps.getAttribute("shownDistricts")) {
-            distr += district.getNumber() + ",";
-        }
-        if (!distr.isEmpty()) {
-            distr = distr.substring(0, distr.length() - 1);
+        List<District> isShownDistrict = (List<District>) ps.getAttribute("shownDistricts");
+        if (isShownDistrict != null) {
+            for (District district : isShownDistrict) {
+                distr += district.getNumber() + ",";
+            }
+            if (!distr.isEmpty()) {
+                distr = distr.substring(0, distr.length() - 1);
+            }
         }
         shownDistricts = distr;
         regDate = (String) ps.getAttribute("regDate");

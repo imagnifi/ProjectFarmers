@@ -42,6 +42,4 @@ public class DistrictLocalServiceImpl extends DistrictLocalServiceBaseImpl {
         }
        return district;
     }
-
-
 }

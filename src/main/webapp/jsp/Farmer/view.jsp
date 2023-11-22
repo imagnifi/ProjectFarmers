@@ -33,7 +33,6 @@
         List<Farmer> listFarmers = (List<Farmer>) ps.getAttribute("listFarmers");
         if (listFarmers != null) {
             farmerListMod = listFarmers;
-//            ps.removeAttribute("listFarmers");
         } else {
             farmerListUnmod = FarmerLocalServiceUtil.getFarmers(0, FarmerLocalServiceUtil.getFarmersCount());
             farmerListMod = new ArrayList<Farmer>(farmerListUnmod);

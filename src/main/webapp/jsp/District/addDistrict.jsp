@@ -21,8 +21,6 @@
 
 </aui:form>
 
-
-
 <!-- For Closing -->
 <aui:script use="aui-base">
     A.one('#<portlet:namespace/>cancel').on('click', function(event) {

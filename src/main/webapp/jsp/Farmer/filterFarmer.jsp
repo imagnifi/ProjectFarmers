@@ -1,4 +1,3 @@
-<%@ page import="javax.portlet.PortletSession" %>
 <%@include file="/jsp/init.jsp" %>
 
 <portlet:actionURL var="viewUrl" name="filterFarmer"/>

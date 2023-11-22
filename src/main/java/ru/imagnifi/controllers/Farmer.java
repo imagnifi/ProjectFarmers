@@ -5,8 +5,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import ru.imagnifi.NoSuchFarmerException;
 import ru.imagnifi.comparator.CustomComparatorUtil;
@@ -26,7 +24,6 @@ public class Farmer extends MVCPortlet {
     public void addFarmer(ActionRequest request, ActionResponse response) throws SystemException, PortalException {
         System.out.println(" Farmer controller: addFarmer 21");
 
-//        ServiceContext serviceContext = ServiceContextFactory.getInstance(Farmer.class.getName(), request);
         String org = ParamUtil.getString(request, "organization");
         String orgForm = ParamUtil.getString(request, "orgForm");
         long inn = ParamUtil.getLong(request, "inn");
@@ -42,7 +39,6 @@ public class Farmer extends MVCPortlet {
         boolean archiveStatus = Boolean.parseBoolean(ParamUtil.getString(request, "archiveStatus"));
         FarmerLocalServiceUtil.addFarmer(org, orgForm, inn, kpp, ogrn, districtNumber, districtIds, regDate,
                 archiveStatus);
-        String path = ParamUtil.getString(request, "path");
         response.setRenderParameter("path", "addFarmerPage");
     }
 
@@ -149,8 +145,6 @@ public class Farmer extends MVCPortlet {
     public void processAction(ActionRequest actionRequest,
                               ActionResponse actionResponse) throws IOException, PortletException {
         System.out.println(" Farmer controller: processAction 41");
-
-
         super.processAction(actionRequest, actionResponse);
     }
 
@@ -158,8 +152,6 @@ public class Farmer extends MVCPortlet {
         PortletSession portletSession = request.getPortletSession();
         String control = (String) portletSession.getAttribute("updateFarmerBaseControl");
         String organization, inn, districtNumber, regDateFrom, regDateTo, archiveStatusTrue, archiveStatusFalse;
-        organization = inn = districtNumber = regDateFrom = regDateTo = archiveStatusTrue = archiveStatusFalse = null;
-
         if (control != null && control.equals("true")) {
             organization = (String) portletSession.getAttribute("organizationFilter");
             inn = (String) portletSession.getAttribute("innFilter");
@@ -272,7 +264,6 @@ public class Farmer extends MVCPortlet {
         if (arhiveStatus != null && !arhiveStatus.isEmpty()) {
             farmers.retainAll(arhiveStatus);
         }
-
         ArrayList<ru.imagnifi.model.Farmer> listResult = new ArrayList<>(farmers);
         portletSession.setAttribute("listFarmers", listResult);
         if (control != null && control.equals("true")) {
@@ -342,6 +333,4 @@ public class Farmer extends MVCPortlet {
             super.doView(renderRequest, renderResponse);
         }
     }
-
-
 }

@@ -8,8 +8,6 @@
             local-service="true"
             remote-service="false"
             table="imagnifi_district">
-<!--            uuid="true">-->
-<!--            data-source="extDataSource">-->
         <column name="districtId" type="long" primary="true" id-type="increment" />
         <column name="name" type="String"/>
         <column name="number" type="int" />

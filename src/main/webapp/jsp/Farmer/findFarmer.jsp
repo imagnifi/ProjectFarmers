@@ -1,10 +1,5 @@
 <%@include file="/jsp/init.jsp" %>
 
-<%--<portlet:renderURL var="update">--%>
-<%--    <portlet:param name="path" value="findFarmerPage"/>--%>
-<%--</portlet:renderURL>--%>
-
-
 <%
     String org = ParamUtil.getString(request, "org");
     long inn = ParamUtil.getLong(request, "inn");

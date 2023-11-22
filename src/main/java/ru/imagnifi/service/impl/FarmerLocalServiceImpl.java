@@ -44,10 +44,8 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
                                               long districtNumber, String shownDistricts, String regDate,
                                               boolean archiveStatus) throws SystemException, SystemException {
 
-//        long increment = counterLocalService.increment();
         FarmerPersistence pers = FarmerUtil.getPersistence();
         Farmer farmer = pers.create(1);
-//        farmer.setFarmerId(increment);
         farmer.setOrganization(organization);
         farmer.setOrgForm(orgForm);
         farmer.setInn(inn);
